@@ -10,6 +10,7 @@ use App\Http\Controllers\Siswa\PustakaSiswaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'guru' => User::role('guru')->get(),
+        'siswa' => User::role('siswa')->get(),
+
     ]);
 });
 

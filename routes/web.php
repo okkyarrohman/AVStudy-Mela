@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guru\DashboardGuruController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Siswa\DashboardSiswaController;
 use App\Http\Controllers\Siswa\KuisSiswaController;
@@ -35,6 +36,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'role:guru'], function () {
     Route::prefix('guru')->group(function () {
         // Route Guru Start Here
+        Route::get('/dashboard', [DashboardGuruController::class, 'index'])->name('guru.dashboard');
     });
 });
 

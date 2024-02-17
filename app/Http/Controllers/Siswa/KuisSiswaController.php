@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Hasil;
+use App\Models\Opsi;
+use App\Models\Soal;
+use Illuminate\Support\Facades\Auth;
 
 class KuisSiswaController extends Controller
 {
@@ -29,7 +33,26 @@ class KuisSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $opsi = Opsi::find(array_values($request->input('soal')));
+
+        $hasilSeluruh = new Hasil();
+        $hasilSeluruh->user_id = Auth::user()->id;
+        $hasilSeluruh->kategori_kuis_id = $request->kategori_kuis_id;
+        $hasilSeluruh->total_points = $opsi->sum('point');
+        $hasilSeluruh->save();
+
+        $soal = $opsi->mapWithKeys(function ($option) {
+            return [
+                $option->soal_id => [
+                    'opsi_id' => $option->id,
+                    'point' => $option->point
+                ],
+            ];
+        })->toArray();
+
+        $hasilSeluruh->soal()->sync($soal);
+
+        return redirect()->route('kuis');
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\KategoriKuis as Kategori;
+use Inertia\Inertia;
 
 class KategoriKuisGuruController extends Controller
 {
@@ -12,7 +14,9 @@ class KategoriKuisGuruController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = Kategori::paginate(10)->get();
+
+        return Inertia::render('Guru/Kuis/Kategori/Index');
     }
 
     /**
@@ -20,7 +24,7 @@ class KategoriKuisGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/Kuis/Kategori/Create');
     }
 
     /**
@@ -28,7 +32,13 @@ class KategoriKuisGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategoris = new Kategori();
+        $kategoris->kuis = $request->kuis;
+        $kategoris->tenggat = $request->tenggat;
+        $kategoris->waktu = $request->waktu;
+        $kategoris->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -36,7 +46,7 @@ class KategoriKuisGuruController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Inertia::render('Guru/Kuis/Kategori/Show');
     }
 
     /**
@@ -44,7 +54,7 @@ class KategoriKuisGuruController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return Inertia::render('Guru/Kuis/Kategori/Edit');
     }
 
     /**
@@ -52,7 +62,14 @@ class KategoriKuisGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $kategoris = Kategori::find($request->id);
+        $kategoris->kuis = $request->kuis;
+        $kategoris->tenggat = $request->tenggat;
+        $kategoris->waktu = $request->waktu;
+        $kategoris->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +77,10 @@ class KategoriKuisGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kategoris = Kategori::find($id)->first();
+
+        $kategoris->delete();
+
+        return redirect()->route('kategori-kuis.index');
     }
 }

@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul')->nullable();
             $table->string('sumber')->nullable();
-            $table->string('cover')->nullable();
-            $table->string('file')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

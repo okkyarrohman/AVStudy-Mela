@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Models\Pustaka;
 
 class PustakaGuruController extends Controller
 {
@@ -12,7 +14,11 @@ class PustakaGuruController extends Controller
      */
     public function index()
     {
-        //
+        $pustakas = Pustaka::paginate(10)->get();
+
+        return Inertia::render('Guru/Pustaka/Index', [
+            'pustakas' => $pustakas
+        ]);
     }
 
     /**
@@ -20,7 +26,7 @@ class PustakaGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/Pustaka/Create');
     }
 
     /**
@@ -28,7 +34,13 @@ class PustakaGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pustakas = new Pustaka();
+        $pustakas->judul = $request->judul;
+        $pustakas->sumber = $request->sumber;
+        $pustakas->link = $request->link;
+        $pustakas->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -36,7 +48,10 @@ class PustakaGuruController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pustakas = Pustaka::where('id', $id)->first();
+        return Inertia::render('Guru/Pustaka/Show', [
+            'pustakas' => $pustakas
+        ]);
     }
 
     /**
@@ -44,7 +59,10 @@ class PustakaGuruController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pustakas = Pustaka::where('id', $id)->first();
+        return Inertia::render('Guru/Pustaka/Edit', [
+            'pustakas' => $pustakas
+        ]);
     }
 
     /**
@@ -52,7 +70,13 @@ class PustakaGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pustakas = Pustaka::find($id);
+        $pustakas->judul = $request->judul;
+        $pustakas->sumber = $request->sumber;
+        $pustakas->link = $request->link;
+        $pustakas->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +84,9 @@ class PustakaGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pustakas = Pustaka::where('id', $id)->first();
+        $pustakas->delete();
+
+        return redirect()->route('pustaka-guru.index');
     }
 }

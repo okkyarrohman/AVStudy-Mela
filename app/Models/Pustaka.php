@@ -13,7 +13,6 @@ class Pustaka extends Model
     protected $fillable = [
         'judul',
         'sumber',
-        'cover',
-        'file'
+        'link',
     ];
 }

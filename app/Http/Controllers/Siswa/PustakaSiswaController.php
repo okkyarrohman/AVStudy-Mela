@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pustaka;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +14,10 @@ class PustakaSiswaController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Siswa/Pustaka/Index');
+        $pustakas = Pustaka::all();
+        return Inertia::render('Siswa/Pustaka/Index', [
+            'pustakas' => $pustakas
+        ]);
     }
 
     /**
@@ -21,7 +25,7 @@ class PustakaSiswaController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Siswa/Pustaka/Create');
+        //
     }
 
     /**
@@ -37,7 +41,11 @@ class PustakaSiswaController extends Controller
      */
     public function show(string $id)
     {
-        return Inertia::render('Siswa/Pustaka/Show');
+        $pustakas = Pustaka::where('id', $id)->first();
+
+        return Inertia::render('Siswa/Pustaka/Show', [
+            'pustakas' => $pustakas
+        ]);
     }
 
     /**
@@ -45,7 +53,7 @@ class PustakaSiswaController extends Controller
      */
     public function edit(string $id)
     {
-        return Inertia::render('Siswa/Pustaka/Edit');
+        //
     }
 
     /**

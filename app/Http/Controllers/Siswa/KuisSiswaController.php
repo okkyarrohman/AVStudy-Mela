@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Hasil;
+use App\Models\KategoriKuis;
 use App\Models\Opsi;
 use App\Models\Soal;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +61,11 @@ class KuisSiswaController extends Controller
      */
     public function show(string $id)
     {
-        return Inertia::render('Siswa/Kuis/Show');
+        $kuis = KategoriKuis::where('id', $id)->first();
+
+        return Inertia::render('Siswa/Kuis/Show', [
+            'kuis' => $kuis,
+        ]);
     }
 
     /**

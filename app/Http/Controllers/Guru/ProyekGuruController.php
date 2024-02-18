@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Proyek;
+use Inertia\Inertia;
 
 class ProyekGuruController extends Controller
 {
@@ -12,7 +14,11 @@ class ProyekGuruController extends Controller
      */
     public function index()
     {
-        //
+        $proyeks = Proyek::paginate(10)->get();
+
+        return Inertia::render('Guru/Proyek/Index', [
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**
@@ -20,7 +26,7 @@ class ProyekGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/Proyek/Create');
     }
 
     /**
@@ -28,7 +34,25 @@ class ProyekGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proyeks = new Proyek();
+        $proyeks->nama = $request->nama;
+        $proyeks->tenggat = $request->tenggat;
+
+        $proyeks->step1 = $request->step1;
+        $proyeks->deskripsi1 = $request->deskripsi1;
+
+        $proyeks->step2 = $request->step2;
+        $proyeks->deskripsi2 = $request->deskripsi2;
+
+        $proyeks->step3 = $request->step3;
+        $proyeks->deskripsi3 = $request->deskripsi3;
+
+        $proyeks->step4 = $request->step4;
+        $proyeks->deskripsi4 = $request->deskripsi4;
+
+        $proyeks->save();
+
+        return redirect()->route('proyek-guru.index');
     }
 
     /**
@@ -36,7 +60,11 @@ class ProyekGuruController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $proyeks = Proyek::where('id', $id)->first();
+
+        return Inertia::render('Guru/Proyek/Show', [
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**
@@ -44,7 +72,11 @@ class ProyekGuruController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $proyeks = Proyek::where('id', $id)->first();
+
+        return Inertia::render('Guru/Proyek/Edit', [
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**
@@ -52,7 +84,25 @@ class ProyekGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $proyeks = Proyek::find($request->id);
+        $proyeks->nama = $request->nama;
+        $proyeks->tenggat = $request->tenggat;
+
+        $proyeks->step1 = $request->step1;
+        $proyeks->deskripsi1 = $request->deskripsi1;
+
+        $proyeks->step2 = $request->step2;
+        $proyeks->deskripsi2 = $request->deskripsi2;
+
+        $proyeks->step3 = $request->step3;
+        $proyeks->deskripsi3 = $request->deskripsi3;
+
+        $proyeks->step4 = $request->step4;
+        $proyeks->deskripsi4 = $request->deskripsi4;
+
+        $proyeks->save();
+
+        return redirect()->route('proyek-guru.index');
     }
 
     /**
@@ -60,6 +110,10 @@ class ProyekGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $proyeks = Proyek::find($id)->first();
+
+        $proyeks->delete();
+
+        return redirect()->route('proyek-guru.index');
     }
 }

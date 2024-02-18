@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('jumlah')->nullable();
             $table->string('deskripsi')->nullable();
             $table->string('cover')->nullable();
+            $table->string('konten')->nullable();
             $table->timestamps();
         });
     }

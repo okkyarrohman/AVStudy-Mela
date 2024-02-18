@@ -1,6 +1,13 @@
 <?php
 
 use App\Http\Controllers\Guru\DashboardGuruController;
+use App\Http\Controllers\Guru\HasilGuruController;
+use App\Http\Controllers\Guru\KategoriKuisGuruController;
+use App\Http\Controllers\Guru\MateriGuruController;
+use App\Http\Controllers\Guru\OpsiGuruController;
+use App\Http\Controllers\Guru\ProyekGuruController;
+use App\Http\Controllers\Guru\PustakaGuruController;
+use App\Http\Controllers\Guru\SoalGuruController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Siswa\DashboardSiswaController;
 use App\Http\Controllers\Siswa\KuisSiswaController;
@@ -41,6 +48,15 @@ Route::group(['middleware' => 'role:guru'], function () {
     Route::prefix('guru')->group(function () {
         // Route Guru Start Here
         Route::get('/dashboard', [DashboardGuruController::class, 'index'])->name('guru.dashboard');
+        Route::resources([
+            'materi-guru' => MateriGuruController::class,
+            'proyek-guru' => ProyekGuruController::class,
+            'pustaka-guru' => PustakaGuruController::class,
+            'kategori-kuis' => KategoriKuisGuruController::class,
+            'soal-kuis' => SoalGuruController::class,
+            'opsi-kuis' => OpsiGuruController::class,
+            'hasil-kuis' => HasilGuruController::class,
+        ]);
     });
 });
 

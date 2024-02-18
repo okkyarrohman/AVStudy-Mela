@@ -15,6 +15,7 @@ class Materi extends Model
         'nama',
         'jumlah',
         'deskripsi',
-        'cover'
+        'cover',
+        'konten'
     ];
 }

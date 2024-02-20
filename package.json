@@ -6,6 +6,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.4.1",
         "@headlessui/react": "^1.4.2",
         "@inertiajs/react": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
@@ -20,6 +21,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "@iconify/react": "^4.1.1"
+        "@iconify/react": "^4.1.1",
+        "chart.js": "^4.4.1",
+        "react-chartjs-2": "^5.2.0"
     }
 }

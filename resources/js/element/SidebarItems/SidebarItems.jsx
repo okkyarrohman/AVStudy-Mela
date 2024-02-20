@@ -10,7 +10,8 @@ const SidebarItems = (props) => {
             {siswaSidebar.map((item, idx) => {
                 return (
                     <Link
-                        to={item.path}
+                        key={idx}
+                        href={item.path}
                         className={
                             url.startsWith(item.path)
                                 ? "flex  justify-center md:justify-start items-center md:pl-5 py-3 xl:pl-10 bg-white text-purple-500 w-full"

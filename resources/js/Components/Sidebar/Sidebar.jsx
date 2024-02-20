@@ -5,7 +5,7 @@ import SidebarItems from "@/element/SidebarItems/SidebarItems";
 const Sidebar = () => {
     return (
         <>
-            <div class="flex rounded-r-3xl bg-purple-700 text-sky-300 h-full">
+            <div class="flex rounded-r-3xl bg-purple-700 text-sky-300 h-full w-1/6 fixed ">
                 <div class="flex flex-col justify-between items-center w-full">
                     <div className="flex flex-col items-start my-10 w-full gap-5">
                         <div className="flex justify-center md:justify-start w-full">
@@ -23,12 +23,12 @@ const Sidebar = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full mb-10">
+                    <div className="w-full mb-10 flex justify-center md:justify-start">
                         <Link
                             href={route("logout")}
                             method="post"
                             as="button"
-                            className="flex items-center pl-5 py-3 xl:pl-10 text-white"
+                            className="flex justify-center md:justify-start items-center md:pl-5 py-3 xl:pl-10 text-white"
                         >
                             <Icon
                                 className="mr-1 xl:mr-3 text-xl"

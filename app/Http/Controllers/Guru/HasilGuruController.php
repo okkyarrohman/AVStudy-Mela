@@ -1,23 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Siswa;
+namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pustaka;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
-class PustakaSiswaController extends Controller
+class HasilGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pustakas = Pustaka::all();
-        return Inertia::render('Siswa/Pustaka/Index', [
-            'pustakas' => $pustakas
-        ]);
+        //
     }
 
     /**
@@ -41,11 +36,7 @@ class PustakaSiswaController extends Controller
      */
     public function show(string $id)
     {
-        $pustakas = Pustaka::where('id', $id)->first();
-
-        return Inertia::render('Siswa/Pustaka/Show', [
-            'pustakas' => $pustakas
-        ]);
+        //
     }
 
     /**

@@ -24,3 +24,29 @@ export const siswaSidebar = [{
         icon: "fluent:data-pie-24-regular"
     },
 ];
+export const guruSidebar = [{
+        path: "/guru/dashboard",
+        name: "Dashboard",
+        icon: "streamline:dashboard-circle-solid"
+    },
+    {
+        path: "/guru/materi",
+        name: "Materi",
+        icon: "fluent:text-bullet-list-square-24-regular"
+    },
+    {
+        path: "/guru/pustaka",
+        name: "Pustaka",
+        icon: "ph:file-plus"
+    },
+    {
+        path: "/guru/kuis",
+        name: "Kuis",
+        icon: "lucide:clipboard-list"
+    },
+    {
+        path: "/guru/proyek",
+        name: "Proyek",
+        icon: "fluent:data-pie-24-regular"
+    },
+];

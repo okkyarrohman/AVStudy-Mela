@@ -10,7 +10,7 @@ const Dashboard = () => {
         <>
             <div className="min-h-screen grid grid-cols-12">
                 <div className="col-span-2">
-                    <Sidebar />
+                    <Sidebar/>
                 </div>
                 <div className="col-span-10 m-5">
                     <div className="flex flex-col md:grid md:grid-cols-6">

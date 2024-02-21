@@ -67,11 +67,12 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('dashboard', [DashboardSiswaController::class, 'index'])->name('siswa.dashboard');
         Route::resources([
             'materi' => MateriSiswaController::class,
-            'materi.show' => MateriSiswaController::class,
             'pustaka' => PustakaSiswaController::class,
             'kuis' => KuisSiswaController::class,
             'proyek' => ProyekSiswaController::class
         ]);
+        Route::get('pustaka/proposal/detail', [PustakaSiswaController::class, 'detail'])->name('siswa.pustaka.detail');
+
     });
 });
 

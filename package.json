@@ -23,6 +23,7 @@
     "dependencies": {
         "@iconify/react": "^4.1.1",
         "chart.js": "^4.4.1",
-        "react-chartjs-2": "^5.2.0"
+        "react-chartjs-2": "^5.2.0",
+        "sweetalert2": "^11.10.5"
     }
 }

@@ -2,6 +2,7 @@ import { Link } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import SidebarItems from "@/element/SidebarItems/SidebarItems";
 
+
 const Sidebar = () => {
     return (
         <>

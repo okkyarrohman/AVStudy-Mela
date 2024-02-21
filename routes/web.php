@@ -64,13 +64,15 @@ Route::group(['middleware' => 'role:guru'], function () {
 Route::group(['middleware' => 'role:siswa'], function () {
     Route::prefix('siswa')->group(function () {
         // Route Siswa Start Here
-        Route::get('/dashboard', [DashboardSiswaController::class, 'index'])->name('siswa.dashboard');
+        Route::get('dashboard', [DashboardSiswaController::class, 'index'])->name('siswa.dashboard');
         Route::resources([
             'materi' => MateriSiswaController::class,
             'pustaka' => PustakaSiswaController::class,
             'kuis' => KuisSiswaController::class,
             'proyek' => ProyekSiswaController::class
         ]);
+        Route::get('pustaka/proposal/detail', [PustakaSiswaController::class, 'detail'])->name('siswa.pustaka.detail');
+
     });
 });
 

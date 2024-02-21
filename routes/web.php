@@ -57,6 +57,7 @@ Route::group(['middleware' => 'role:guru'], function () {
             'opsi-kuis' => OpsiGuruController::class,
             'hasil-kuis' => HasilGuruController::class,
         ]);
+        Route::post('/dashboard/storeAbsen', [DashboardGuruController::class, 'storeAbsen']);
     });
 });
 
@@ -71,14 +72,11 @@ Route::group(['middleware' => 'role:siswa'], function () {
             'kuis' => KuisSiswaController::class,
             'proyek' => ProyekSiswaController::class
         ]);
+        Route::get('pustaka/proposal/detail', [PustakaSiswaController::class, 'detail'])->name('siswa.pustaka.detail');
     });
 });
 
 // Route Murid
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

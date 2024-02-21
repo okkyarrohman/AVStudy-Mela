@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Absen;
 
 class DashboardGuruController extends Controller
 {
@@ -13,7 +14,12 @@ class DashboardGuruController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Guru/Dashboard');
+        $absens = Absen::latest()->first();
+
+
+        return Inertia::render('Guru/Dashboard', [
+            'absens' => $absens
+        ]);
     }
 
     /**
@@ -27,9 +33,23 @@ class DashboardGuruController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeAbsen(Request $request)
     {
-        //
+
+        // Request column input type file
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalName();
+            $imageName = date('Ymd') . "." . $extension;
+            $image->move(storage_path('app/public/absen/image/'), $imageName);
+        }
+
+        Absen::create([
+            'link' => $request->input('link'),
+            'image' => $imageName,
+        ]);
+
+        return redirect()->route('guru.dashboard');
     }
 
     /**

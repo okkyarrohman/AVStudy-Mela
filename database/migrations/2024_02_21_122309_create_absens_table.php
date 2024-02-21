@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materis', function (Blueprint $table) {
+        Schema::create('absens', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
-            $table->string('jumlah')->nullable();
-            $table->longText('deskripsi')->nullable();
-            $table->string('cover')->nullable();
-            $table->string('konten')->nullable();
+            $table->string('link')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materis');
+        Schema::dropIfExists('absens');
     }
 };

@@ -56,7 +56,7 @@ const QuizShowSiswa = ({ kuis, soal }) => {
                         <div className="font-bold flex ">
                             <h1 className="font-bold">Timer : </h1>
                             <Countdown
-                                date={Date.now() + 10000 * kuis.waktu}
+                                date={Date.now() + 60000 * kuis.waktu}
                                 daysInHours={true}
                                 onComplete={()=>setIsDonetrue()}
                             />

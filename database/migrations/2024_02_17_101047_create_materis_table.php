@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('jumlah')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->longText('deskripsi')->nullable();
             $table->string('cover')->nullable();
             $table->string('konten')->nullable();
             $table->timestamps();

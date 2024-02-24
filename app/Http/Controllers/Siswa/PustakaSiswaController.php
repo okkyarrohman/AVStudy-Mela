@@ -39,11 +39,11 @@ class PustakaSiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $tipe)
+    public function show($id)
     {
-        // $pustakas = Pustaka::where('id', $id)->first();
+        $pustakas = Pustaka::where('tipe', $id)->get();
 
-        if ($tipe === "refrensi") {
+        if ($pustakas === "Referensi") {
             return Inertia::render('Siswa/Pustaka/Show/Refrensi');
         } else {
             return Inertia::render('Siswa/Pustaka/Show/Proposal');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('kuis');
             $table->string('tenggat');
             $table->string('waktu');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -50,7 +50,9 @@ class PustakaSiswaController extends Controller
                 'pustakas'=> $pustakas
             ]);
         } else {
-            return Inertia::render('Siswa/Pustaka/Show/Proposal');
+            return Inertia::render('Siswa/Pustaka/Show/Proposal',[
+                'pustakas'=> $pustakas
+            ]);
         }
     }
 

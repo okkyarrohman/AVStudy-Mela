@@ -26,6 +26,7 @@ const KuisSiswa = ({kuis}) => {
                                 qty={item.soal_count}
                                 time={item.waktu}
                                 id={item.id}
+                                hasil={item.hasil[0]?.total_points}
                             />
                         );
                     })}

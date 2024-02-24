@@ -13,8 +13,6 @@ const SidebarItems = () => {
         } else {
             setSideitems(guruSidebar);
         }
-        console.log(sideitems)
-        console.log(url)
     });
     return (
         <>

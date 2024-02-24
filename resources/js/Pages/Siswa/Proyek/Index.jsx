@@ -1,9 +1,10 @@
 import { Icon } from "@iconify/react";
 import Sidebar from "@/Components/Sidebar/Sidebar";
 import CardPustaka from "@/Components/Card/CardPustaka";
-import CardProyek from "@/Components/Card/CardPustaka";
+import CardProyek from "@/Components/Card/CardProyek";
 
-const ProyekSiswa = () => {
+const ProyekSiswa = ({proyeks}) => {
+    console.log(proyeks)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -15,13 +16,13 @@ const ProyekSiswa = () => {
                         <h1 className="font-bold text-2xl">Proyek</h1>
                     </div>
                     <div className="w-full grid grid-cols-12 gap-5">
-                        {[...Array(3)].map((item, idx) => {
+                        {proyeks.map((item, idx) => {
                             return (
                                 <div className="col-span-12 sm:col-span-4 lg:col-span-3">
                                     <CardProyek
                                         to="/siswa/pustaka/proposal"
-                                        tipe="proposal"
-                                        title="Contoh Template Proposal Proyek Akhir"
+                                        title={item.nama}
+                                        DL={item.tenggat}
                                     />
                                 </div>
                             );

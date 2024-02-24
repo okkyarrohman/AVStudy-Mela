@@ -9,7 +9,7 @@ const ListMateri = (props) => {
                     <div className="">
                         <img
                             src={props.img?props.img:"/assets/MateriCover.svg"}
-                            className="object-contain w-32"
+                            className="object-contain w-32 rounded-l-xl"
                         />
                     </div>
                     <div className="w-[100%] sm:w-[70%] ml-5">

@@ -18,7 +18,7 @@ class KuisSiswaController extends Controller
      */
     public function index()
     {
-        $kuis = KategoriKuis::withCount('soal')->get();
+        $kuis = KategoriKuis::with('hasil')->withCount('soal')->get();
         return Inertia::render('Siswa/Kuis/Index',[
             'kuis' => $kuis
         ]);

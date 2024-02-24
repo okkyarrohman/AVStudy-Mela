@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 
-const CardPustaka = (props) => {
+const CardProyek = (props) => {
     function tipePustaka(tipe) {
         if (props.tipe === tipe) {
             return true;
@@ -15,7 +15,7 @@ const CardPustaka = (props) => {
             <Link href={props.to} onClick={props.onClick}>
                 <div className="flex flex-col items-center rounded-xl shadow-xl h-full hover:scale-105 active:opacity-50 p-5 border border-gray-300">
                     <div className="w-full">
-                        <h1 className="font-bold text-xl">Judul Proyek</h1>
+                        <h1 className="font-bold text-xl">{props.title.length >40 ?props.title.slice(0,37)+"...":props.title }</h1>
                     </div>
                     <div className="w-full h-full border border-purple-500 rounded-lg m-2">
                         <div className="flex flex-col items-center gap-3 p-3 w-full h-full ">
@@ -26,7 +26,7 @@ const CardPustaka = (props) => {
                                 </div>
                             </div>
                             <p className="font-bold text-sm  italic text-purple-600">
-                                Deadline:25/01/2024
+                                {props.DL}
                             </p>
                             <div className="mb-3">
                                 <hr></hr>
@@ -44,4 +44,4 @@ const CardPustaka = (props) => {
     );
 };
 
-export default CardPustaka;
+export default CardProyek;

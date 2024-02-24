@@ -57,7 +57,7 @@ class KuisSiswaController extends Controller
 
         $hasilSeluruh->soal()->sync($soal);
 
-        return redirect()->route('kuis');
+        return redirect()->route('kuis.index');
     }
 
     /**

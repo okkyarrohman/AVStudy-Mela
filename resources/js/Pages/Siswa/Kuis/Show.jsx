@@ -19,6 +19,22 @@ const QuizShowSiswa = ({ kuis, soal }) => {
         console.log("taekk")
         setIsDone(true)
     }
+    const handleCloseQuiz = () => {
+        Swal.fire({
+            html: `
+                <h1 class="text-2xl text-red-500 font-bold mb-3">Keluar</h1>
+                <p class="text-sm font-bold">Apakah kamu yakin ingin meninggalkan kuis ?</p>
+                <p class="text-sm">Jika tidak periksa kembali jawabanmu</p>
+            `,
+            confirmButtonColor: "#ef4444",
+            confirmButtonText: `Quit`,
+            showCloseButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                router.visit("/siswa/kuis");
+            }
+        });
+    };
 
     return (
         <>
@@ -40,7 +56,7 @@ const QuizShowSiswa = ({ kuis, soal }) => {
                         <div className="font-bold flex ">
                             <h1 className="font-bold">Timer : </h1>
                             <Countdown
-                                date={Date.now() + 10000 * 1}
+                                date={Date.now() + 10000 * kuis.waktu}
                                 daysInHours={true}
                                 onComplete={()=>setIsDonetrue()}
                             />

@@ -13,26 +13,13 @@ import { Icon } from "@iconify/react";
 const KuisSection = ({ kuis, soal, done }) => {
     console.log(kuis);
     console.log(soal);
-    const questions = [
-        {
-            question: "Apa ibukota Indonesia? ",
-            options: ["Jakarta", "Bandung", "Surabaya", "Medan"],
-            correctAnswer: "Jakarta",
-        },
-        {
-            question: "Berapakah hasil dari 2 + 2?",
-            options: ["3", "4", "5", "6"],
-            correctAnswer: "4",
-        },
-    ];
 
     const quest = soal;
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [userAnswers, setUserAnswers] = useState(
-        Array(questions.length).fill("")
+        Array(quest.length).fill("")
     );
-    const [score, setScore] = useState(0);
     const [QuizDone, setQuizDone] = useState(done);
 
     const handleAnswerChange = (event) => {
@@ -48,25 +35,9 @@ const KuisSection = ({ kuis, soal, done }) => {
         }
     };
 
-    const handleCloseQuiz = () => {
-        Swal.fire({
-            html: `
-                <h1 class="text-2xl text-red-500 font-bold mb-3">Keluar</h1>
-                <p class="text-sm font-bold">Apakah kamu yakin ingin meninggalkan kuis ?</p>
-                <p class="text-sm">Jika tidak periksa kembali jawabanmu</p>
-            `,
-            confirmButtonColor: "#ef4444",
-            confirmButtonText: `Quit`,
-            showCloseButton: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                router.visit("/siswa/kuis");
-            }
-        });
-    };
 
     const handleNextQuestion = () => {
-        if (currentQuestion < questions.length - 1) {
+        if (currentQuestion < quest.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
         } else {
             setQuizDone(true);
@@ -89,7 +60,10 @@ const KuisSection = ({ kuis, soal, done }) => {
             if (result.isConfirmed) {
                 console.log("ini Jawaban User",userAnswers);
                 //ikilo kik anjrit datae bentuk e piye
-                router.post(route("kuis.store", { userAnswers }));
+                router.post(route("kuis.store", {
+                    "kategori_kuis_id": 1,
+                    "soal":{userAnswers}
+                }));
             }
         });
     }
@@ -122,10 +96,10 @@ const KuisSection = ({ kuis, soal, done }) => {
                                             className="m-3"
                                             type="radio"
                                             name="answer"
-                                            value={option.opsi}
+                                            value={option.id}
                                             checked={
                                                 userAnswers[currentQuestion] ===
-                                                option.opsi
+                                                option.id
                                             }
                                             onChange={handleAnswerChange}
                                         />
@@ -143,7 +117,7 @@ const KuisSection = ({ kuis, soal, done }) => {
                         <BtnPrimary
                             onClick={() => handleNextQuestion()}
                             text={
-                                currentQuestion === questions.length - 1
+                                currentQuestion === quest.length - 1
                                     ? "Submit"
                                     : "Next"
                             }

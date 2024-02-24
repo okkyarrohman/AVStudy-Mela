@@ -18,10 +18,11 @@ const MateriSiswa = ({materis}) => {
                     {materis.map((item, idx) => {
                         return (
                             <ListMateri
-                                to={`/siswa/materi/show/${item.id}`}
+                                to={`materi.show`}
                                 img={item.cover}
                                 title={item.nama}
                                 desc={item.deskripsi}
+                                id={item.id}
                             />
                         );
                     })}

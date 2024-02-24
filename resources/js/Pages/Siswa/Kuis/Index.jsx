@@ -6,7 +6,8 @@ import ListMateri from "@/Components/List/ListMateri";
 import ListKuis from "@/Components/List/ListKuis";
 import Countdown from "react-countdown";
 
-const KuisSiswa = () => {
+const KuisSiswa = ({kuis}) => {
+    console.log(kuis)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -17,13 +18,14 @@ const KuisSiswa = () => {
                     <div className="my-5">
                         <h1 className="font-bold text-2xl">Kuis</h1>
                     </div>
-                    {[...Array(3)].map((item, idx) => {
+                    {kuis.map((item, idx) => {
                         return (
                             <ListKuis
-                                key={idx}
-                                title="Judul Kuis"
-                                qty={25}
-                                time={30}
+                                key={item.id}
+                                title={item.kuis}
+                                qty={item.soal_count}
+                                time={item.waktu}
+                                id={item.id}
                             />
                         );
                     })}

@@ -18,10 +18,10 @@ class KuisSiswaController extends Controller
      */
     public function index()
     {
-        $quis = KategoriKuis::all();
-
-
-        return Inertia::render('Siswa/Kuis/Index');
+        $kuis = KategoriKuis::withCount('soal')->get();
+        return Inertia::render('Siswa/Kuis/Index',[
+            'kuis' => $kuis
+        ]);
     }
 
     /**
@@ -37,6 +37,7 @@ class KuisSiswaController extends Controller
      */
     public function store(Request $request)
     {
+
         $opsi = Opsi::find(array_values($request->input('soal')));
 
         $hasilSeluruh = new Hasil();
@@ -62,12 +63,15 @@ class KuisSiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
+        $soal = Soal::with('opsi')->where('kategori_kuis_id',$id)->get();
         $kuis = KategoriKuis::where('id', $id)->first();
 
         return Inertia::render('Siswa/Kuis/Show', [
             'kuis' => $kuis,
+            'soal' => $soal,
+
         ]);
     }
 

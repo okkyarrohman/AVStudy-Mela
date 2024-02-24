@@ -18,6 +18,9 @@ class KuisSiswaController extends Controller
      */
     public function index()
     {
+        $quis = KategoriKuis::all();
+
+
         return Inertia::render('Siswa/Kuis/Index');
     }
 

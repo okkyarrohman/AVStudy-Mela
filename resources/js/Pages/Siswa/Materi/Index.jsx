@@ -4,7 +4,7 @@ import TableProgressProyek from "@/Components/Table/TableProgressProyek";
 import { Link } from "@inertiajs/react";
 import ListMateri from "@/Components/List/ListMateri";
 
-const MateriSiswa = () => {
+const MateriSiswa = ({materis}) => {
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -13,17 +13,15 @@ const MateriSiswa = () => {
                 </div>
                 <div className="col-span-10 lg:col-span-9 m-10 flex flex-col gap-5">
                     <div className="my-5">
-                        <h1 className="font-bold text-2xl">Materi</h1>
+                        <h1 className="font-bold text-2xl"></h1>
                     </div>
-                    {[...Array(3)].map((item, idx) => {
+                    {materis.map((item, idx) => {
                         return (
                             <ListMateri
-                                to="/siswa/materi/show"
-                                img="/assets/MateriCover.svg"
-                                title="Judul Materi"
-                                desc="Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Corrupti, repellat
-                                architecto."
+                                to={`/siswa/materi/show/${item.id}`}
+                                img={item.cover}
+                                title={item.nama}
+                                desc={item.deskripsi}
                             />
                         );
                     })}

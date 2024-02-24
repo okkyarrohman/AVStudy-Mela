@@ -16,11 +16,9 @@ class ProyekSiswaController extends Controller
      */
     public function index()
     {
-        $proyeks = Proyek::all();
+        // $proyeks = Proyek::all();
 
-        return Inertia::render('Siswa/Proyek/Index', [
-            'proyeks' => $proyeks
-        ]);
+        return Inertia::render('Siswa/Proyek/Index');
     }
 
     /**

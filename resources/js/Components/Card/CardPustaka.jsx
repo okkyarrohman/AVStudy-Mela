@@ -1,7 +1,8 @@
+
 import { Link } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 
-const CardPustaka = (props) => {
+const CardProyek = (props) => {
     function tipePustaka(tipe) {
         if (props.tipe === tipe) {
             return true;
@@ -56,4 +57,4 @@ const CardPustaka = (props) => {
     );
 };
 
-export default CardPustaka;
+export default CardProyek;

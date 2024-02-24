@@ -8,7 +8,7 @@ const ListMateri = (props) => {
                 <div className="flex items-center gap-3 rounded-xl shadow-xl hover:scale-105 active:opacity-50">
                     <div className="">
                         <img
-                            src={props.img}
+                            src={props.img?props.img:"/assets/MateriCover.svg"}
                             className="object-contain w-32"
                         />
                     </div>

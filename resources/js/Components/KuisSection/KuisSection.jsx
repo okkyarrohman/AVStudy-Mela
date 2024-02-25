@@ -5,14 +5,8 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 import BtnSecondary from "@/element/button/BtnSecondary";
-import { usePage } from "@inertiajs/react";
-
-import Countdown from "react-countdown";
-import { Icon } from "@iconify/react";
 
 const KuisSection = ({ kuis, soal, done }) => {
-    console.log(kuis);
-    console.log(soal);
 
     const quest = soal;
 

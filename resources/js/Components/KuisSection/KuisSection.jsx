@@ -98,7 +98,7 @@ const KuisSection = ({ kuis, soal, done }) => {
                                             name="answer"
                                             value={option.id}
                                             checked={
-                                                userAnswers[currentQuestion] ===
+                                                userAnswers[currentQuestion] ==
                                                 option.id
                                             }
                                             onChange={handleAnswerChange}

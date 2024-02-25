@@ -1,90 +1,72 @@
 // QuizShowSiswa.js
 
-import React, { useState } from 'react';
+import BtnPrimary from "@/element/button/BtnPrimary";
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { router } from "@inertiajs/react";
+import BtnSecondary from "@/element/button/BtnSecondary";
+import { usePage } from "@inertiajs/react";
 
-const QuizShowSiswa = () => {
-  const questions = [
-    {
-      question: 'Apa ibukota Indonesia?',
-      options: ['Jakarta', 'Bandung', 'Surabaya', 'Medan'],
-      correctAnswer: 'Jakarta'
-    },
-    {
-      question: 'Berapakah hasil dari 2 + 2?',
-      options: ['3', '4', '5', '6'],
-      correctAnswer: '4'
-    },
-  ];
+import Countdown from "react-countdown";
+import { Icon } from "@iconify/react";
+import KuisSection from "@/Components/KuisSection/KuisSection";
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userAnswers, setUserAnswers] = useState(Array(questions.length).fill(''));
-  const [score, setScore] = useState(0);
-  const [showResult, setShowResult] = useState(false);
+const QuizShowSiswa = ({ kuis, soal }) => {
 
-  const handleAnswerChange = (event) => {
-    const selectedAnswer = event.target.value;
-    const updatedUserAnswers = [...userAnswers];
-    updatedUserAnswers[currentQuestion] = selectedAnswer;
-    setUserAnswers(updatedUserAnswers);
-  };
+    const [isDone, setIsDone ] = useState()
 
-  const handlePrevQuestion = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
+    const setIsDonetrue = () =>{
+        console.log("taekk")
+        setIsDone(true)
     }
-  };
+    const handleCloseQuiz = () => {
+        Swal.fire({
+            html: `
+                <h1 class="text-2xl text-red-500 font-bold mb-3">Keluar</h1>
+                <p class="text-sm font-bold">Apakah kamu yakin ingin meninggalkan kuis ?</p>
+                <p class="text-sm">Jika tidak periksa kembali jawabanmu</p>
+            `,
+            confirmButtonColor: "#ef4444",
+            confirmButtonText: `Quit`,
+            showCloseButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                router.visit("/siswa/kuis");
+            }
+        });
+    };
 
-  const handleNextQuestion = () => {
-    if (userAnswers[currentQuestion] === questions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-    }
-
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      setShowResult(true);
-    }
-  };
-
-  const resetQuiz = () => {
-    setCurrentQuestion(0);
-    setUserAnswers(Array(questions.length).fill(''));
-    setScore(0);
-    setShowResult(false);
-  };
-
-  return (
-    <div className=''>
-      {showResult ? (
-        <div>
-          <h1>Hasil Quiz</h1>
-          <p>Skor Anda: {score} dari {questions.length}</p>
-          <button onClick={resetQuiz}>Ulang Quiz</button>
-        </div>
-      ) : (
-        <div>
-          <h2>Pertanyaan {currentQuestion + 1}</h2>
-          <p>{questions[currentQuestion].question}</p>
-          <form>
-            {questions[currentQuestion].options.map((option, index) => (
-              <label key={index}>
-                <input
-                  type="radio"
-                  name="answer"
-                  value={option}
-                  checked={userAnswers[currentQuestion] === option}
-                  onChange={handleAnswerChange}
-                />
-                {option}
-              </label>
-            ))}
-          </form>
-          <button onClick={handlePrevQuestion}>Sebelumnya</button>
-          <button onClick={handleNextQuestion}>Selanjutnya</button>
-        </div>
-      )}
-    </div>
-  );
+    return (
+        <>
+            <div className="min-h-screen flex flex-col justify-start p-10">
+                <div className="flex justify-between">
+                    <div className="">
+                        <h1 className="font-bold text-2xl">Judul Kuis </h1>
+                        <p className="text-sm">
+                            Jawab Kuis ini dengan Benar dan Teliti
+                        </p>
+                    </div>
+                    <div className="self-end flex flex-col items-end">
+                        <button
+                            onClick={() => handleCloseQuiz()}
+                            className="text-4xl text-end text-red-500 hover:text-red-600"
+                        >
+                            <Icon icon="jam:close-rectangle-f"></Icon>
+                        </button>
+                        <div className="font-bold flex ">
+                            <h1 className="font-bold">Timer : </h1>
+                            <Countdown
+                                date={Date.now() + 60000 * kuis.waktu}
+                                daysInHours={true}
+                                onComplete={()=>setIsDonetrue()}
+                            />
+                        </div>
+                    </div>
+                </div>
+                <KuisSection kuis={kuis} done={isDone} soal={soal} />
+            </div>
+        </>
+    );
 };
 
 export default QuizShowSiswa;

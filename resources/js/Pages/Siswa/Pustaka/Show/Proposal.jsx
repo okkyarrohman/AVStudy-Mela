@@ -5,7 +5,8 @@ import CardPustaka from "@/Components/Card/CardPustaka";
 import CardRefrensi from "@/Components/Card/CardRefrensi";
 import ListProposal from "@/Components/List/ListProposal";
 
-const RefrensiSiswa = () => {
+const RefrensiSiswa = ({pustakas}) => {
+    console.log(pustakas)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -26,12 +27,12 @@ const RefrensiSiswa = () => {
                     <div className="my-5">
                         <h1 className="font-bold text-xl">Proposal</h1>
                     </div>
-                    {[...Array(3)].map((item, idx) => {
+                    {pustakas.map((item, idx) => {
                         return (
                             <ListProposal
-                                to="/siswa/pustaka/proposal/detail"
-                                img="/assets/MateriCover.svg"
-                                title="Judul Materi"
+                                to="detail"
+                                img={item.sumber}
+                                title={item.judul}
                                 desc="Lorem ipsum dolor sit amet consectetur,
                                 adipisicing elit. Corrupti, repellat
                                 architecto."

@@ -13,7 +13,7 @@ const ListProposal = (props) => {
             <Link href={props.to}>
                 <div className="flex items-center gap-3 rounded-xl shadow-xl active:opacity-50 border border-gray-300">
                     <div className="">
-                        <img src={props.img} className="object-contain w-24" />
+                        <img src={props.img} className="object-contain w-24 rounded-l-xl" />
                     </div>
                     <div className="flex w-full items-center justify-between ml-1 mr-2 sm:ml-5 sm:mr-10">
                         <div>

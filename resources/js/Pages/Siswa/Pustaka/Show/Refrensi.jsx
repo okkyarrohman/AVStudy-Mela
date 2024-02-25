@@ -4,7 +4,8 @@ import { Link } from "@inertiajs/react";
 import CardPustaka from "@/Components/Card/CardPustaka";
 import CardRefrensi from "@/Components/Card/CardRefrensi";
 
-const RefrensiSiswa = () => {
+const RefrensiSiswa = ({pustakas}) => {
+    console.log(pustakas)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -26,12 +27,12 @@ const RefrensiSiswa = () => {
                         <h1 className="font-bold text-xl">Refrensi</h1>
                     </div>
                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-                        {[...Array(5)].map((item, idx) => {
+                        {pustakas.map((item, idx) => {
                             return (
                                 <div className="col-span-1">
                                     <CardRefrensi
-                                        to="https://youtube.com"
-                                        title="Tutorial Bernafas sambil joget"
+                                        to={item.link}
+                                        title={item.judul}
                                     />
                                 </div>
                             );

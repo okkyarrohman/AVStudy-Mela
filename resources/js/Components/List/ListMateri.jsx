@@ -4,12 +4,12 @@ import { Icon } from "@iconify/react";
 const ListMateri = (props) => {
     return (
         <>
-            <Link href={props.to}>
+            <Link href={route(props.to,{id: props.id})}>
                 <div className="flex items-center gap-3 rounded-xl shadow-xl hover:scale-105 active:opacity-50">
                     <div className="">
                         <img
-                            src={props.img}
-                            className="object-contain w-32"
+                            src={props.img?props.img:"/assets/MateriCover.svg"}
+                            className="object-contain w-32 rounded-l-xl"
                         />
                     </div>
                     <div className="w-[100%] sm:w-[70%] ml-5">

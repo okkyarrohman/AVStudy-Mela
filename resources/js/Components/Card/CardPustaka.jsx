@@ -1,3 +1,4 @@
+
 import { Link } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 

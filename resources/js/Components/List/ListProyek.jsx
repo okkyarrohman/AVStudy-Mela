@@ -3,14 +3,14 @@ import { Icon } from "@iconify/react";
 import { router } from "@inertiajs/react";
 import Swal from "sweetalert2";
 
-const ListKuis = (props) => {
-    const soalKosongHandler = () =>{
+const ListProyek = (props) => {
+    const soalKosongHandler = () => {
         Swal.fire({
             title: "SOAL KOSONG",
             text: "Gaonok soal e coegg, keplaken ae ndas e gurumu",
-            icon: "error"
-          });
-    }
+            icon: "error",
+        });
+    };
 
     const kerjakanHandler = (title, id) => {
         Swal.fire({
@@ -35,9 +35,9 @@ const ListKuis = (props) => {
         });
     };
     return (
-        <>
-            <div className="flex items-center gap-3 rounded-xl shadow-xl active:opacity-50 border border-gray-300 py-5">
-                <div className="bg-orange-300 rounded-full w-10 h-8 mx-5"></div>
+        <div className="grid grid-cols-12">
+            <div className="col-span-1 self-center bg-orange-300 rounded-full w-10 h-10 mx-5"></div>
+            <div className="col-span-11 flex items-center gap-3 rounded-xl shadow-xl active:opacity-50 border border-gray-300 py-5">
                 <div className="grid grid-cols-12 w-full items-center justify-between ml-1 mr-2 sm:ml-5 sm:mr-10 gap-3">
                     <div className="col-span-7">
                         <h1 className="font-bold text-md sm:text-xl">
@@ -51,13 +51,18 @@ const ListKuis = (props) => {
                         <p>{props.time} Menit</p>
                     </div>
                     <div className="col-span-2 text-center">
-                        {props.hasil? (
+                        {props.hasil ? (
                             <p>{props.hasil} </p>
                         ) : (
                             <button
-                                onClick={props.qty > 0 ? (() =>
-                                    kerjakanHandler(props.title, props.id)):
-                                    ()=>soalKosongHandler()
+                                onClick={
+                                    props.qty > 0
+                                        ? () =>
+                                              kerjakanHandler(
+                                                  props.title,
+                                                  props.id
+                                              )
+                                        : () => soalKosongHandler()
                                 }
                                 className="w-full bg-purple-500 text-white p-2 rounded-lg"
                             >
@@ -67,8 +72,8 @@ const ListKuis = (props) => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
-export default ListKuis;
+export default ListProyek;

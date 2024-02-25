@@ -6,7 +6,7 @@ import ListMateri from "@/Components/List/ListMateri";
 import ListKuis from "@/Components/List/ListKuis";
 import Countdown from "react-countdown";
 
-const KuisSiswa = ({kuis}) => {
+const ShowProyek = ({kuis}) => {
     console.log(kuis)
     return (
         <>
@@ -36,4 +36,4 @@ const KuisSiswa = ({kuis}) => {
     );
 };
 
-export default KuisSiswa;
+export default ShowProyek;

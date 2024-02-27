@@ -6,7 +6,7 @@ const ListNotif = () => {
                 <ul>
                     {[...Array(4)].map((item, idx) => {
                         return (
-                            <li className="bg-white border-b-2 py-3 border-purple-300">
+                            <li className="bg-white border-b-2 py-3 border-purple-300" key={idx}>
                                 <div className="flex items-center">
                                     {/* <img
                                                     src="/assets/PhotoProfile.svg"

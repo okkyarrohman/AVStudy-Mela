@@ -6,9 +6,9 @@ import SidebarItems from "@/element/SidebarItems/SidebarItems";
 const Sidebar = () => {
     return (
         <>
-            <div className="flex rounded-r-3xl bg-purple-700 text-sky-300 h-full w-1/6 fixed ">
+            <div className="flex rounded-r-3xl bg-purple-700 text-sky-300 h-full w-1/6 fixed overflow-y-auto overflow-hidden">
                 <div className="flex flex-col justify-between items-center w-full">
-                    <div className="flex flex-col items-start my-10 w-full gap-5">
+                    <div className="flex flex-col items-start my-5 w-full gap-5">
                         <div className="flex justify-center md:justify-start w-full">
                             <img
                                 src="/assets/AVLogo.svg"

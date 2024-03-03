@@ -5,7 +5,7 @@ import ListNotif from "@/Components/List/ListNotif";
 import Sidebar from "@/Components/Sidebar/Sidebar";
 import TableProgressProyek from "@/Components/Table/TableProgressProyek";
 
-const Dashboard = () => {
+const Dashboard = ({absens,newTugases,progresTugas,chartKuis}) => {
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -25,8 +25,8 @@ const Dashboard = () => {
                             </div>
                             <BannerDashboard />
                             <div className="flex flex-col sm:flex-row w-full gap-5">
-                                <CardBarcode />
-                                <CardChart />
+                                <CardBarcode img={absens[0].image}/>
+                                <CardChart data={chartKuis}/>
                             </div>
                             <div className="my-10 mx-2">
                                 <TableProgressProyek />
@@ -44,7 +44,7 @@ const Dashboard = () => {
                                         Mela Imroatus
                                     </p>
                                 </div>
-                                <ListNotif/>
+                                <ListNotif data={newTugases}  />
                             </div>
                         </div>
                     </div>

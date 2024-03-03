@@ -4,15 +4,12 @@ import { router } from "@inertiajs/react";
 import Swal from "sweetalert2";
 
 const ListProyek = (props) => {
-    const soalKosongHandler = () => {
-        Swal.fire({
-            title: "SOAL KOSONG",
-            text: "Gaonok soal e coegg, keplaken ae ndas e gurumu",
-            icon: "error",
-        });
+    const kerjakanHandler = (id) => {
+        console.log(id)
+       router.get(route("proyek.show",{id : id}))
     };
 
-    const kerjakanHandler = (title, id) => {
+    const feedbackHandler = (title, id) => {
         Swal.fire({
             html: `
             <div className="flex flex-col justify-center items-center">
@@ -35,43 +32,43 @@ const ListProyek = (props) => {
         });
     };
     return (
-        <div className="grid grid-cols-12">
-            <div className="col-span-1 self-center bg-orange-300 rounded-full w-10 h-10 mx-5"></div>
-            <div className="col-span-11 flex items-center gap-3 rounded-xl shadow-xl active:opacity-50 border border-gray-300 py-5">
-                <div className="grid grid-cols-12 w-full items-center justify-between ml-1 mr-2 sm:ml-5 sm:mr-10 gap-3">
-                    <div className="col-span-7">
-                        <h1 className="font-bold text-md sm:text-xl">
-                            {props.title}
-                        </h1>
+        <div className="flex flex-col gap-3">
+            {[...Array(4)].map((item, idx) => {
+                const stepKey = `step${idx + 1}`;
+                return (
+                    <div className="grid grid-cols-12" key={idx}>
+                        <div className="col-span-1 self-center bg-purple-400 rounded-full w-10 h-10 mx-3"></div>
+                        <div className="col-span-11 flex items-center gap-3 rounded-xl shadow-xl active:opacity-50 border border-gray-300 py-5">
+                            <div className="grid grid-cols-12 w-full items-center justify-between mx-5 gap-3">
+                                <div className="col-span-2">
+                                    <h1 className="font-bold text-md sm:text-lg">
+                                        Langkah {idx+1}
+                                    </h1>
+                                </div>
+                                <div className="col-span-6">
+                                    <p>{props.show[stepKey] }</p>
+                                </div>
+                                <div className="col-span-2">
+                                    <button
+                                        onClick={()=>kerjakanHandler(props.show.id)}
+                                        className="w-full bg-purple-500 text-white p-2 rounded-lg"
+                                    >
+                                        Kerjakan
+                                    </button>
+                                </div>
+                                <div className="col-span-2 text-center">
+                                    <button
+                                        onClick={""}
+                                        className="w-full bg-purple-500 text-white p-2 rounded-lg"
+                                    >
+                                        Feedback
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-span-1">
-                        <p>{props.qty} Soal</p>
-                    </div>
-                    <div className="col-span-2">
-                        <p>{props.time} Menit</p>
-                    </div>
-                    <div className="col-span-2 text-center">
-                        {props.hasil ? (
-                            <p>{props.hasil} </p>
-                        ) : (
-                            <button
-                                onClick={
-                                    props.qty > 0
-                                        ? () =>
-                                              kerjakanHandler(
-                                                  props.title,
-                                                  props.id
-                                              )
-                                        : () => soalKosongHandler()
-                                }
-                                className="w-full bg-purple-500 text-white p-2 rounded-lg"
-                            >
-                                Kerjakan
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
+                );
+            })}
         </div>
     );
 };

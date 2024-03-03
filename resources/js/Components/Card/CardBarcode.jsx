@@ -1,6 +1,6 @@
 import ThisDate from "@/Data/ThisDate";
 
-const CardBarcode = () => {
+const CardBarcode = (props) => {
     const thisdate = ThisDate();
     return (
         <>
@@ -12,7 +12,7 @@ const CardBarcode = () => {
                 <div className="p-3 flex flex-col justify-center items-center">
                     <img
                         className="object-contain w-2/4 sm:w-2/3"
-                        src="/assets/BarCode.svg"
+                        src={props.img}
                     />
                     <h1 className="font-black text-sm sm:text-lg">www.attendance.com</h1>
                 </div>

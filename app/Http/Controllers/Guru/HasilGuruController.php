@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\KategoriKuis as Kategori;
+use Inertia\Inertia;
 
 class HasilGuruController extends Controller
 {
@@ -13,6 +15,8 @@ class HasilGuruController extends Controller
     public function index()
     {
         //
+        return Inertia::render('Guru/Kuis/KuisHasil');
+
     }
 
     /**
@@ -21,6 +25,7 @@ class HasilGuruController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -37,6 +42,8 @@ class HasilGuruController extends Controller
     public function show(string $id)
     {
         //
+
+        return Inertia::render('Guru/Kuis/KuisHasilDetail');
     }
 
     /**

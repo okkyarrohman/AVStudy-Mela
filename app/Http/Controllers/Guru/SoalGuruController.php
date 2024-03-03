@@ -15,11 +15,9 @@ class SoalGuruController extends Controller
      */
     public function index()
     {
-        $soals = Soal::paginate(10)->get();
+        // $soals = Soal::paginate(10)->get();
 
-        return Inertia::render('Guru/Kuis/Soal/Index', [
-            'soals' => $soals
-        ]);
+        return Inertia::render('Guru/Kuis/KuisSoal');
     }
 
     /**
@@ -27,9 +25,7 @@ class SoalGuruController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Guru/Kuis/Soal/Create', [
-            'kategoris' => KategoriKuis::all()
-        ]);
+        return Inertia::render('Guru/Kuis/KuisSoalAdd');
     }
 
     /**

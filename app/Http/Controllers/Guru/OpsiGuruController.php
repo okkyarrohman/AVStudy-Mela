@@ -15,10 +15,8 @@ class OpsiGuruController extends Controller
      */
     public function index()
     {
-        $opsis = Opsi::paginate(10)->get();
-        return Inertia::render('Guru/Kuis/Opsi/Index', [
-            'opsis' => $opsis
-        ]);
+        // $opsis = Opsi::paginate(10)->get();
+        return Inertia::render('Guru/Kuis/KuisOpsi');
     }
 
     /**
@@ -26,9 +24,7 @@ class OpsiGuruController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Guru/Kuis/Opsi/Create', [
-            'soals' => Soal::all(),
-        ]);
+        return Inertia::render('Guru/Kuis/KuisOpsiAdd');
     }
 
     /**

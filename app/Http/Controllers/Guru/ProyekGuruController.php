@@ -14,11 +14,9 @@ class ProyekGuruController extends Controller
      */
     public function index()
     {
-        $proyeks = Proyek::paginate(10)->get();
+        // $proyeks = Proyek::paginate(10)->get();
 
-        return Inertia::render('Guru/Proyek/Index', [
-            'proyeks' => $proyeks
-        ]);
+        return Inertia::render('Guru/Proyek/Index');
     }
 
     /**
@@ -58,13 +56,17 @@ class ProyekGuruController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        $proyeks = Proyek::where('id', $id)->first();
+        // $proyeks = Proyek::where('id', $id)->first();
 
-        return Inertia::render('Guru/Proyek/Show', [
-            'proyeks' => $proyeks
-        ]);
+        return Inertia::render('Guru/Proyek/Show');
+    }
+    public function detail()
+    {
+        // $proyeks = Proyek::where('id', $id)->first();
+
+        return Inertia::render('Guru/Proyek/Detail');
     }
 
     /**

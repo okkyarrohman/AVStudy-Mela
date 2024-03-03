@@ -19,7 +19,7 @@ ChartJS.register(
     Legend
 );
 
-const ChartDashboard = () => {
+const ChartDashboard = ({data}) => {
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -41,19 +41,21 @@ const ChartDashboard = () => {
         "April",
     ];
 
-    const data = {
+    const datas = {
         labels,
         datasets: [
             {
                 label: "Dataset 1",
-                data: labels.map(() =>
-                    faker.datatype.number({ min: 0, max: 1000 })
-                ),
+                data: data.map((item,idx)=>{
+                    return item.y[0]?.total_points
+                }),
                 backgroundColor: "rgba(255, 99, 132, 0.5)",
             },
         ],
     };
-    return <Bar options={options} data={data} />;
+
+    console.log(datas)
+    return <Bar options={options} data={datas} />;
 };
 
 export default ChartDashboard;

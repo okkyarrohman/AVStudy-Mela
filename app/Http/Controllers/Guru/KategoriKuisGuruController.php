@@ -14,9 +14,9 @@ class KategoriKuisGuruController extends Controller
      */
     public function index()
     {
-        $kategoris = Kategori::paginate(10)->get();
+        // $kategoris = Kategori::paginate(10)->get();
 
-        return Inertia::render('Guru/Kuis/Kategori/Index');
+        return Inertia::render('Guru/Kuis/KuisKategori');
     }
 
     /**
@@ -24,7 +24,7 @@ class KategoriKuisGuruController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Guru/Kuis/Kategori/Create');
+        return Inertia::render('Guru/Kuis/KuisKategoriAdd');
     }
 
     /**

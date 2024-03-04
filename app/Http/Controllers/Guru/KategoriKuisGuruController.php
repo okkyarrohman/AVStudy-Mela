@@ -14,9 +14,11 @@ class KategoriKuisGuruController extends Controller
      */
     public function index()
     {
-        // $kategoris = Kategori::paginate(10)->get();
+        $kategoris = Kategori::paginate(10);
 
-        return Inertia::render('Guru/Kuis/KuisKategori');
+        return Inertia::render('Guru/Kuis/KuisKategori', [
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
@@ -32,11 +34,11 @@ class KategoriKuisGuruController extends Controller
      */
     public function store(Request $request)
     {
-        $kategoris = new Kategori();
-        $kategoris->kuis = $request->kuis;
-        $kategoris->tenggat = $request->tenggat;
-        $kategoris->waktu = $request->waktu;
-        $kategoris->save();
+        Kategori::create([
+            'kuis' => $request->input('kuis'),
+            'tenggat' => $request->input('tenggat'),
+            'waktu' => $request->input('waktu'),
+        ]);
 
         return redirect()->back();
     }
@@ -46,6 +48,8 @@ class KategoriKuisGuruController extends Controller
      */
     public function show(string $id)
     {
+
+
         return Inertia::render('Guru/Kuis/Kategori/Show');
     }
 
@@ -54,7 +58,11 @@ class KategoriKuisGuruController extends Controller
      */
     public function edit(string $id)
     {
-        return Inertia::render('Guru/Kuis/Kategori/Edit');
+        $kategoris = Kategori::where('id', $id)->first();
+
+        return Inertia::render('Guru/Kuis/Kategori/Edit', [
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**

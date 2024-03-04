@@ -7,6 +7,7 @@ use App\Models\KategoriKuis;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Soal;
+use App\Models\KategoriKuis as Kategori;
 
 class SoalGuruController extends Controller
 {
@@ -15,9 +16,11 @@ class SoalGuruController extends Controller
      */
     public function index()
     {
-        // $soals = Soal::paginate(10)->get();
+        $soals = Soal::paginate(10);
 
-        return Inertia::render('Guru/Kuis/KuisSoal');
+        return Inertia::render('Guru/Kuis/KuisSoal', [
+            'soals' => $soals
+        ]);
     }
 
     /**
@@ -25,7 +28,10 @@ class SoalGuruController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Guru/Kuis/KuisSoalAdd');
+
+        return Inertia::render('Guru/Kuis/KuisSoalAdd', [
+            'kategoris' => Kategori::all(),
+        ]);
     }
 
     /**
@@ -33,18 +39,19 @@ class SoalGuruController extends Controller
      */
     public function store(Request $request)
     {
-        $soals = new Soal();
-        $soals->kategori_kuis_id = $request->kategori_kuis_id;
-        $soals->soal = $request->soal;
-        // Request column input type file
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
             $extension = $gambar->getClientOriginalName();
             $gambarName = date('Ymd') . "." . $extension;
             $gambar->move(storage_path('app/public/kuis/soal/gambar/'), $gambarName);
-            $soals->gambar = $gambarName;
         }
-        $soals->save();
+
+        Soal::create([
+            'kategori_kuis_id' => $request->input('kategori_kuis_id'),
+            'soal' => $request->input('soal'),
+            'gambar' => $gambarName
+        ]);
+
         return redirect()->back();
     }
 

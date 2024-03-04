@@ -68,7 +68,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         ]);
         Route::controller(ProyekGuruController::class)->group(function () {
             Route::get('proyek/hasil', 'show');
-            Route::get('proyek/hasil/detail', 'detail');
+            Route::get('proyek/hasil/detail/{id}', 'detail');
         });
         Route::prefix('pustaka')->group(function () {
             Route::resources([

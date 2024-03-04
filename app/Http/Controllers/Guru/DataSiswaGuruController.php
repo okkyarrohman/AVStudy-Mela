@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\KategoriKuis as Kategori;
+
 use Inertia\Inertia;
+use App\Models\User;
 
 class DataSiswaGuruController extends Controller
 {
@@ -14,8 +15,11 @@ class DataSiswaGuruController extends Controller
      */
     public function index()
     {
-        //
-        return inertia::render('Guru/DataSiswa/Index');
+        $siswa = User::role('siswa')->get();
+
+        return inertia::render('Guru/DataSiswa/Index', [
+            'siswas' => $siswa
+        ]);
     }
 
     /**
@@ -47,7 +51,11 @@ class DataSiswaGuruController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $siswa = User::where('id', $id)->first();
+
+        return Inertia::render('Guru/DataSiswa/Edit', [
+            'siswa' => $siswa
+        ]);
     }
 
     /**
@@ -63,6 +71,9 @@ class DataSiswaGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $siswa = User::find($id);
+        $siswa->delete();
+
+        return redirect()->back();
     }
 }

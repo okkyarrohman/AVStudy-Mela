@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Proyek;
 use Inertia\Inertia;
+use App\Models\ProyekResult;
 
 class ProyekGuruController extends Controller
 {
@@ -14,9 +15,11 @@ class ProyekGuruController extends Controller
      */
     public function index()
     {
-        // $proyeks = Proyek::paginate(10)->get();
+        $proyeks = Proyek::paginate(10);
 
-        return Inertia::render('Guru/Proyek/Index');
+        return Inertia::render('Guru/Proyek/Index', [
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**
@@ -32,23 +35,18 @@ class ProyekGuruController extends Controller
      */
     public function store(Request $request)
     {
-        $proyeks = new Proyek();
-        $proyeks->nama = $request->nama;
-        $proyeks->tenggat = $request->tenggat;
-
-        $proyeks->step1 = $request->step1;
-        $proyeks->deskripsi1 = $request->deskripsi1;
-
-        $proyeks->step2 = $request->step2;
-        $proyeks->deskripsi2 = $request->deskripsi2;
-
-        $proyeks->step3 = $request->step3;
-        $proyeks->deskripsi3 = $request->deskripsi3;
-
-        $proyeks->step4 = $request->step4;
-        $proyeks->deskripsi4 = $request->deskripsi4;
-
-        $proyeks->save();
+        Proyek::create([
+            'nama' => $request->input('nama'),
+            'tenggat' => $request->input('tenggat'),
+            'step1' => $request->input('step1'),
+            'deskripsi1' => $request->input('deskripsi1'),
+            'step2' => $request->input('step2'),
+            'deskripsi2' => $request->input('deskripsi2'),
+            'step3' => $request->input('step3'),
+            'deskripsi3' => $request->input('deskripsi3'),
+            'step4' => $request->input('step4'),
+            'deskripsi4' => $request->input('deskripsi4'),
+        ]);
 
         return redirect()->route('proyek-guru.index');
     }
@@ -56,17 +54,26 @@ class ProyekGuruController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        // $proyeks = Proyek::where('id', $id)->first();
+        $proyeks = ProyekResult::where('proyek_id', $id)->with('tugas')->get();
 
-        return Inertia::render('Guru/Proyek/Show');
+        $namaSiswa = $proyeks->map(function ($siswa) {
+            return $siswa->user->name;
+        });
+
+        return Inertia::render('Guru/Proyek/Show', [
+            'proyeks' => $proyeks,
+            'namaSiswa' => $namaSiswa
+        ]);
     }
-    public function detail()
+    public function detail($id)
     {
-        // $proyeks = Proyek::where('id', $id)->first();
+        $proyeks = ProyekResult::where('id', $id)->first();
 
-        return Inertia::render('Guru/Proyek/Detail');
+        return Inertia::render('Guru/Proyek/Detail', [
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**

@@ -14,5 +14,7 @@ class Pustaka extends Model
         'judul',
         'sumber',
         'link',
+        'cover',
+        'konten'
     ];
 }

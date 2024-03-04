@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('judul')->nullable();
             $table->string('sumber')->nullable();
             $table->string('link')->nullable();
+            $table->string('cover')->nullable();
+            $table->string('konten')->nullable();
             $table->string('tipe')->nullable();
             $table->timestamps();
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Pustaka;
 
 
 class ProposalGuruController extends Controller
@@ -14,9 +15,12 @@ class ProposalGuruController extends Controller
      */
     public function index()
     {
-        //
-        return Inertia::render('Guru/Pustaka/Proposal');
+        $proposals = Pustaka::where('tipe', 'Proposal')->paginate(10);
 
+
+        return Inertia::render('Guru/Pustaka/Proposal', [
+            'proposals' => $proposals
+        ]);
     }
 
     /**
@@ -26,7 +30,6 @@ class ProposalGuruController extends Controller
     {
         //
         return Inertia::render('Guru/Pustaka/ProposalAdd');
-
     }
 
     /**
@@ -34,7 +37,29 @@ class ProposalGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Request column input type file
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $extension = $cover->getClientOriginalName();
+            $coverName = date('Ymd') . "." . $extension;
+            $cover->move(storage_path('app/public/pustaka/cover/'), $coverName);
+        }
+
+        // Request column input type file
+        if ($request->hasFile('konten')) {
+            $konten = $request->file('konten');
+            $extension = $konten->getClientOriginalName();
+            $kontenName = date('Ymd') . "." . $extension;
+            $konten->move(storage_path('app/public/pustaka/konten/'), $kontenName);
+        }
+
+        Pustaka::create([
+            'judul' => $request->input('judul'),
+            'cover' => $coverName,
+            'konten' => $kontenName,
+        ]);
+
+        return redirect()->route('proposal.index');
     }
 
     /**
@@ -50,8 +75,14 @@ class ProposalGuruController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        return Inertia::render('Guru/Pustaka/ProposalEdit');
+        $proposals = Pustaka::where([
+            'tipe' => 'Proposal',
+            'id' => $id
+        ])->first();
+
+        return Inertia::render('Guru/Pustaka/ProposalEdit', [
+            'proposals' => $proposals
+        ]);
     }
 
     /**
@@ -59,7 +90,27 @@ class ProposalGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $proposals = Pustaka::find($id);
+        $proposals->judul = $request->judul;
+        // Request column input type file
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover');
+            $extension = $cover->getClientOriginalName();
+            $coverName = date('Ymd') . "." . $extension;
+            $cover->move(storage_path('app/public/pustaka/cover/'), $coverName);
+            $proposals->cover = $coverName;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('konten')) {
+            $konten = $request->file('konten');
+            $extension = $konten->getClientOriginalName();
+            $kontenName = date('Ymd') . "." . $extension;
+            $konten->move(storage_path('app/public/pustaka/konten/'), $kontenName);
+            $proposals->konten = $kontenName;
+        }
+
+        return redirect()->route('proposal.index');
     }
 
     /**
@@ -67,6 +118,12 @@ class ProposalGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $proposals = Pustaka::where([
+            'tipe' => 'Proposal',
+            'id' => $id
+        ])->first();
+        $proposals->delete();
+
+        return redirect()->route('proposal.index');
     }
 }

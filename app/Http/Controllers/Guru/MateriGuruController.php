@@ -15,8 +15,11 @@ class MateriGuruController extends Controller
      */
     public function index()
     {
+        $materis = Materi::paginate(10);
 
-        return Inertia::render('Guru/Materi/Index');
+        return Inertia::render('Guru/Materi/Index', [
+            'materis' => $materis
+        ]);
     }
 
     /**
@@ -32,18 +35,12 @@ class MateriGuruController extends Controller
      */
     public function store(Request $request)
     {
-        $materis = new Materi();
-        $materis->nama = $request->nama;
-        $materis->jumlah = $request->jumlah;
-        $materis->deskripsi = $request->deskripsi;
-
         // Request column input type file
         if ($request->hasFile('cover')) {
             $cover = $request->file('cover');
             $extension = $cover->getClientOriginalName();
             $coverName = date('Ymd') . "." . $extension;
             $cover->move(storage_path('app/public/materi/cover/'), $coverName);
-            $materis->cover = $coverName;
         }
         // Request column input type file
         if ($request->hasFile('konten')) {
@@ -51,11 +48,14 @@ class MateriGuruController extends Controller
             $extension = $konten->getClientOriginalName();
             $kontenName = date('Ymd') . "." . $extension;
             $konten->move(storage_path('app/public/materi/konten/'), $kontenName);
-            $materis->konten = $kontenName;
         }
 
-        $materis->save();
-
+        Materi::create([
+            'nama' => $request->input('nama'),
+            'deskripsi' => $request->input('deskripsi'),
+            'cover' => $coverName,
+            'konten' => $kontenName,
+        ]);
 
 
 
@@ -68,7 +68,6 @@ class MateriGuruController extends Controller
     public function show(string $id)
     {
         $materis = Materi::where('id', $id)->first();
-
 
         return Inertia::render('Guru/Materi/Show', [
             'materis' => $materis
@@ -94,7 +93,6 @@ class MateriGuruController extends Controller
     {
         $materis = Materi::find($request->id);
         $materis->nama = $request->nama;
-        $materis->jumlah = $request->jumlah;
         $materis->deskripsi = $request->deskripsi;
 
         // Request column input type file

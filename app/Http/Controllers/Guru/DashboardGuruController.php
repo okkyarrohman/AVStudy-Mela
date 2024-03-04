@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Absen;
+use App\Models\User;
 
 class DashboardGuruController extends Controller
 {
@@ -16,9 +17,12 @@ class DashboardGuruController extends Controller
     {
         $absens = Absen::latest()->first();
 
+        $waktuLogin = User::role('siswa')->get('total_login_time');
+
 
         return Inertia::render('Guru/Dashboard', [
-            'absens' => $absens
+            'absens' => $absens,
+            'siswa' => $waktuLogin
         ]);
     }
 

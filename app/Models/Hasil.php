@@ -10,7 +10,7 @@ class Hasil extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
-    protected $fillable = ['kategori_kuis_id', 'total_points'];
+    protected $fillable = ['user_id', 'kategori_kuis_id', 'total_points'];
 
 
     public function user()

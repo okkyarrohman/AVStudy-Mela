@@ -12,6 +12,7 @@ use App\Models\Proyek;
 use App\Models\Pustaka;
 use App\Models\Soal;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,8 +28,10 @@ class DatabaseSeeder extends Seeder
         Proyek::factory(5)->create();
         Pustaka::factory(5)->create();
         Absen::factory(1)->create();
-        KategoriKuis::factory(5)->create();
-        Soal::factory(5)->create();
-        Opsi::factory(5)->create();
+        KategoriKuis::factory(2)->create();
+        Soal::factory(10)->create();
+        Opsi::factory(40)->create();
+
+        User::factory(30)->create();
     }
 }

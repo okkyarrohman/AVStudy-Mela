@@ -17,7 +17,6 @@ use App\Http\Controllers\Siswa\KuisSiswaController;
 use App\Http\Controllers\Siswa\MateriSiswaController;
 use App\Http\Controllers\Siswa\ProyekSiswaController;
 use App\Http\Controllers\Siswa\PustakaSiswaController;
-use App\Models\Pustaka;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;

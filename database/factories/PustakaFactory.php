@@ -20,6 +20,9 @@ class PustakaFactory extends Factory
             'judul' => $this->faker->title(),
             'sumber' => $this->faker->imageUrl(),
             'link' => $this->faker->url(),
+            'konten' => $this->faker->imageUrl(),
+            'cover' => $this->faker->imageUrl(),
+            'tipe' => $this->faker->randomElement(['Referensi', 'Proposal']),
         ];
     }
 }

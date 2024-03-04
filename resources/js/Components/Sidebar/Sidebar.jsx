@@ -6,20 +6,20 @@ import SidebarItems from "@/element/SidebarItems/SidebarItems";
 const Sidebar = () => {
     return (
         <>
-            <div class="flex rounded-r-3xl bg-purple-700 text-sky-300 h-full w-1/6 fixed ">
-                <div class="flex flex-col justify-between items-center w-full">
-                    <div className="flex flex-col items-start my-10 w-full gap-5">
+            <div className="flex rounded-r-3xl bg-purple-700 text-sky-300 h-full w-1/6 fixed overflow-y-auto overflow-hidden">
+                <div className="flex flex-col justify-between items-center w-full">
+                    <div className="flex flex-col items-start my-5 w-full gap-5">
                         <div className="flex justify-center md:justify-start w-full">
                             <img
                                 src="/assets/AVLogo.svg"
                                 className="object-contain w-0 ml-3 sm:w-20 md:w-24 lg:w-32 xl:ml-8"
                             />
                         </div>
-                        <div class="w-full text-white">
+                        <div className="w-full text-white">
                             <h1 className="font-bold text-md text-center md:text-start md:ml-4 xl:ml-10">
                                 Menu
                             </h1>
-                            <div class="text-md font-black my-3 w-full">
+                            <div className="text-md font-black my-3 w-full">
                                 <SidebarItems />
                             </div>
                         </div>

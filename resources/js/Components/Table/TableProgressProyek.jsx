@@ -3,7 +3,7 @@ const TableProgressProyek = () => {
         <>
             <h1 className="font-black text-xl mb-5">Kemajuan Proyek</h1>
             <div className=" overflow-auto">
-                <table class="w-full table-auto">
+                <table className="w-full table-auto">
                     <thead>
                         <tr className="text-left">
                             <th scope="col" className="pe-5">

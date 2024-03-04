@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\Guru\DashboardGuruController;
+use App\Http\Controllers\Guru\DataSiswaGuruController;
 use App\Http\Controllers\Guru\HasilGuruController;
 use App\Http\Controllers\Guru\KategoriKuisGuruController;
 use App\Http\Controllers\Guru\MateriGuruController;
 use App\Http\Controllers\Guru\OpsiGuruController;
+use App\Http\Controllers\Guru\ProposalGuruController;
 use App\Http\Controllers\Guru\ProyekGuruController;
 use App\Http\Controllers\Guru\PustakaGuruController;
+use App\Http\Controllers\Guru\RefrensiGuruController;
 use App\Http\Controllers\Guru\SoalGuruController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Siswa\DashboardSiswaController;
@@ -14,8 +17,10 @@ use App\Http\Controllers\Siswa\KuisSiswaController;
 use App\Http\Controllers\Siswa\MateriSiswaController;
 use App\Http\Controllers\Siswa\ProyekSiswaController;
 use App\Http\Controllers\Siswa\PustakaSiswaController;
+use App\Models\Pustaka;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
 
@@ -31,7 +36,15 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    if (Auth::check()) {
+        // Jika pengguna sudah login, arahkan sesuai peran
+        if (Auth::user()->hasRole('guru')) {
+            return redirect()->route('guru.dashboard');
+        } elseif (Auth::user()->hasRole('siswa')) {
+            return redirect()->route('siswa.dashboard');
+        }
+    }
+    return Inertia::render('Auth/Login', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -49,14 +62,30 @@ Route::group(['middleware' => 'role:guru'], function () {
         // Route Guru Start Here
         Route::get('/dashboard', [DashboardGuruController::class, 'index'])->name('guru.dashboard');
         Route::resources([
-            'materi-guru' => MateriGuruController::class,
-            'proyek-guru' => ProyekGuruController::class,
-            'pustaka-guru' => PustakaGuruController::class,
-            'kategori-kuis' => KategoriKuisGuruController::class,
-            'soal-kuis' => SoalGuruController::class,
-            'opsi-kuis' => OpsiGuruController::class,
-            'hasil-kuis' => HasilGuruController::class,
+            'materi' => MateriGuruController::class,
+            'proyek' => ProyekGuruController::class,
+            'datamurid' => DataSiswaGuruController::class,
         ]);
+        Route::controller(ProyekGuruController::class)->group(function () {
+            Route::get('proyek/hasil', 'show');
+            Route::get('proyek/hasil/detail', 'detail');
+        });
+        Route::prefix('pustaka')->group(function () {
+            Route::resources([
+                '/' => PustakaGuruController::class,
+                'proposal' => ProposalGuruController::class,
+                'refrensi' => RefrensiGuruController::class,
+            ]);
+        });
+        Route::prefix('kuis')->group(function () {
+            Route::resources([
+                'kategori' => KategoriKuisGuruController::class,
+                'soal' => SoalGuruController::class,
+                'opsi' => OpsiGuruController::class,
+                'hasil' => HasilGuruController::class,
+            ]);
+        });
+
         Route::post('/dashboard/storeAbsen', [DashboardGuruController::class, 'storeAbsen']);
     });
 });

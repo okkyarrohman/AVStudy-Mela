@@ -30,11 +30,9 @@ const CardProyek = (props) => {
                             </p>
                             <div className="mb-3">
                                 <hr></hr>
-                                <Link href={props.to}>
                                     <button className="bg-purple-500 text-white py-1 px-5 rounded-lg hover:bg-purple-700 active:bg-purple-300">
                                         Lihat
                                     </button>
-                                </Link>
                             </div>
                         </div>
                     </div>

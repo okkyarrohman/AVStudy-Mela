@@ -18,6 +18,7 @@ const MateriSiswa = ({materis}) => {
                     {materis.map((item, idx) => {
                         return (
                             <ListMateri
+                            key={idx}
                                 to={`materi.show`}
                                 img={item.cover}
                                 title={item.nama}

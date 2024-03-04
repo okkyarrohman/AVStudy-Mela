@@ -1,6 +1,6 @@
 import ChartDashboard from "@/Components/Chart/ChartDashboard";
 
-const CardChart = () => {
+const CardChart = ({data}) => {
     return (
         <>
             <div className="bg-white w-full sm:w-1/2 shadow-xl border-2 rounded-xl border-gray-300 hover:scale-105 active:opacity-50">
@@ -9,7 +9,7 @@ const CardChart = () => {
                 </div>
                 <div className="flex h-4/5 items-center justify-center">
                     <div className="h-full w-full px-8 py-3">
-                        <ChartDashboard />
+                        <ChartDashboard data={data} />
                     </div>
                 </div>
             </div>

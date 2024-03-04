@@ -22,9 +22,9 @@ const QuizShowSiswa = ({ kuis, soal }) => {
     const handleCloseQuiz = () => {
         Swal.fire({
             html: `
-                <h1 class="text-2xl text-red-500 font-bold mb-3">Keluar</h1>
-                <p class="text-sm font-bold">Apakah kamu yakin ingin meninggalkan kuis ?</p>
-                <p class="text-sm">Jika tidak periksa kembali jawabanmu</p>
+                <h1 className="text-2xl text-red-500 font-bold mb-3">Keluar</h1>
+                <p className="text-sm font-bold">Apakah kamu yakin ingin meninggalkan kuis ?</p>
+                <p className="text-sm">Jika tidak periksa kembali jawabanmu</p>
             `,
             confirmButtonColor: "#ef4444",
             confirmButtonText: `Quit`,

@@ -14,11 +14,14 @@ class PustakaGuruController extends Controller
      */
     public function index()
     {
-        $pustakas = Pustaka::paginate(10)->get();
 
-        return Inertia::render('Guru/Pustaka/Index', [
-            'pustakas' => $pustakas
-        ]);
+        return Inertia::render('Guru/Pustaka/Index');
+    }
+
+    public function refrensi()
+    {
+
+
     }
 
     /**
@@ -46,13 +49,13 @@ class PustakaGuruController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $pustakas = Pustaka::where('id', $id)->first();
-        return Inertia::render('Guru/Pustaka/Show', [
-            'pustakas' => $pustakas
-        ]);
-    }
+    // public function show(string $id)
+    // {
+    //     $pustakas = Pustaka::where('id', $id)->first();
+    //     return Inertia::render('Guru/Pustaka/Show', [
+    //         'pustakas' => $pustakas
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.

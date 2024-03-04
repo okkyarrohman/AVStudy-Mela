@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 const ListMateri = (props) => {
     return (
         <>
-            <Link href={route(props.to,{id: props.id})}>
+            <Link href={route(props.to,{id: props.id})} key={props.id}>
                 <div className="flex items-center gap-3 rounded-xl shadow-xl hover:scale-105 active:opacity-50">
                     <div className="">
                         <img

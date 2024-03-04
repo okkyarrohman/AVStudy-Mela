@@ -5,14 +5,8 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { router } from "@inertiajs/react";
 import BtnSecondary from "@/element/button/BtnSecondary";
-import { usePage } from "@inertiajs/react";
-
-import Countdown from "react-countdown";
-import { Icon } from "@iconify/react";
 
 const KuisSection = ({ kuis, soal, done }) => {
-    console.log(kuis);
-    console.log(soal);
 
     const quest = soal;
 
@@ -48,9 +42,9 @@ const KuisSection = ({ kuis, soal, done }) => {
     const finish = () =>{
         Swal.fire({
             html: `
-                <h1 class="text-2xl font-bold mb-3">${done?"WAKTU HABIS":"Selesai"}</h1>
-                <p class="text-sm font-bold">${done?"yhaa belum selesai nangis lha kaooo ckckck":'Apakah kamu yakin menyelesaikan seluruhnya?'}</p>
-               ${done?"": '<p class="text-sm">Jika tidak periksa kembali jawabanmu</p>'
+                <h1 className="text-2xl font-bold mb-3">${done?"WAKTU HABIS":"Selesai"}</h1>
+                <p className="text-sm font-bold">${done?"yhaa belum selesai nangis lha kaooo ckckck":'Apakah kamu yakin menyelesaikan seluruhnya?'}</p>
+               ${done?"": '<p className="text-sm">Jika tidak periksa kembali jawabanmu</p>'
             }`,
             confirmButtonColor: done?"#ef4444":"#a855f7",
             confirmButtonText: done?"Keluar":"Submit",

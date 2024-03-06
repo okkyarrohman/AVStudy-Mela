@@ -59,7 +59,8 @@ class ProposalGuruController extends Controller
             'konten' => $kontenName,
         ]);
 
-        return redirect()->route('proposal.index');
+        return redirect('/guru/pustaka/refrensi');
+
     }
 
     /**

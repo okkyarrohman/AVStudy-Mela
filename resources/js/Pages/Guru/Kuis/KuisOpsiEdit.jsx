@@ -6,12 +6,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { router } from "@inertiajs/react";
 
-const CreateProposal = ({ soals }) => {
+const EditOpsi = ({ opsis, soals }) => {
+    const opsi = opsis.data[0];
+    console.log(opsis);
     const formik = useFormik({
         initialValues: {
-            kuisPertanyaan: "",
-            kuisOpsi: "",
-            kuisPoin: null,
+            kuisPertanyaan: opsi.soal_id,
+            kuisOpsi: opsi.opsi,
+            kuisPoin: opsi.point,
         },
         validationSchema: Yup.object({
             kuisPertanyaan: Yup.string().required(
@@ -21,12 +23,13 @@ const CreateProposal = ({ soals }) => {
             kuisPoin: Yup.number().required("Poin kuis harus diisi"),
         }),
         onSubmit: (values) => {
-            const data = new FormData();
-            data.append("soal_id", values.kuisPertanyaan);
-            data.append("opsi", values.kuisOpsi);
-            data.append("point", values.kuisPoin);
-            console.log(data);
-            router.post(`/guru/kuis/opsi`, data);
+            const data = {
+                soal_id: values.kuisPertanyaan,
+                opsi: values.kuisOpsi,
+                point: values.kuisPoin,
+            };
+            console.log(values);
+            router.put(`/guru/kuis/opsi/${opsi.id}`, data);
         },
     });
     return (
@@ -74,16 +77,17 @@ const CreateProposal = ({ soals }) => {
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
-                                                value={formik.values.kuisPertanyaan}
+                                                value={
+                                                    formik.values.kuisPertanyaan
+                                                }
                                                 placeholder="Masukkan Kategori Kuis"
                                             >
                                                 <option
-                                                    value={""}
+                                                    value={opsi.soal_id}
                                                     disabled
                                                     selected
-                                                    hidden
                                                 >
-                                                    Pilih Pertanyaan
+                                                    {opsi.soal}
                                                 </option>
                                                 {soals.map((item, idx) => {
                                                     return (
@@ -96,7 +100,10 @@ const CreateProposal = ({ soals }) => {
                                             {formik.touched.kuisPertanyaan &&
                                             formik.errors.kuisPertanyaan ? (
                                                 <div className="text-red-500">
-                                                    {formik.errors.kuisPertanyaan}
+                                                    {
+                                                        formik.errors
+                                                            .kuisPertanyaan
+                                                    }
                                                 </div>
                                             ) : null}
                                         </div>
@@ -185,4 +192,4 @@ const CreateProposal = ({ soals }) => {
     );
 };
 
-export default CreateProposal;
+export default EditOpsi;

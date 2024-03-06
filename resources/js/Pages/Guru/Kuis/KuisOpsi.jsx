@@ -12,8 +12,8 @@ import TableProposal from "@/Components/Table/TableProposal";
 import TableKategori from "@/Components/Table/TableKategori";
 import TableOpsi from "@/Components/Table/TableOpsi";
 
-const KuisOpsiGuru = () => {
-    const adaMateri = true;
+const KuisOpsiGuru = ({opsis}) => {
+    console.log(opsis)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -56,9 +56,9 @@ const KuisOpsiGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {opsis.data.length != 0 ? (
                         <div>
-                            <TableOpsi />
+                            <TableOpsi data={opsis.data}/>
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

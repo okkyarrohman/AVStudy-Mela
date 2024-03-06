@@ -15,10 +15,10 @@ const ListKuis = (props) => {
     const kerjakanHandler = (title, id) => {
         Swal.fire({
             html: `
-            <div className="flex flex-col justify-center items-center">
-            <img src="/assets/QuizLogo.svg" className="object-contain w-64"/>
-            <h1 className="font-bold text-3xl mb-3">${title}</h1>
-            <p className="font-bold text-sm text-black">Tantang Pengetahuan Anda! Mari Mulai Kuis Kami dan Uji Kemampuan Anda dalam Berbagai Topik yang Menarik</p>
+            <div class="flex flex-col justify-center items-center">
+            <img src="/assets/QuizLogo.svg" class="object-contain w-64"/>
+            <h1 class="font-bold text-3xl mb-3">${title}</h1>
+            <p class="text-sm text-black">Tantang Pengetahuan Anda! Mari Mulai Kuis Kami dan Uji Kemampuan Anda dalam Berbagai Topik yang Menarik</p>
             </div>
             `,
             showCloseButton: true,

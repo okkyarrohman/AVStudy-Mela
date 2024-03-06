@@ -59,7 +59,8 @@ class MateriGuruController extends Controller
 
 
 
-        return redirect()->route('materi-guru.index');
+        return redirect('/guru/materi');
+
     }
 
     /**
@@ -116,7 +117,8 @@ class MateriGuruController extends Controller
 
         $materis->save();
 
-        return redirect()->route('materi-guru.index');
+        return redirect('/guru/materi');
+
     }
 
     /**
@@ -124,10 +126,11 @@ class MateriGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $materis = Materi::find($id)->first();
+        $materis = Materi::find($id);
 
         $materis->delete();
 
-        return redirect()->route('materi-guru.index');
+        return redirect('/guru/materi');
+
     }
 }

@@ -4,8 +4,8 @@ import BannerDashboard from "@/Components/Banner/BannerDashboard";
 import Sidebar from "@/Components/Sidebar/Sidebar";
 import TableSpentHours from "@/Components/Table/TableSpentHours";
 
-const Dashboard = ({ absens }) => {
-    console.log("ini abses : ", absens);
+const Dashboard = ({ absens, siswa }) => {
+    console.log("ini siswa : ", siswa);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -24,7 +24,7 @@ const Dashboard = ({ absens }) => {
                                 </p>
                             </div>
                             <BannerDashboard />
-                            <TableSpentHours/>
+                            <TableSpentHours data={siswa}/>
                         </div>
                         <div className="col-span-2">
                             <div className="m-10">

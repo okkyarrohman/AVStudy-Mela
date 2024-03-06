@@ -3,8 +3,30 @@ import BtnPrimary from "@/element/button/BtnPrimary";
 import BtnSecondary from "@/element/button/BtnSecondary";
 import { Icon } from "@iconify/react";
 import { router } from "@inertiajs/react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const CreateRefrensi = () => {
+    const formik = useFormik({
+        initialValues: {
+            refrensiName: "",
+            refrensiSumber: "",
+            refrensiLink: "",
+        },
+        validationSchema: Yup.object({
+            refrensiName: Yup.string().required("Nama Refrensi harus diisi"),
+            refrensiSumber: Yup.string().required("Sumber Refrensi harus diisi"),
+            refrensiLink: Yup.mixed().required("Refrensi Link Refrensi harus diisi"),
+        }),
+        onSubmit: (values) => {
+            const data = new FormData();
+            data.append("judul", values.refrensiName);
+            data.append("sumber", values.refrensiSumber);
+            data.append("link", values.refrensiLink);
+            console.log(data);
+            router.post(`/guru/pustaka/refrensi`, data);
+        },
+    });
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -45,10 +67,23 @@ const CreateRefrensi = () => {
                                         <div>
                                             <input
                                                 type="text"
-                                                name="materi_name"
-                                                className="w-full rounded border-gray-400 mt-3"
+                                                name="refrensiName"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.refrensiName
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={formik.values.refrensiName}
                                                 placeholder="Masukkan Judul Refrensi"
                                             />
+                                            {formik.touched.refrensiName &&
+                                            formik.errors.refrensiName ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.refrensiName}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
                                     <div className="my-2">
@@ -58,23 +93,49 @@ const CreateRefrensi = () => {
                                         <div>
                                             <input
                                                 type="text"
-                                                name="materi_name"
-                                                className="w-full rounded border-gray-400 mt-3"
+                                                name="refrensiSumber"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.refrensiSumber
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={formik.values.refrensiSumber}
                                                 placeholder="Masukkan Sumber Refrensi"
                                             />
+                                            {formik.touched.refrensiSumber &&
+                                            formik.errors.refrensiSumber ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.refrensiSumber}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
-                                    <div className="my-2">
+                                    <div className="my-2 mb-5">
                                         <label className="font-bold ">
                                             Link Sumber Refrensi *
                                         </label>
                                         <div>
                                             <input
                                                 type="text"
-                                                name="materi_name"
-                                                className="w-full rounded border-gray-400 mt-3"
+                                                name="refrensiLink"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.refrensiLink
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={formik.values.refrensiLink}
                                                 placeholder="Masukkan Link Sumber Refrensi"
                                             />
+                                            {formik.touched.refrensiLink &&
+                                            formik.errors.refrensiLink ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.refrensiLink}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
 
@@ -87,6 +148,8 @@ const CreateRefrensi = () => {
                                                 text="Tutup"
                                             />
                                             <BtnPrimary
+                                            onClick={()=>{formik.handleSubmit()}}
+                                            type="submit"
                                                 className="text-lg"
                                                 text="Simpan"
                                             />

@@ -10,8 +10,8 @@ import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
 
-const ProposalGuru = () => {
-    const adaMateri = true;
+const ProposalGuru = ({proposals}) => {
+    console.log(proposals)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -38,10 +38,10 @@ const ProposalGuru = () => {
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-12 items-center gap-3">
-                                    <div className="col-span-5 relative">
+                                    <div className="col-span-6 relative">
                                         <SearchInput />
                                     </div>
-                                    <div className="col-span-2 col-start-11">
+                                    <div className="col-span-6 flex justify-end">
                                         <BtnPrimary
                                             onClick={() =>
                                                 router.visit("proposal/create")
@@ -55,9 +55,9 @@ const ProposalGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {proposals.length != 0 ? (
                         <div>
-                            <TableProposal />
+                            <TableProposal  data={proposals.data}/>
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

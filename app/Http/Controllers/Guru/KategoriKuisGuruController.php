@@ -40,7 +40,8 @@ class KategoriKuisGuruController extends Controller
             'waktu' => $request->input('waktu'),
         ]);
 
-        return redirect()->back();
+        return redirect('/guru/kuis/kategori');
+
     }
 
     /**
@@ -60,7 +61,7 @@ class KategoriKuisGuruController extends Controller
     {
         $kategoris = Kategori::where('id', $id)->first();
 
-        return Inertia::render('Guru/Kuis/Kategori/Edit', [
+        return Inertia::render('Guru/Kuis/KuisKategoriEdit', [
             'kategoris' => $kategoris
         ]);
     }
@@ -71,13 +72,14 @@ class KategoriKuisGuruController extends Controller
     public function update(Request $request, string $id)
     {
 
-        $kategoris = Kategori::find($request->id);
+        $kategoris = Kategori::find($id);
         $kategoris->kuis = $request->kuis;
         $kategoris->tenggat = $request->tenggat;
         $kategoris->waktu = $request->waktu;
         $kategoris->save();
 
-        return redirect()->back();
+        return redirect('/guru/kuis/kategori');
+
     }
 
     /**
@@ -85,10 +87,11 @@ class KategoriKuisGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $kategoris = Kategori::find($id)->first();
+        $kategoris = Kategori::find($id);
 
         $kategoris->delete();
 
-        return redirect()->route('kategori-kuis.index');
+        return redirect('/guru/kuis/kategori');
+
     }
 }

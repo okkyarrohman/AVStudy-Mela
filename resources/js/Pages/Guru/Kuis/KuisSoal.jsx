@@ -1,19 +1,15 @@
-import AbsensInput from "@/Components/AbsensInput/AbsensInput";
-import BannerDashboard from "@/Components/Banner/BannerDashboard";
-
 import Sidebar from "@/Components/Sidebar/Sidebar";
-import TableSpentHours from "@/Components/Table/TableSpentHours";
 import SearchInput from "@/element/Input/SearchInput";
 import BtnPrimary from "@/element/button/BtnPrimary";
 import { router } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
-import TableMateri from "@/Components/Table/TableMateri";
-import TableProposal from "@/Components/Table/TableProposal";
-import TableKategori from "@/Components/Table/TableKategori";
 import TableSoal from "@/Components/Table/TableSoal";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-const KuisSoalGuru = () => {
-    const adaMateri = true;
+const KuisSoalGuru = ({soals}) => {
+    console.log(soals)
+
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -56,9 +52,9 @@ const KuisSoalGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {soals.data.length != 0  ? (
                         <div>
-                            <TableSoal />
+                            <TableSoal data={soals.data}/>
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

@@ -21,7 +21,7 @@ const CreateProposal = () => {
         }),
         onSubmit: (values) => {
             const data = new FormData();
-            data.append("judl", values.proposalName);
+            data.append("judul", values.proposalName);
             data.append("cover", values.cover);
             data.append("konten", values.content);
             console.log(data);

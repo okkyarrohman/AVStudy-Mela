@@ -57,10 +57,10 @@ class ProposalGuruController extends Controller
             'judul' => $request->input('judul'),
             'cover' => $coverName,
             'konten' => $kontenName,
+            'tipe' => 'Proposal'
         ]);
 
-        return redirect('/guru/pustaka/refrensi');
-
+        return redirect('/guru/pustaka/proposal');
     }
 
     /**

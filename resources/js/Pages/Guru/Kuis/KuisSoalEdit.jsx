@@ -6,29 +6,31 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { router } from "@inertiajs/react";
 
-const CreateProposal = ({ soals }) => {
+const EditSoal = ({ kategoris, soals }) => {
+    console.log(soals);
     const formik = useFormik({
         initialValues: {
-            kuisPertanyaan: "",
-            kuisOpsi: "",
-            kuisPoin: null,
+            kuisKategori: soals.data[0].kategori_kuis_id,
+            kuisPertanyaan: soals.data[0].soal,
+            gambar: soals.data[0].gambar,
         },
         validationSchema: Yup.object({
+            kuisKategori: Yup.string().required("Kategori Kuis harus diisi"),
             kuisPertanyaan: Yup.string().required(
-                "Pertanyaan kuis harus diisi"
+                "Pertanyaan Kuis harus diisi"
             ),
-            kuisOpsi: Yup.string().required("Opsi kuis harus diisi"),
-            kuisPoin: Yup.number().required("Poin kuis harus diisi"),
         }),
         onSubmit: (values) => {
-            const data = new FormData();
-            data.append("soal_id", values.kuisPertanyaan);
-            data.append("opsi", values.kuisOpsi);
-            data.append("point", values.kuisPoin);
+            const data = {
+                kategori_kuis_id: values.kuisKategori,
+                soal: values.kuisPertanyaan,
+                gambar: values.gambar,
+            };
             console.log(data);
-            router.post(`/guru/kuis/opsi`, data);
+            router.put(`/guru/kuis/soal/${soals.data[0].id}`, data);
         },
     });
+
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -42,30 +44,80 @@ const CreateProposal = ({ soals }) => {
                             className="text-xs mx-3 text-gray-400"
                             icon="ep:arrow-right-bold"
                         ></Icon>
-                        <a href="/guru/kuis/opsi" className="text-gray-400">
-                            Opsi
+                        <a href="/guru/kuis/soal" className="text-gray-400">
+                            Soal
                         </a>
                         <Icon
                             className="text-xs mx-3 text-gray-400"
                             icon="ep:arrow-right-bold"
                         ></Icon>
                         <span className="font-bold text-black">
-                            Tambah Opsi
+                            Tambah Soal
                         </span>
                     </div>
                     <div className="my-5">
                         <div className="bg-white w-full shadow-xl border rounded-lg border-gray-300 ">
                             <div className="flex justify-between bg-purple-500 text-white p-4 w-full rounded-t-lg">
-                                <h1 className=" font-bold">Tambah Opsi</h1>
+                                <h1 className=" font-bold">Tambah Soal</h1>
                             </div>
                             <div className="flex h-4/5 items-center justify-center">
                                 <div className="flex flex-col h-full w-full px-5 py-3 m-3">
                                     <div className="my-2">
                                         <label className="font-bold ">
-                                            Pertanyaan *
+                                            Kategori Kuis *
                                         </label>
                                         <div>
                                             <select
+                                                name="kuisKategori"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.kuisKategori
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={
+                                                    formik.values.kuisKategori
+                                                }
+                                                placeholder="Masukkan Kategori Kuis"
+                                            >
+                                                <option
+                                                    value={
+                                                        soals.data[0]
+                                                            .kategori_kuis_id
+                                                    }
+                                                    disabled
+                                                    selected
+                                                >
+                                                    {soals.data[0].kuis}
+                                                </option>
+                                                {kategoris.map((item, idx) => {
+                                                    return (
+                                                        <>
+                                                            <option
+                                                                value={item.id}
+                                                            >
+                                                                {item.kuis}
+                                                            </option>
+                                                        </>
+                                                    );
+                                                })}
+                                            </select>
+                                            {formik.touched.kuisKategori &&
+                                            formik.errors.kuisKategori ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.kuisKategori}
+                                                </div>
+                                            ) : null}
+                                        </div>
+                                    </div>
+                                    <div className="my-2">
+                                        <label className="font-bold ">
+                                            Pertanyaan *
+                                        </label>
+                                        <div>
+                                            <input
+                                                type="text"
                                                 name="kuisPertanyaan"
                                                 className={`w-full rounded border ${
                                                     formik.errors.kuisPertanyaan
@@ -74,85 +126,54 @@ const CreateProposal = ({ soals }) => {
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
-                                                value={formik.values.kuisPertanyaan}
-                                                placeholder="Masukkan Kategori Kuis"
-                                            >
-                                                <option
-                                                    value={""}
-                                                    disabled
-                                                    selected
-                                                    hidden
-                                                >
-                                                    Pilih Pertanyaan
-                                                </option>
-                                                {soals.map((item, idx) => {
-                                                    return (
-                                                        <option value={item.id}>
-                                                            {item.soal}
-                                                        </option>
-                                                    );
-                                                })}
-                                            </select>
+                                                value={
+                                                    formik.values.kuisPertanyaan
+                                                }
+                                                placeholder="Masukkan Pertanyaan"
+                                            />
                                             {formik.touched.kuisPertanyaan &&
                                             formik.errors.kuisPertanyaan ? (
                                                 <div className="text-red-500">
-                                                    {formik.errors.kuisPertanyaan}
+                                                    {
+                                                        formik.errors
+                                                            .kuisPertanyaan
+                                                    }
                                                 </div>
                                             ) : null}
                                         </div>
                                     </div>
                                     <div className="my-2">
-                                        <label className="font-bold ">
-                                            Opsi Jawaban *
-                                        </label>
-                                        <div>
+                                        <p className="font-bold mb-3">
+                                            Gambar (Opsional)
+                                        </p>
+                                        <label className="w-[15%] flex justify-center items-center font-bold py-2 my-1  text-black border-black border border-dashed rounded-lg">
+                                            <Icon
+                                                icon="tabler:plus"
+                                                className="me-2"
+                                            ></Icon>
                                             <input
-                                                type="text"
-                                                name="kuisOpsi"
-                                                className={`w-full rounded border ${
-                                                    formik.errors.kuisOpsi
-                                                        ? "border-red-500"
-                                                        : "border-gray-400"
-                                                } mt-3`}
-                                                onChange={formik.handleChange}
+                                                name="gambar"
+                                                type="file"
+                                                accept="image/*"
+                                                className="hidden"
+                                                onChange={(e) => {
+                                                    formik.setFieldValue(
+                                                        "gambar",
+                                                        e.target.files[0]
+                                                    );
+                                                }}
                                                 onBlur={formik.handleBlur}
-                                                value={formik.values.kuisOpsi}
-                                                F
-                                                placeholder="Masukkan Opsi Jawaban"
                                             />
-                                            {formik.touched.kuisOpsi &&
-                                            formik.errors.kuisOpsi ? (
-                                                <div className="text-red-500">
-                                                    {formik.errors.kuisOpsi}
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                    </div>
-                                    <div className="my-2">
-                                        <label className="font-bold ">
-                                            Poin *
+                                            {formik.values.gambar
+                                                ? formik.values.gambar.name
+                                                : "Pilih File"}
                                         </label>
-                                        <div>
-                                            <input
-                                                type="number"
-                                                name="kuisPoin"
-                                                className={`w-full rounded border ${
-                                                    formik.errors.kuisPoin
-                                                        ? "border-red-500"
-                                                        : "border-gray-400"
-                                                } mt-3`}
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                                value={formik.values.kuisPoin}
-                                                placeholder="Masukkan Poin Jawaban"
-                                            />
-                                            {formik.touched.kuisPoin &&
-                                            formik.errors.kuisPoin ? (
-                                                <div className="text-red-500">
-                                                    {formik.errors.kuisPoin}
-                                                </div>
-                                            ) : null}
-                                        </div>
+                                        {formik.touched.gambar &&
+                                        formik.errors.gambar ? (
+                                            <div className="text-red-500">
+                                                {formik.errors.gambar}
+                                            </div>
+                                        ) : null}
                                     </div>
 
                                     <div className="flex justify-end mt-5">
@@ -160,7 +181,7 @@ const CreateProposal = ({ soals }) => {
                                             <BtnSecondary
                                                 onClick={() =>
                                                     router.visit(
-                                                        "/guru/kuis/opsi"
+                                                        "/guru/kuis/kategori"
                                                     )
                                                 }
                                                 text="Tutup"
@@ -185,4 +206,4 @@ const CreateProposal = ({ soals }) => {
     );
 };
 
-export default CreateProposal;
+export default EditSoal;

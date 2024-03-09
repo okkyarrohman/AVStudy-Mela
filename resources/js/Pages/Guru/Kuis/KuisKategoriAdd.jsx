@@ -2,9 +2,31 @@ import Sidebar from "@/Components/Sidebar/Sidebar";
 import BtnPrimary from "@/element/button/BtnPrimary";
 import BtnSecondary from "@/element/button/BtnSecondary";
 import { Icon } from "@iconify/react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { router } from "@inertiajs/react";
 
 const CreateProposal = () => {
+    const formik = useFormik({
+        initialValues: {
+            kategoriName: "",
+            kategoriTenggat: "",
+            kategoriWaktu: "",
+        },
+        validationSchema: Yup.object({
+            kategoriName: Yup.string().required("Nama kategori harus diisi"),
+            kategoriTenggat: Yup.string().required("Tenggat kategori harus diisi"),
+            kategoriWaktu: Yup.number().required("Waktu kategori harus diisi"),
+        }),
+        onSubmit: (values) => {
+            const data = new FormData();
+            data.append("kuis", values.kategoriName);
+            data.append("tenggat", values.kategoriTenggat);
+            data.append("waktu", values.kategoriWaktu);
+            console.log(data);
+            router.post(`/guru/kuis/kategori`, data);
+        },
+    });
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -20,7 +42,7 @@ const CreateProposal = () => {
                             className="text-xs mx-3 text-gray-400"
                             icon="ep:arrow-right-bold"
                         ></Icon>
-                        <a href="/guru/pustaka/proposal" className="text-gray-400">
+                        <a href="/guru/kuis/kategori" className="text-gray-400">
                             Kategori
                         </a>
                         <Icon
@@ -45,10 +67,23 @@ const CreateProposal = () => {
                                         <div>
                                             <input
                                                 type="text"
-                                                name="materi_name"
-                                                className="w-full rounded border-gray-400 mt-3"
+                                                name="kategoriName"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.kategoriName
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={formik.values.kategoriName}
                                                 placeholder="Masukkan Kategori Kuis"
                                             />
+                                            {formik.touched.kategoriName &&
+                                            formik.errors.kategoriName ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.kategoriName}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
                                     <div className="my-2">
@@ -58,10 +93,23 @@ const CreateProposal = () => {
                                         <div>
                                             <input
                                                 type="date"
-                                                name="materi_name"
-                                                className="w-full rounded border-gray-400 mt-3"
+                                                name="kategoriTenggat"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.kategoriTenggat
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={formik.values.kategoriTenggat}
                                                 placeholder="Masukkan Tenggat"
                                             />
+                                            {formik.touched.kategoriTenggat &&
+                                            formik.errors.kategoriTenggat ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.kategoriTenggat}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
                                     <div className="my-2">
@@ -70,11 +118,24 @@ const CreateProposal = () => {
                                         </label>
                                         <div>
                                             <input
-                                                type="text"
-                                                name="materi_name"
-                                                className="w-full rounded border-gray-400 mt-3"
+                                                type="number"
+                                                name="kategoriWaktu"
+                                                className={`w-full rounded border ${
+                                                    formik.errors.kategoriWaktu
+                                                        ? "border-red-500"
+                                                        : "border-gray-400"
+                                                } mt-3`}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                value={formik.values.kategoriWaktu}
                                                 placeholder="Masukkan Waktu (Menit)"
                                             />
+                                            {formik.touched.kategoriWaktu &&
+                                            formik.errors.kategoriWaktu ? (
+                                                <div className="text-red-500">
+                                                    {formik.errors.kategoriWaktu}
+                                                </div>
+                                            ) : null}
                                         </div>
                                     </div>
 
@@ -87,6 +148,10 @@ const CreateProposal = () => {
                                                 text="Tutup"
                                             />
                                             <BtnPrimary
+                                                onClick={() =>
+                                                    formik.handleSubmit()
+                                                }
+                                                type="submit"
                                                 className="text-lg"
                                                 text="Simpan"
                                             />

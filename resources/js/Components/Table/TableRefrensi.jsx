@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
+import { router } from "@inertiajs/react";
 
-const TableRefrensi = () => {
+const TableRefrensi = ({ data }) => {
     return (
         <>
             <div className=" overflow-auto bg-white shadow-xl rounded-lg">
@@ -27,34 +28,38 @@ const TableRefrensi = () => {
                         {/* </div> */}
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row" className="p-3 ps-5">
-                                1
-                            </td>
-                            <td>Judul Refrensi</td>
-                            <td className="py-3">
-                                <div className="flex items-center gap-2">
-                                    <Icon icon="material-symbols:image-outline"></Icon>
-                                    <p>Okky Anjeng</p>
-                                </div>
-                            </td>
-                            <td className="py-3">
-                                <div className="flex items-center gap-2">
-                                    <Icon icon="akar-icons:file"></Icon>
-                                    <p>www.refrensi.com</p>
-                                </div>
-                            </td>
-                            <td className="py-3">
-                                <div className="flex items-center gap-2 text-xl">
-                                    <button >
-                                        <Icon icon="akar-icons:edit"></Icon>
-                                    </button>
-                                    <button className="text-red-500">
-                                        <Icon icon="ph:trash-bold"></Icon>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        {data.map((item, idx) => {
+                            return (
+                                <tr>
+                                    <td scope="row" className="p-3 ps-5">
+                                        {idx + 1}
+                                    </td>
+                                    <td>{item.judul}</td>
+                                    <td className="py-3">
+                                        <div className="flex items-center gap-2">
+                                            <Icon icon="material-symbols:image-outline"></Icon>
+                                            <p>{item.sumber}</p>
+                                        </div>
+                                    </td>
+                                    <td className="py-3">
+                                        <div className="flex items-center gap-2">
+                                            <Icon icon="akar-icons:file"></Icon>
+                                            <p>{item.link}</p>
+                                        </div>
+                                    </td>
+                                    <td className="py-3">
+                                        <div className="flex items-center gap-2 text-xl">
+                                            <button onClick={()=>router.get(`refrensi/${item.id}/edit`)}>
+                                                <Icon icon="akar-icons:edit"></Icon>
+                                            </button>
+                                            <button onClick={()=>router.delete(`refrensi/${item.id}`)} className="text-red-500">
+                                                <Icon icon="ph:trash-bold"></Icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

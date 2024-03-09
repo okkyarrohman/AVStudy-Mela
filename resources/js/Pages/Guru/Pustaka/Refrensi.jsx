@@ -11,8 +11,8 @@ import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
 import TableRefrensi from "@/Components/Table/TableRefrensi";
 
-const RefrensiGuru = () => {
-    const adaMateri = true;
+const RefrensiGuru = ({referensis}) => {
+    console.log(referensis)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -39,10 +39,10 @@ const RefrensiGuru = () => {
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-12 items-center gap-3">
-                                    <div className="col-span-5 relative">
+                                    <div className="col-span-6 relative">
                                         <SearchInput />
                                     </div>
-                                    <div className="col-span-2 col-start-11">
+                                    <div className="col-span-6 flex justify-end">
                                         <BtnPrimary
                                             onClick={() =>
                                                 router.visit("refrensi/create")
@@ -56,17 +56,17 @@ const RefrensiGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {(referensis.length!=0) ? (
                         <div>
-                            <TableRefrensi />
+                            <TableRefrensi data={referensis}/>
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">
                             <img
                                 src="/assets/NotFoundIcon.svg"
-                                className="object-contain w-40 ms-8"
+                                className="object-contain w-32 ms-8"
                             />
-                            <h1 className="text-2xl font-bold text-gray-700">
+                            <h1 className="text-xl font-bold text-gray-700">
                                 Tidak ada data yang ditemukan!
                             </h1>
                         </div>

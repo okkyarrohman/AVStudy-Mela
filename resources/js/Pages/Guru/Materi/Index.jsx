@@ -5,12 +5,25 @@ import Sidebar from "@/Components/Sidebar/Sidebar";
 import TableSpentHours from "@/Components/Table/TableSpentHours";
 import SearchInput from "@/element/Input/SearchInput";
 import BtnPrimary from "@/element/button/BtnPrimary";
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
 
-const MateriGuru = () => {
-    const adaMateri = true;
+const MateriGuru = ({ materis }) => {
+    const { props } = usePage();
+    useEffect(() => {
+        console.log(props)
+        if (props.page?.success) {
+            Swal.fire({
+                title: "Success",
+                text: props.page.success,
+                icon: "success",
+            });
+        }
+    }, [props]);
+
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -25,15 +38,15 @@ const MateriGuru = () => {
                                     Materi
                                 </h1>
                                 <div className="grid grid-cols-12 items-center gap-3">
-                                    <div className="col-span-5 relative">
+                                    <div className="col-span-6 relative">
                                         <SearchInput />
                                     </div>
-                                    <div className="col-span-2 col-start-11">
+                                    <div className="col-span-6 flex justify-end">
                                         <BtnPrimary
                                             onClick={() =>
                                                 router.visit("materi/create")
                                             }
-                                            className="py-2 flex items-center justify-center gap-2"
+                                            className="w-fit py-2 flex items-center justify-center gap-2"
                                             text="Tambah Data"
                                             icon="ph:plus-square"
                                         />
@@ -42,17 +55,17 @@ const MateriGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {materis ? (
                         <div>
-                            <TableMateri />
+                            <TableMateri data={materis.data} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">
                             <img
                                 src="/assets/NotFoundIcon.svg"
-                                className="object-contain w-40 ms-8"
+                                className="object-contain w-32 ms-8"
                             />
-                            <h1 className="text-2xl font-bold text-gray-700">
+                            <h1 className="text-xl font-bold text-gray-700">
                                 Tidak ada data yang ditemukan!
                             </h1>
                         </div>

@@ -44,7 +44,8 @@ class RefrensiGuruController extends Controller
             'tipe' => 'Referensi'
         ]);
 
-        return redirect()->route('refrensi.index');
+        return redirect('/guru/pustaka/refrensi');
+
     }
 
     /**
@@ -60,10 +61,8 @@ class RefrensiGuruController extends Controller
      */
     public function edit(string $id)
     {
-        $referensis = Pustaka::where([
-            'tipe' => 'Referensi',
-            'id' => $id
-        ])->first();
+        $referensis = Pustaka::where('id', $id)->first();
+
 
         return Inertia::render('Guru/Pustaka/RefrensiEdit', [
             'referensis' => $referensis
@@ -76,6 +75,14 @@ class RefrensiGuruController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $referensis = Pustaka::find($id);
+        $referensis->judul = $request->judul;
+        $referensis->sumber = $request->sumber;
+        $referensis->link = $request->link;
+
+        $referensis->save();
+
+        return redirect('/guru/pustaka/refrensi');
     }
 
     /**
@@ -83,12 +90,11 @@ class RefrensiGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $referensis = Pustaka::where([
-            'tipe' => 'Referensi',
-            'id' => $id
-        ])->first();
+        $referensis = Pustaka::where('id', $id)->first();
+
         $referensis->delete();
 
-        return redirect()->route('refrensi.index');
+        return redirect('/guru/pustaka/refrensi');
+
     }
 }

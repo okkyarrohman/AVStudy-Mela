@@ -11,8 +11,8 @@ import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
 import TableKategori from "@/Components/Table/TableKategori";
 
-const KuisKategoriGuru = () => {
-    const adaMateri = true;
+const KuisKategoriGuru = ({kategoris}) => {
+    console.log(kategoris)
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -38,10 +38,10 @@ const KuisKategoriGuru = () => {
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-12 items-center gap-3">
-                                    <div className="col-span-5 relative">
+                                    <div className="col-span-6 relative">
                                         <SearchInput />
                                     </div>
-                                    <div className="col-span-2 col-start-11">
+                                    <div className="col-span-6 flex justify-end">
                                         <BtnPrimary
                                             onClick={() =>
                                                 router.visit("kategori/create")
@@ -55,17 +55,17 @@ const KuisKategoriGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {kategoris.data.length != 0  ? (
                         <div>
-                            <TableKategori />
+                            <TableKategori data={kategoris.data}/>
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">
                             <img
                                 src="/assets/NotFoundIcon.svg"
-                                className="object-contain w-40 ms-8"
+                                className="object-contain w-32 ms-8"
                             />
-                            <h1 className="text-2xl font-bold text-gray-700">
+                            <h1 className="text-xl font-bold text-gray-700">
                                 Tidak ada data yang ditemukan!
                             </h1>
                         </div>

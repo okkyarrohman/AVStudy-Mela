@@ -17,7 +17,7 @@ class DashboardGuruController extends Controller
     {
         $absens = Absen::latest()->first();
 
-        $waktuLogin = User::role('siswa')->get('total_login_time');
+        $waktuLogin = User::role('siswa')->get(['name', 'total_login_time']);
 
 
         return Inertia::render('Guru/Dashboard', [

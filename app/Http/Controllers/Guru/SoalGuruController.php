@@ -16,7 +16,9 @@ class SoalGuruController extends Controller
      */
     public function index()
     {
-        $soals = Soal::paginate(10);
+        $soals = Soal::join('kategori_kuis', 'soals.kategori_kuis_id', '=', 'kategori_kuis.id')
+            ->select('soals.*', 'kategori_kuis.kuis')
+            ->paginate(10);
 
         return Inertia::render('Guru/Kuis/KuisSoal', [
             'soals' => $soals
@@ -44,15 +46,22 @@ class SoalGuruController extends Controller
             $extension = $gambar->getClientOriginalName();
             $gambarName = date('Ymd') . "." . $extension;
             $gambar->move(storage_path('app/public/kuis/soal/gambar/'), $gambarName);
+
+            Soal::create([
+                'kategori_kuis_id' => $request->input('kategori_kuis_id'),
+                'soal' => $request->input('soal'),
+                'gambar' => $gambarName
+            ]);
+        } else {
+            Soal::create([
+                'kategori_kuis_id' => $request->input('kategori_kuis_id'),
+                'soal' => $request->input('soal'),
+                'gambar' => null,
+            ]);
         }
 
-        Soal::create([
-            'kategori_kuis_id' => $request->input('kategori_kuis_id'),
-            'soal' => $request->input('soal'),
-            'gambar' => $gambarName
-        ]);
 
-        return redirect()->back();
+        return redirect('/guru/kuis/soal');
     }
 
     /**
@@ -71,10 +80,11 @@ class SoalGuruController extends Controller
      */
     public function edit(string $id)
     {
-        $soals = Soal::where('id', $id)->first();
+        $soals = Soal::where('soals.id', $id)->join('kategori_kuis', 'soals.kategori_kuis_id', '=', 'kategori_kuis.id')
+        ->select('soals.*', 'kategori_kuis.kuis')
+        ->paginate(10);
 
-
-        return Inertia::render('Guru/Kuis/Soal/Edit', [
+        return Inertia::render('Guru/Kuis/KuisSoalEdit', [
             'soals' => $soals,
             'kategoris' => KategoriKuis::all(),
         ]);
@@ -85,7 +95,7 @@ class SoalGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $soals = Soal::find($request->id);
+        $soals = Soal::find($id);
         $soals->kategori_kuis_id = $request->kategori_kuis_id;
         $soals->soal = $request->soal;
         // Request column input type file
@@ -97,7 +107,8 @@ class SoalGuruController extends Controller
             $soals->gambar = $gambarName;
         }
         $soals->save();
-        return redirect()->back();
+        return redirect('/guru/kuis/soal');
+
     }
 
     /**
@@ -105,8 +116,9 @@ class SoalGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $soals = Soal::find($id)->first();
+        $soals = Soal::find($id);
         $soals->delete();
-        return redirect()->route('soal-kuis.index');
+        return redirect('/guru/kuis/soal');
+
     }
 }

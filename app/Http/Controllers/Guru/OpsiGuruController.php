@@ -15,7 +15,9 @@ class OpsiGuruController extends Controller
      */
     public function index()
     {
-        $opsis = Opsi::paginate(10);
+        $opsis = Opsi::join('soals', 'opsis.soal_id', '=', 'soals.id')
+        ->select('opsis.*', 'soals.soal')
+        ->paginate(10);
         return Inertia::render('Guru/Kuis/KuisOpsi', [
             'opsis' => $opsis,
         ]);
@@ -42,7 +44,8 @@ class OpsiGuruController extends Controller
             'point' => $request->input('point'),
         ]);
 
-        return redirect()->back();
+        return redirect('/guru/kuis/opsi');
+
     }
 
     /**
@@ -62,10 +65,14 @@ class OpsiGuruController extends Controller
      */
     public function edit(string $id)
     {
-        $opsis = Opsi::where('id', $id)->first();
+        $opsis = Opsi::where('opsis.id', $id)->join('soals', 'opsis.soal_id', '=', 'soals.id')
+        ->select('opsis.*', 'soals.soal')
+        ->paginate(10);
 
-        return Inertia::render('Guru/Kuis/Opsi/Edit', [
+        return Inertia::render('Guru/Kuis/KuisOpsiEdit', [
             'opsis' => $opsis,
+            'soals' => Soal::all(),
+
         ]);
     }
 
@@ -74,13 +81,14 @@ class OpsiGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $opsis = Opsi::find($request->id);
+        $opsis = Opsi::find($id);
         $opsis->soal_id = $request->soal_id;
         $opsis->opsi = $request->opsi;
         $opsis->point = $request->point;
         $opsis->save();
 
-        return redirect()->back();
+        return redirect('/guru/kuis/opsi');
+
     }
 
     /**
@@ -88,8 +96,9 @@ class OpsiGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $opsis = Opsi::find($id)->first();
+        $opsis = Opsi::find($id);
         $opsis->delete();
-        return redirect()->route('opsi-kuis.index');
+        return redirect('/guru/kuis/opsi');
+
     }
 }

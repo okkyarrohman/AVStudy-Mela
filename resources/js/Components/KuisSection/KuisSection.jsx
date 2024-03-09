@@ -55,7 +55,7 @@ const KuisSection = ({ kuis, soal, done }) => {
                 console.log("ini Jawaban User",userAnswers);
                 //ikilo kik anjrit datae bentuk e piye
                 router.post(route("kuis.store", {
-                    "kategori_kuis_id": 1,
+                    "kategori_kuis_id": kuis.id,
                     "soal":{userAnswers}
                 }));
             }

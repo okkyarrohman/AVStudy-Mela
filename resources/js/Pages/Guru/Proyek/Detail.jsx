@@ -12,7 +12,8 @@ import TableProyek from "@/Components/Table/TableProyek";
 import TableHasilDetail from "@/Components/Table/TableHasilDetail";
 import TableProyekDetail from "@/Components/Table/TabelProyekDetail";
 
-const ProyekGuru = () => {
+const ProyekGuru = ({ proyeks }) => {
+    console.log(proyeks);
     const adaMateri = true;
     return (
         <>
@@ -37,7 +38,7 @@ const ProyekGuru = () => {
                                     ></Icon>
 
                                     <a
-                                        href="/guru/proyek/hasil"
+                                        href={`/guru/proyek/${proyeks.id}/hasil`}
                                         className="text-gray-400"
                                     >
                                         Hasil
@@ -62,9 +63,9 @@ const ProyekGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {proyeks ? (
                         <div>
-                            <TableProyekDetail />
+                            <TableProyekDetail data={proyeks} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

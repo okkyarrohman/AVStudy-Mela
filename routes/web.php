@@ -66,8 +66,9 @@ Route::group(['middleware' => 'role:guru'], function () {
             'datamurid' => DataSiswaGuruController::class,
         ]);
         Route::controller(ProyekGuruController::class)->group(function () {
-            Route::get('proyek/hasil', 'show');
-            Route::get('proyek/hasil/detail', 'detail');
+            Route::get('proyek/{id}/hasil', 'show');
+            Route::get('proyek/{id}/hasil/detail', 'detail')->name('detail-hasil-proyek.show');
+            Route::patch('proyek/{id}/hasil/grade', 'grade')->name('grade-hasil-proyek.store');
         });
         Route::prefix('pustaka')->group(function () {
             Route::resources([

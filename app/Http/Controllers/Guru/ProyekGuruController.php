@@ -57,17 +57,13 @@ class ProyekGuruController extends Controller
      */
     public function show($id)
     {
-        $proyeks = ProyekResult::where('proyek_id', $id)->with('proyek')->get();
-
-        $namaSiswa = $proyeks->map(function ($siswa) {
-            return $siswa->user->name;
-        });
+        $proyekResults = ProyekResult::where('proyek_id', $id)->with(['proyek', 'user'])->paginate(10);
 
         return Inertia::render('Guru/Proyek/Show', [
-            'proyeks' => $proyeks,
-            'namaSiswa' => $namaSiswa
+            'proyekResults' => $proyekResults,
         ]);
     }
+
     public function detail($id)
     {
         $proyeks = ProyekResult::where('id', $id)->first();
@@ -127,5 +123,16 @@ class ProyekGuruController extends Controller
 
         return redirect('/guru/proyek');
 
+    }
+
+    public function grade(Request $request, string $id)
+    {
+        $proyeks = ProyekResult::find($id);
+
+        $proyeksUpdate = $request->only(['konfirmasi1', 'konfirmasi2', 'konfirmasi3', 'konfirmasi4']);
+
+        $proyeks->update($proyeksUpdate);
+
+        return redirect('/guru/proyek');
     }
 }

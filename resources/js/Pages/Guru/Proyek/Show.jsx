@@ -12,8 +12,9 @@ import TableProyek from "@/Components/Table/TableProyek";
 import TableHasil from "@/Components/Table/TableHasil";
 import TableProyekHasil from "@/Components/Table/TabelProyekHasil";
 
-const ProyekGuru = () => {
+const ProyekGuru = ({ proyekResults }) => {
     const adaMateri = true;
+    console.log(proyekResults);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -46,14 +47,13 @@ const ProyekGuru = () => {
                                     <div className="col-span-5 relative">
                                         <SearchInput />
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {proyekResults.data.length != 0 ? (
                         <div>
-                            <TableProyekHasil />
+                            <TableProyekHasil data={proyekResults.data} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

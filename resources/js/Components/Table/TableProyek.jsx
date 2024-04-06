@@ -47,7 +47,9 @@ const TableProyek = ({ data }) => {
                                     <td className="py-3">
                                         <BtnPrimary
                                             onClick={() =>
-                                                router.visit("proyek/hasil")
+                                                router.get(
+                                                    `proyek/${item.id}/hasil`
+                                                )
                                             }
                                             className="w-fit text-center"
                                             text="Lihat"

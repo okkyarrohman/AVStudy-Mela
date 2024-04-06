@@ -9,6 +9,7 @@ import { router } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
+import TablePagination from "@/Components/Table/TablePagination";
 
 const ProposalGuru = ({ proposals }) => {
     console.log(proposals);
@@ -55,9 +56,10 @@ const ProposalGuru = ({ proposals }) => {
                             </div>
                         </div>
                     </div>
-                    {proposals.length != 0 ? (
+                    {proposals.data.length != 0 ? (
                         <div>
                             <TableProposal data={proposals.data} />
+                            <TablePagination data={proposals.links} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

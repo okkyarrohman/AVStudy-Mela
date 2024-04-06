@@ -17,15 +17,17 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('proyek_id')->nullable();
             $table->foreign('proyek_id')->references('id')->on('proyeks')->onDelete('cascade');
-            $table->longText('answer1')->nullable();
+            $table->string('answer1')->nullable();
             $table->string('answer2')->nullable();
             $table->string('answer3')->nullable();
-            $table->string('answer4')->nullable();
-            $table->string('konfirmasi1')->nullable();
-            $table->string('konfirmasi2')->nullable();
-            $table->string('konfirmasi3')->nullable();
-            $table->string('konfirmasi4')->nullable();
-            $table->longText('feedback')->nullable();
+            $table->longText('answer_note')->nullable();
+            $table->string('answer_link')->nullable();
+            $table->longText('konfirmasi1')->nullable();
+            $table->longText('konfirmasi2')->nullable();
+            $table->longText('konfirmasi3')->nullable();
+            $table->longText('konfirmasi4')->nullable();
+            // $table->longText('feedback')->nullable();
+            $table->string('nilai')->nullable();
             $table->timestamps();
         });
     }

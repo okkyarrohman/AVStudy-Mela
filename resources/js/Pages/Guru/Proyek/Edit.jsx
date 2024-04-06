@@ -7,19 +7,19 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const CreateMateri = () => {
+const EditMateri = ({ proyeks }) => {
     const formik = useFormik({
         initialValues: {
-            nama: "",
-            tenggat: "",
-            step1: "",
-            deskripsi1: "",
-            step2: "",
-            deskripsi2: "",
-            step3: "",
-            deskripsi3: "",
-            step4: "",
-            deskripsi4: "",
+            nama: proyeks?.nama || "",
+            tenggat: proyeks?.tenggat || "",
+            step1: proyeks?.step1 || "",
+            deskripsi1: proyeks?.deskripsi1 || "",
+            step2: proyeks?.step2 || "",
+            deskripsi2: proyeks?.deskripsi2 || "",
+            step3: proyeks?.step3 || "",
+            deskripsi3: proyeks?.deskripsi3 || "",
+            step4: proyeks?.step4 || "",
+            deskripsi4: proyeks?.deskripsi4 || "",
         },
         validationSchema: Yup.object({
             nama: Yup.string().required("Nama proyek harus diisi"),
@@ -43,6 +43,7 @@ const CreateMateri = () => {
         }),
         onSubmit: (values) => {
             const data = {
+                _method: "PATCH",
                 nama: values.nama,
                 tenggat: values.tenggat,
                 step1: values.step1,
@@ -56,7 +57,7 @@ const CreateMateri = () => {
             };
 
             console.log(data);
-            router.post(`/guru/proyek`, data);
+            router.post(`/guru/proyek/${proyeks.id}`, data);
         },
     });
 
@@ -506,4 +507,4 @@ const CreateMateri = () => {
     );
 };
 
-export default CreateMateri;
+export default EditMateri;

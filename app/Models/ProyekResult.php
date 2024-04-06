@@ -13,16 +13,18 @@ class ProyekResult extends Model
 
     protected $fillable = [
         'user_id',
-        'tugas_id',
+        'proyek_id',
         'answer1',
-        'asnwer2',
-        'asnwer3',
-        'asnwer4',
+        'answer2',
+        'answer3',
+        'answer_note',
+        'answer_link',
         'konfirmasi1',
         'konfirmasi2',
         'konfirmasi3',
         'konfirmasi4',
-        'feedback'
+        'nilai',
+        // 'feedback'
     ];
 
     public function user()

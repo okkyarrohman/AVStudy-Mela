@@ -31,6 +31,7 @@ const CreateMateri = () => {
             router.post(`/guru/materi`, data);
         },
     });
+
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -92,7 +93,7 @@ const CreateMateri = () => {
                                                 type="text"
                                                 name="materiDesc"
                                                 className={`w-full rounded border ${
-                                                    formik.errors.materiName
+                                                    formik.errors.materiDesc
                                                         ? "border-red-500"
                                                         : "border-gray-400"
                                                 } mt-3`}

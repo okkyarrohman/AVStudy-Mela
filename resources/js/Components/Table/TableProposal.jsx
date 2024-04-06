@@ -32,7 +32,7 @@ const TableProposal = ({ data }) => {
                             return (
                                 <tr>
                                     <td scope="row" className="p-3 ps-5">
-                                        1
+                                        {item.id}
                                     </td>
                                     <td>{item.judul}</td>
                                     <td className="py-3">

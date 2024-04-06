@@ -15,7 +15,7 @@ class ProyekGuruController extends Controller
      */
     public function index()
     {
-        $proyeks = Proyek::paginate(10);
+        $proyeks = Proyek::with(['proyekResult'])->paginate(10);
 
         return Inertia::render('Guru/Proyek/Index', [
             'proyeks' => $proyeks
@@ -48,7 +48,8 @@ class ProyekGuruController extends Controller
             'deskripsi4' => $request->input('deskripsi4'),
         ]);
 
-        return redirect()->route('proyek-guru.index');
+        return redirect('/guru/proyek');
+
     }
 
     /**
@@ -56,7 +57,7 @@ class ProyekGuruController extends Controller
      */
     public function show($id)
     {
-        $proyeks = ProyekResult::where('proyek_id', $id)->with('tugas')->get();
+        $proyeks = ProyekResult::where('proyek_id', $id)->with('proyek')->get();
 
         $namaSiswa = $proyeks->map(function ($siswa) {
             return $siswa->user->name;
@@ -93,7 +94,7 @@ class ProyekGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $proyeks = Proyek::find($request->id);
+        $proyeks = Proyek::find($id);
         $proyeks->nama = $request->nama;
         $proyeks->tenggat = $request->tenggat;
 
@@ -111,7 +112,8 @@ class ProyekGuruController extends Controller
 
         $proyeks->save();
 
-        return redirect()->route('proyek-guru.index');
+        return redirect('/guru/proyek');
+
     }
 
     /**
@@ -119,10 +121,11 @@ class ProyekGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $proyeks = Proyek::find($id)->first();
+        $proyeks = Proyek::where('id', $id);
 
         $proyeks->delete();
 
-        return redirect()->route('proyek-guru.index');
+        return redirect('/guru/proyek');
+
     }
 }

@@ -10,6 +10,7 @@ import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
 import TableReferensi from "@/Components/Table/TableReferensi";
+import TablePagination from "@/Components/Table/TablePagination";
 
 const ReferensiGuru = ({ referensis }) => {
     console.log(referensis);
@@ -56,9 +57,10 @@ const ReferensiGuru = ({ referensis }) => {
                             </div>
                         </div>
                     </div>
-                    {referensis.length != 0 ? (
+                    {referensis.data.length != 0 ? (
                         <div>
-                            <TableReferensi data={referensis} />
+                            <TableReferensi data={referensis.data} />
+                            <TablePagination data={referensis.links} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

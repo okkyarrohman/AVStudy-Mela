@@ -10,11 +10,12 @@ import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import TablePagination from "@/Components/Table/TablePagination";
 
 const MateriGuru = ({ materis }) => {
     const { props } = usePage();
     useEffect(() => {
-        console.log(props)
+        console.log(props);
         if (props.page?.success) {
             Swal.fire({
                 title: "Success",
@@ -55,9 +56,10 @@ const MateriGuru = ({ materis }) => {
                             </div>
                         </div>
                     </div>
-                    {materis ? (
+                    {materis.data.length != 0 ? (
                         <div>
                             <TableMateri data={materis.data} />
+                            <TablePagination data={materis.links} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

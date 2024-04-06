@@ -9,8 +9,10 @@ import { router } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import TableDataSiswa from "@/Components/Table/TableDataSiswa";
+import TablePagination from "@/Components/Table/TablePagination";
 
-const DataSiswa = () => {
+const DataSiswa = ({ siswas }) => {
+    console.log(siswas);
     const adaMateri = true;
     return (
         <>
@@ -29,14 +31,14 @@ const DataSiswa = () => {
                                     <div className="col-span-5 relative">
                                         <SearchInput />
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {siswas.data.length != 0 ? (
                         <div>
-                            <TableDataSiswa />
+                            <TableDataSiswa data={siswas.data} />
+                            <TablePagination data={siswas.links} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

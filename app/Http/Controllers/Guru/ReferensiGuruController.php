@@ -15,7 +15,7 @@ class ReferensiGuruController extends Controller
      */
     public function index()
     {
-        $referensis = Pustaka::where('tipe', 'Referensi')->get();
+        $referensis = Pustaka::where('tipe', 'Referensi')->paginate(10);
 
 
         return Inertia::render('Guru/Pustaka/Referensi', [

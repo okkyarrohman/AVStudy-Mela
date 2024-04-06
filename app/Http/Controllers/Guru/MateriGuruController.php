@@ -57,8 +57,6 @@ class MateriGuruController extends Controller
             'konten' => $kontenName,
         ]);
 
-
-
         return redirect('/guru/materi');
 
     }

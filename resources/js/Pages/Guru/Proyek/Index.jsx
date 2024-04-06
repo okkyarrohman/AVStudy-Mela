@@ -9,9 +9,11 @@ import { router } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import TableProyek from "@/Components/Table/TableProyek";
+import TablePagination from "@/Components/Table/TablePagination";
 
-const ProyekGuru = () => {
+const ProyekGuru = ({ proyeks }) => {
     const adaMateri = true;
+    console.log(proyeks);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -43,9 +45,10 @@ const ProyekGuru = () => {
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {proyeks.data.length != 0 ? (
                         <div>
-                            <TableProyek />
+                            <TableProyek data={proyeks.data} />
+                            <TablePagination data={proyeks.links} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

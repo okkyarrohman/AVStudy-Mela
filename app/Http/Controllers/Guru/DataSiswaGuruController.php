@@ -15,7 +15,7 @@ class DataSiswaGuruController extends Controller
      */
     public function index()
     {
-        $siswa = User::role('siswa')->get();
+        $siswa = User::role('siswa')->paginate(10);
 
         return inertia::render('Guru/DataSiswa/Index', [
             'siswas' => $siswa

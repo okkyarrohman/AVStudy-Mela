@@ -15,7 +15,9 @@ const CreateProposal = () => {
         },
         validationSchema: Yup.object({
             kategoriName: Yup.string().required("Nama kategori harus diisi"),
-            kategoriTenggat: Yup.string().required("Tenggat kategori harus diisi"),
+            kategoriTenggat: Yup.string().required(
+                "Tenggat kategori harus diisi"
+            ),
             kategoriWaktu: Yup.number().required("Waktu kategori harus diisi"),
         }),
         onSubmit: (values) => {
@@ -35,9 +37,7 @@ const CreateProposal = () => {
                 </div>
                 <div className="col-span-10 mx-5 my-10">
                     <div className="flex items-center mb-5">
-                        <span className="text-gray-400">
-                            Kuis
-                        </span>
+                        <span className="text-gray-400">Kuis</span>
                         <Icon
                             className="text-xs mx-3 text-gray-400"
                             icon="ep:arrow-right-bold"
@@ -75,7 +75,9 @@ const CreateProposal = () => {
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
-                                                value={formik.values.kategoriName}
+                                                value={
+                                                    formik.values.kategoriName
+                                                }
                                                 placeholder="Masukkan Kategori Kuis"
                                             />
                                             {formik.touched.kategoriName &&
@@ -95,19 +97,26 @@ const CreateProposal = () => {
                                                 type="date"
                                                 name="kategoriTenggat"
                                                 className={`w-full rounded border ${
-                                                    formik.errors.kategoriTenggat
+                                                    formik.errors
+                                                        .kategoriTenggat
                                                         ? "border-red-500"
                                                         : "border-gray-400"
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
-                                                value={formik.values.kategoriTenggat}
+                                                value={
+                                                    formik.values
+                                                        .kategoriTenggat
+                                                }
                                                 placeholder="Masukkan Tenggat"
                                             />
                                             {formik.touched.kategoriTenggat &&
                                             formik.errors.kategoriTenggat ? (
                                                 <div className="text-red-500">
-                                                    {formik.errors.kategoriTenggat}
+                                                    {
+                                                        formik.errors
+                                                            .kategoriTenggat
+                                                    }
                                                 </div>
                                             ) : null}
                                         </div>
@@ -127,13 +136,18 @@ const CreateProposal = () => {
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
-                                                value={formik.values.kategoriWaktu}
+                                                value={
+                                                    formik.values.kategoriWaktu
+                                                }
                                                 placeholder="Masukkan Waktu (Menit)"
                                             />
                                             {formik.touched.kategoriWaktu &&
                                             formik.errors.kategoriWaktu ? (
                                                 <div className="text-red-500">
-                                                    {formik.errors.kategoriWaktu}
+                                                    {
+                                                        formik.errors
+                                                            .kategoriWaktu
+                                                    }
                                                 </div>
                                             ) : null}
                                         </div>
@@ -143,7 +157,9 @@ const CreateProposal = () => {
                                         <div className="flex gap-5">
                                             <BtnSecondary
                                                 onClick={() =>
-                                                    router.visit("/guru/kuis/kategori")
+                                                    router.visit(
+                                                        "/guru/kuis/kategori"
+                                                    )
                                                 }
                                                 text="Tutup"
                                             />

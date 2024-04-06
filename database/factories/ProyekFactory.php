@@ -18,7 +18,7 @@ class ProyekFactory extends Factory
     {
         return [
             'nama' => $this->faker->slug(),
-            'tenggat' => $this->faker->date('Ymd'),
+            'tenggat' => $this->faker->dateTime(),
             'step1' => $this->faker->slug(),
             'deskripsi1' => $this->faker->paragraph(),
             'step2' => $this->faker->slug(),

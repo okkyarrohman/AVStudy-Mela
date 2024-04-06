@@ -15,14 +15,25 @@ const CardProyek = (props) => {
             <Link href={props.to} onClick={props.onClick}>
                 <div className="flex flex-col items-center rounded-xl shadow-xl h-full hover:scale-105 active:opacity-50 p-5 border border-gray-300">
                     <div className="w-full">
-                        <h1 className="font-bold text-xl">{props.title.length >40 ?props.title.slice(0,37)+"...":props.title }</h1>
+                        <h1 className="font-bold text-xl">
+                            {props.title.length > 40
+                                ? props.title.slice(0, 37) + "..."
+                                : props.title}
+                        </h1>
                     </div>
                     <div className="w-full h-full border border-purple-500 rounded-lg m-2">
                         <div className="flex flex-col items-center gap-3 p-3 w-full h-full ">
-                            <p className="italic font-bold">50%</p>
+                            <p className="italic font-bold">
+                                {props.progress}%
+                            </p>
                             <div className="flex items-center gap-1 w-full">
                                 <div className="h-3 w-full bg-gray-300 rounded-xl">
-                                    <div className="w-[50%] h-full rounded-xl bg-emerald-500"></div>
+                                    <div
+                                        className={`h-full rounded-xl bg-emerald-500`}
+                                        style={{
+                                            width: `${props.progress}%`,
+                                        }}
+                                    ></div>
                                 </div>
                             </div>
                             <p className="font-bold text-sm  italic text-purple-600">
@@ -30,9 +41,9 @@ const CardProyek = (props) => {
                             </p>
                             <div className="mb-3">
                                 <hr></hr>
-                                    <button className="bg-purple-500 text-white py-1 px-5 rounded-lg hover:bg-purple-700 active:bg-purple-300">
-                                        Lihat
-                                    </button>
+                                <button className="bg-purple-500 text-white py-1 px-5 rounded-lg hover:bg-purple-700 active:bg-purple-300">
+                                    Lihat
+                                </button>
                             </div>
                         </div>
                     </div>

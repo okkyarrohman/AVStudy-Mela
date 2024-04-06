@@ -12,7 +12,7 @@ class Proyek extends Model
     protected $table = 'proyeks';
 
     protected $fillable = [
-        'tugas',
+        'nama',
         'tenggat',
         'step1',
         'deskripsi1',

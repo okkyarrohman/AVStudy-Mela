@@ -26,6 +26,6 @@ class Hasil extends Model
 
     public function kategorikuis()
     {
-        return $this->belongsTo(KategoriKuis::class);
+        return $this->belongsTo(KategoriKuis::class, 'kategori_kuis_id', 'id');
     }
 }

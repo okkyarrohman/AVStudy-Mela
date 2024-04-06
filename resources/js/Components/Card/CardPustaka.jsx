@@ -1,4 +1,3 @@
-
 import { Link } from "@inertiajs/react";
 import { Icon } from "@iconify/react";
 
@@ -18,8 +17,8 @@ const CardPustaka = (props) => {
                     <div className="w-full">
                         <img
                             src={
-                                tipePustaka("refrensi")
-                                    ? "/assets/RefrensiCover.svg"
+                                tipePustaka("referensi")
+                                    ? "/assets/ReferensiCover.svg"
                                     : "/assets/ProposalCover.svg"
                             }
                             className="object-contain w-full rounded-t-xl"
@@ -29,7 +28,7 @@ const CardPustaka = (props) => {
                         <div className="self-start flex items-center gap-2">
                             <Icon
                                 className={
-                                    tipePustaka("refrensi")
+                                    tipePustaka("referensi")
                                         ? "text-sky-400"
                                         : "text-yellow-400"
                                 }

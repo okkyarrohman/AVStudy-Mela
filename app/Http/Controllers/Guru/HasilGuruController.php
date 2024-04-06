@@ -15,7 +15,7 @@ class HasilGuruController extends Controller
      */
     public function index()
     {
-        $hasils = Hasil::with(['soal', 'user'])->get();
+        $hasils = Hasil::with(['soal', 'user', 'kategorikuis'])->paginate(10);
 
         return Inertia::render('Guru/Kuis/KuisHasil', [
             'hasils' => $hasils
@@ -44,7 +44,7 @@ class HasilGuruController extends Controller
      */
     public function show(string $id)
     {
-        $hasils = Hasil::with('soal')->where('id', $id)->get();
+        $hasils = Hasil::with('soal')->where('id', $id)->first();
 
         return Inertia::render('Guru/Kuis/KuisHasilDetail', [
             'hasils' => $hasils

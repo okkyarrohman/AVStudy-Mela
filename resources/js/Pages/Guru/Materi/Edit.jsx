@@ -25,7 +25,7 @@ const CreateMateri = ({ materis }) => {
         }),
         onSubmit: (values) => {
             const data = {
-                id: materis.id,
+                _method: "PATCH",
                 nama: values.materiName,
                 deskripsi: values.materiDesc,
                 cover: values.cover,
@@ -33,7 +33,7 @@ const CreateMateri = ({ materis }) => {
             };
 
             console.log(data);
-            router.put(`/guru/materi/${materis.id}`, data);
+            router.post(`/guru/materi/${materis.id}`, data);
         },
     });
 
@@ -138,9 +138,9 @@ const CreateMateri = ({ materis }) => {
                                                 }}
                                                 onBlur={formik.handleBlur}
                                             />
-                                            {formik.values.cover
-                                                ? formik.values.cover
-                                                : "Pilih File"}
+                                            {formik.values.cover.name
+                                                ? formik.values.cover.name
+                                                : formik.values.cover}
                                         </label>
                                         {formik.touched.cover &&
                                         formik.errors.cover ? (
@@ -171,9 +171,9 @@ const CreateMateri = ({ materis }) => {
                                                 }}
                                                 onBlur={formik.handleBlur}
                                             />
-                                            {formik.values.content
-                                                ? formik.values.content
-                                                : "Pilih File"}
+                                            {formik.values.content.name
+                                                ? formik.values.content.name
+                                                : formik.values.content}
                                         </label>
                                         {formik.touched.content &&
                                         formik.errors.content ? (

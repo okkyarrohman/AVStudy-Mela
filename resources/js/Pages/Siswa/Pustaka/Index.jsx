@@ -17,8 +17,8 @@ const PustakaSiswa = () => {
                     <div className="w-full grid grid-cols-6 gap-5">
                         <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                             <CardPustaka
-                                to="/siswa/pustaka/refrensi"
-                                tipe="refrensi"
+                                to="/siswa/pustaka/referensi"
+                                tipe="referensi"
                                 title="Referensi Video Proyek Iklan Layanan Masyarakat"
                             />
                         </div>

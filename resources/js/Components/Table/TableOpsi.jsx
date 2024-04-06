@@ -32,7 +32,7 @@ const TableOpsi = ({ data }) => {
                             return (
                                 <tr>
                                     <td scope="row" className="p-3 ps-5">
-                                        {idx + 1}
+                                        {item.id}
                                     </td>
                                     <td>
                                         <div className="flex items-center gap-2">

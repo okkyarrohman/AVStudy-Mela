@@ -71,7 +71,7 @@ const CreateMateri = () => {
                                                 </label>
                                                 <div>
                                                     <input
-                                                        type="date"
+                                                        type="text"
                                                         name="materi_name"
                                                         className="w-full rounded border-gray-400 mt-3"
                                                         placeholder="Masukkan Nama Langkah"
@@ -94,7 +94,7 @@ const CreateMateri = () => {
                                             </div>
                                         </>
                                     )}
-                                    { step>1 && step <= 4 && (
+                                    {step > 1 && step <= 4 && (
                                         <>
                                             <div className="my-2">
                                                 <label className="font-bold ">
@@ -130,7 +130,7 @@ const CreateMateri = () => {
                                         <div className="flex gap-5">
                                             <BtnSecondary
                                                 onClick={() =>
-                                                    router.visit("/guru/materi")
+                                                    router.visit("/guru/proyek")
                                                 }
                                                 text="Tutup"
                                             />

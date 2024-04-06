@@ -111,6 +111,8 @@ class ProposalGuruController extends Controller
             $proposals->konten = $kontenName;
         }
 
+        $proposals->save();
+
         return redirect()->route('proposal.index');
     }
 

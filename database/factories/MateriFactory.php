@@ -16,12 +16,15 @@ class MateriFactory extends Factory
      */
     public function definition(): array
     {
+        $filePath = $this->faker->file(storage_path('app/public/materi/konten'), 'storage/app/public/materi/konten', false);
+        $coverPath = $this->faker->file(storage_path('app/public/materi/cover'), 'storage/app/public/materi/cover', false);
+
         return [
             'nama' => $this->faker->slug(),
             'jumlah' => $this->faker->numberBetween(1, 5),
             'deskripsi' => $this->faker->paragraph(),
-            'cover' => $this->faker->imageUrl(),
-            'konten' => $this->faker->imageUrl(),
+            'cover' => $coverPath,
+            'konten' => $filePath,
         ];
     }
 }

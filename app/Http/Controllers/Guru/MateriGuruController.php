@@ -92,7 +92,7 @@ class MateriGuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $materis = Materi::find($request->id);
+        $materis = Materi::find($id);
         $materis->nama = $request->nama;
         $materis->deskripsi = $request->deskripsi;
 

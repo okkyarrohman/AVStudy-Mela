@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
 
         Materi::factory(5)->create();
         Proyek::factory(5)->create();
-        Pustaka::factory(5)->create();
+        Pustaka::factory(10)->create();
         Absen::factory(1)->create();
         KategoriKuis::factory(2)->create();
         Soal::factory(10)->create();

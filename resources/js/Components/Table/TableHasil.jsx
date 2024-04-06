@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
-import { router } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
-const TableHasil = () => {
+const TableHasil = ({ data }) => {
     return (
         <>
             <div className=" overflow-auto bg-white shadow-xl rounded-lg">
@@ -16,7 +16,7 @@ const TableHasil = () => {
                                 Nama Siswa
                             </th>
                             <th scope="col" className="pe-3">
-                                Pertanyaan
+                                Kategori Kuis
                             </th>
                             <th scope="col" className="pe-3">
                                 Poin
@@ -28,37 +28,40 @@ const TableHasil = () => {
                         {/* </div> */}
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row" className="p-3 ps-5">
-                                1
-                            </td>
-                            <td>
-                                <div className="flex items-center gap-2">
-                                    <p>Kenapa Prabowo Ngeselin?</p>
-                                </div>
-                            </td>
-                            <td className="py-3">
-                            <div className="flex items-center gap-2">
-                                    <p>A. Karena Gend</p>
-                                </div>
-                            </td>
-                            <td className="py-3">
-                                <p>4</p>
-                            </td>
-                            <td className="py-3">
-                                <div className="flex items-center gap-2 text-xl">
-                                    <button onClick={()=>router.visit('hasil/show')}>
-                                        <Icon icon="bx:show"></Icon>
-                                    </button>
-                                    <button>
-                                        <Icon icon="akar-icons:edit"></Icon>
-                                    </button>
-                                    <button className="text-red-500">
-                                        <Icon icon="ph:trash-bold"></Icon>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        {data.map((item, idx) => {
+                            return (
+                                <tr>
+                                    <td scope="row" className="p-3 ps-5">
+                                        {item.id}
+                                    </td>
+                                    <td>
+                                        <div className="flex items-center gap-2">
+                                            <p>{item.user.name}</p>
+                                        </div>
+                                    </td>
+                                    <td className="py-3">
+                                        <div className="flex items-center gap-2">
+                                            <p>{item.kategorikuis.kuis}</p>
+                                        </div>
+                                    </td>
+                                    <td className="py-3">
+                                        <p>{item.total_points}</p>
+                                    </td>
+                                    <td className="py-3">
+                                        <div className="flex items-center gap-2 text-xl">
+                                            <Link
+                                                href={route(
+                                                    "hasil.show",
+                                                    item.id
+                                                )}
+                                            >
+                                                <Icon icon="bx:show"></Icon>
+                                            </Link>
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

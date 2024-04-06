@@ -132,7 +132,9 @@ const CreateMateri = () => {
                                                 }}
                                                 onBlur={formik.handleBlur}
                                             />
-                                            {formik.values.cover?formik.values.cover.name:'Pilih File'}
+                                            {formik.values.cover
+                                                ? formik.values.cover.name
+                                                : "Pilih File"}
                                         </label>
                                         {formik.touched.cover &&
                                         formik.errors.cover ? (
@@ -163,7 +165,9 @@ const CreateMateri = () => {
                                                 }}
                                                 onBlur={formik.handleBlur}
                                             />
-                                            {formik.values.content?formik.values.content.name:'Pilih File'}
+                                            {formik.values.content
+                                                ? formik.values.content.name
+                                                : "Pilih File"}
                                         </label>
                                         {formik.touched.content &&
                                         formik.errors.content ? (

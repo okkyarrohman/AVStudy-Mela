@@ -1,10 +1,10 @@
 import { Icon } from "@iconify/react";
 import Sidebar from "@/Components/Sidebar/Sidebar";
-import {usePage} from "@inertiajs/react"
+import { usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 
-const MateriShowSiswa = ({materis}) => {
-    console.log(materis)
+const MateriShowSiswa = ({ materis }) => {
+    console.log(materis);
 
     return (
         <>
@@ -17,16 +17,23 @@ const MateriShowSiswa = ({materis}) => {
                         <a href="/siswa/materi" className="text-gray-400">
                             Materi
                         </a>
-                        <Icon className="text-xs mx-3 text-gray-400" icon="ep:arrow-right-bold"></Icon>
-                        <span className="font-bold text-black"> {materis.nama} </span>
+                        <Icon
+                            className="text-xs mx-3 text-gray-400"
+                            icon="ep:arrow-right-bold"
+                        ></Icon>
+                        <span className="font-bold text-black">
+                            {" "}
+                            {materis.nama}{" "}
+                        </span>
                     </div>
                     <div className="my-5">
                         <h1 className="font-bold text-2xl">{materis.nama}</h1>
-
                     </div>
-                    <div className="bg-gray-200 h-[85%] w-full rounded-xl">
-                        pdf
-                    </div>
+                    <embed
+                        className="bg-gray-200 h-[85%] w-full rounded-xl"
+                        src={`/storage/materi/konten/${materis.konten}`}
+                        type="application/pdf"
+                    ></embed>
                 </div>
             </div>
         </>

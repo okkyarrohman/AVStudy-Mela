@@ -11,9 +11,10 @@ import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
 import TableKategori from "@/Components/Table/TableKategori";
 import TableOpsi from "@/Components/Table/TableOpsi";
+import TablePagination from "@/Components/Table/TablePagination";
 
-const KuisOpsiGuru = ({opsis}) => {
-    console.log(opsis)
+const KuisOpsiGuru = ({ opsis }) => {
+    console.log(opsis);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -25,11 +26,7 @@ const KuisOpsiGuru = ({opsis}) => {
                         <div className="col-span-6">
                             <div className="my-5">
                                 <div className="flex items-center mb-5">
-                                    <span
-                                        className="text-gray-400"
-                                    >
-                                        Kuis
-                                    </span>
+                                    <span className="text-gray-400">Kuis</span>
                                     <Icon
                                         className="text-xs mx-3 text-gray-400"
                                         icon="ep:arrow-right-bold"
@@ -58,7 +55,8 @@ const KuisOpsiGuru = ({opsis}) => {
                     </div>
                     {opsis.data.length != 0 ? (
                         <div>
-                            <TableOpsi data={opsis.data}/>
+                            <TableOpsi data={opsis.data} />
+                            <TablePagination data={opsis.links} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

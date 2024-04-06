@@ -12,7 +12,8 @@ import TableProposal from "@/Components/Table/TableProposal";
 import TableKategori from "@/Components/Table/TableKategori";
 import TableHasilDetail from "@/Components/Table/TableHasilDetail";
 
-const KuisHasilDetail = () => {
+const KuisHasilDetail = ({ hasils }) => {
+    console.log(hasils);
     const adaMateri = true;
     return (
         <>
@@ -48,16 +49,19 @@ const KuisHasilDetail = () => {
                                     <div className="col-span-5 relative ">
                                         <SearchInput />
                                         <div className="p-2 w-1/2 border border-dashed border-black my-5">
-                                            <h1 className="text-2xl font-bold text-center"> Total Nilai : 96</h1>
+                                            <h1 className="text-2xl font-bold text-center">
+                                                Total Nilai :
+                                                {hasils.total_points}
+                                            </h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {adaMateri ? (
+                    {hasils.soal.length != 0 ? (
                         <div>
-                            <TableHasilDetail />
+                            <TableHasilDetail data={hasils.soal} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

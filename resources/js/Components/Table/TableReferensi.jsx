@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { router } from "@inertiajs/react";
 
-const TableRefrensi = ({ data }) => {
+const TableReferensi = ({ data }) => {
     return (
         <>
             <div className=" overflow-auto bg-white shadow-xl rounded-lg">
@@ -13,13 +13,13 @@ const TableRefrensi = ({ data }) => {
                                 No
                             </th>
                             <th scope="col" className="pe-3">
-                                Judul Refrensi
+                                Judul Referensi
                             </th>
                             <th scope="col" className="pe-3">
-                                Sumber Refrensi
+                                Sumber Referensi
                             </th>
                             <th scope="col" className="pe-3">
-                                Link Sumber Refrensi
+                                Link Sumber Referensi
                             </th>
                             <th scope="col" className="pe-3">
                                 Aksi
@@ -49,10 +49,23 @@ const TableRefrensi = ({ data }) => {
                                     </td>
                                     <td className="py-3">
                                         <div className="flex items-center gap-2 text-xl">
-                                            <button onClick={()=>router.get(`refrensi/${item.id}/edit`)}>
+                                            <button
+                                                onClick={() =>
+                                                    router.get(
+                                                        `referensi/${item.id}/edit`
+                                                    )
+                                                }
+                                            >
                                                 <Icon icon="akar-icons:edit"></Icon>
                                             </button>
-                                            <button onClick={()=>router.delete(`refrensi/${item.id}`)} className="text-red-500">
+                                            <button
+                                                onClick={() =>
+                                                    router.delete(
+                                                        `referensi/${item.id}`
+                                                    )
+                                                }
+                                                className="text-red-500"
+                                            >
                                                 <Icon icon="ph:trash-bold"></Icon>
                                             </button>
                                         </div>
@@ -67,4 +80,4 @@ const TableRefrensi = ({ data }) => {
     );
 };
 
-export default TableRefrensi;
+export default TableReferensi;

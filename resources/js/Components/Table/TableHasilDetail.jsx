@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { router } from "@inertiajs/react";
 
-const TableHasilDetail = () => {
+const TableHasilDetail = ({ data }) => {
     return (
         <>
             <div className=" overflow-auto bg-white shadow-xl rounded-lg">
@@ -19,18 +19,20 @@ const TableHasilDetail = () => {
                         {/* </div> */}
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div className="flex items-center ps-3 gap-2">
-                                    <p>Kenapa Prabowo Ngeselin?</p>
-                                </div>
-                            </td>
-
-                            <td className="py-3">
-                                <p>4</p>
-                            </td>
-
-                        </tr>
+                        {data.map((item, idx) => {
+                            return (
+                                <tr>
+                                    <td>
+                                        <div className="flex items-center ps-3 gap-2">
+                                            <p>{item.soal}</p>
+                                        </div>
+                                    </td>
+                                    <td className="py-3">
+                                        <p>{item.pivot.point}</p>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>

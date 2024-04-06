@@ -16,12 +16,15 @@ class PustakaFactory extends Factory
      */
     public function definition(): array
     {
+        $filePath = $this->faker->file(storage_path('app/public/pustaka/konten'), 'storage/app/public/pustaka/konten', false);
+        $coverPath = $this->faker->file(storage_path('app/public/pustaka/cover'), 'storage/app/public/pustaka/cover', false);
+
         return [
             'judul' => $this->faker->title(),
             'sumber' => $this->faker->imageUrl(),
             'link' => $this->faker->url(),
-            'konten' => $this->faker->imageUrl(),
-            'cover' => $this->faker->imageUrl(),
+            'konten' => $filePath,
+            'cover' => $coverPath,
             'tipe' => $this->faker->randomElement(['Referensi', 'Proposal']),
         ];
     }

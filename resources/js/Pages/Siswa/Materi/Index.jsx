@@ -4,12 +4,14 @@ import TableProgressProyek from "@/Components/Table/TableProgressProyek";
 import { Link } from "@inertiajs/react";
 import ListMateri from "@/Components/List/ListMateri";
 
-const MateriSiswa = ({materis}) => {
+const MateriSiswa = ({ materis }) => {
+    console.log(materis);
+
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
                 <div className="col-span-2">
-                    <Sidebar/>
+                    <Sidebar />
                 </div>
                 <div className="col-span-10 lg:col-span-9 m-10 flex flex-col gap-5">
                     <div className="my-5">
@@ -18,7 +20,7 @@ const MateriSiswa = ({materis}) => {
                     {materis.map((item, idx) => {
                         return (
                             <ListMateri
-                            key={idx}
+                                key={idx}
                                 to={`materi.show`}
                                 img={item.cover}
                                 title={item.nama}

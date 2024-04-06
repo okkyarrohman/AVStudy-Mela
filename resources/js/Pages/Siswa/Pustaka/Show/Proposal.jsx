@@ -2,11 +2,11 @@ import { Icon } from "@iconify/react";
 import Sidebar from "@/Components/Sidebar/Sidebar";
 import { Link } from "@inertiajs/react";
 import CardPustaka from "@/Components/Card/CardPustaka";
-import CardRefrensi from "@/Components/Card/CardRefrensi";
+import CardReferensi from "@/Components/Card/CardReferensi";
 import ListProposal from "@/Components/List/ListProposal";
 
-const RefrensiSiswa = ({pustakas}) => {
-    console.log(pustakas)
+const ReferensiSiswa = ({ pustakas }) => {
+    console.log(pustakas);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -15,14 +15,14 @@ const RefrensiSiswa = ({pustakas}) => {
                 </div>
                 <div className="col-span-10 m-10 flex flex-col gap-4">
                     <div className="flex items-center">
-                        <a href="/siswa/pustaka" className="text-gray-400">
+                        <Link href="/siswa/pustaka" className="text-gray-400">
                             Pustaka
-                        </a>
+                        </Link>
                         <Icon
                             className="text-xs mx-3 text-gray-400"
                             icon="ep:arrow-right-bold"
                         ></Icon>
-                        <span className="font-bold text-black"> Proposal </span>
+                        <span className="font-bold text-black">Proposal</span>
                     </div>
                     <div className="my-5">
                         <h1 className="font-bold text-xl">Proposal</h1>
@@ -30,9 +30,11 @@ const RefrensiSiswa = ({pustakas}) => {
                     {pustakas.map((item, idx) => {
                         return (
                             <ListProposal
-                                to="detail"
-                                img={item.sumber}
+                                key={idx}
+                                id={item.id}
+                                img={item.cover}
                                 title={item.judul}
+                                file={item.konten}
                                 desc="Lorem ipsum dolor sit amet consectetur,
                                 adipisicing elit. Corrupti, repellat
                                 architecto."
@@ -45,4 +47,4 @@ const RefrensiSiswa = ({pustakas}) => {
     );
 };
 
-export default RefrensiSiswa;
+export default ReferensiSiswa;

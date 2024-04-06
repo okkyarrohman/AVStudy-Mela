@@ -45,8 +45,8 @@ class PustakaSiswaController extends Controller
         // $pustakas = Pustaka::all();
 
 
-        if ($type === "refrensi") {
-            return Inertia::render('Siswa/Pustaka/Show/Refrensi',[
+        if ($type === "referensi") {
+            return Inertia::render('Siswa/Pustaka/Show/Referensi',[
                 'pustakas'=> $pustakas
             ]);
         } else {
@@ -59,10 +59,11 @@ class PustakaSiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function detail()
+    public function detail(string $id)
     {
-        //
-        return Inertia::render('Siswa/Pustaka/Detail');
+        $pustakas = Pustaka::where('id', $id)->first();
+
+        return Inertia::render('Siswa/Pustaka/Detail', compact('pustakas'));
     }
 
     /**

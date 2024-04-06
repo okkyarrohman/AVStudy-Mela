@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { Link, router } from "@inertiajs/react";
 
 const TableProposal = ({ data }) => {
     return (
@@ -37,21 +38,33 @@ const TableProposal = ({ data }) => {
                                     <td className="py-3">
                                         <div className="flex items-center gap-2">
                                             <Icon icon="material-symbols:image-outline"></Icon>
-                                            <p>image.jpg</p>
+                                            <p>{item.cover}</p>
                                         </div>
                                     </td>
                                     <td className="py-3">
                                         <div className="flex items-center gap-2">
                                             <Icon icon="akar-icons:file"></Icon>
-                                            <p> materi.pdf</p>
+                                            <p>{item.konten}</p>
                                         </div>
                                     </td>
                                     <td className="py-3">
                                         <div className="flex items-center gap-2 text-xl">
-                                            <button>
+                                            <Link
+                                                href={route(
+                                                    "proposal.edit",
+                                                    item.id
+                                                )}
+                                            >
                                                 <Icon icon="akar-icons:edit"></Icon>
-                                            </button>
-                                            <button className="text-red-500">
+                                            </Link>
+                                            <button
+                                                onClick={() =>
+                                                    router.delete(
+                                                        `proposal/${item.id}`
+                                                    )
+                                                }
+                                                className="text-red-500"
+                                            >
                                                 <Icon icon="ph:trash-bold"></Icon>
                                             </button>
                                         </div>

@@ -12,13 +12,11 @@ import { Icon } from "@iconify/react";
 import KuisSection from "@/Components/KuisSection/KuisSection";
 
 const QuizShowSiswa = ({ kuis, soal }) => {
+    const [isDone, setIsDone] = useState();
 
-    const [isDone, setIsDone ] = useState()
-
-    const setIsDonetrue = () =>{
-        console.log("taekk")
-        setIsDone(true)
-    }
+    const setIsDonetrue = () => {
+        setIsDone(true);
+    };
     const handleCloseQuiz = () => {
         Swal.fire({
             html: `
@@ -58,7 +56,7 @@ const QuizShowSiswa = ({ kuis, soal }) => {
                             <Countdown
                                 date={Date.now() + 60000 * kuis.waktu}
                                 daysInHours={true}
-                                onComplete={()=>setIsDonetrue()}
+                                onComplete={() => setIsDonetrue()}
                             />
                         </div>
                     </div>

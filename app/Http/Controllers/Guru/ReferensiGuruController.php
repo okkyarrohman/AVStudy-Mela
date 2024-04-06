@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Pustaka;
 
-class RefrensiGuruController extends Controller
+class ReferensiGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class RefrensiGuruController extends Controller
         $referensis = Pustaka::where('tipe', 'Referensi')->get();
 
 
-        return Inertia::render('Guru/Pustaka/Refrensi', [
+        return Inertia::render('Guru/Pustaka/Referensi', [
             'referensis' => $referensis
         ]);
     }
@@ -29,7 +29,7 @@ class RefrensiGuruController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Guru/Pustaka/RefrensiAdd');
+        return Inertia::render('Guru/Pustaka/ReferensiAdd');
     }
 
     /**
@@ -44,7 +44,7 @@ class RefrensiGuruController extends Controller
             'tipe' => 'Referensi'
         ]);
 
-        return redirect('/guru/pustaka/refrensi');
+        return redirect('/guru/pustaka/referensi');
 
     }
 
@@ -64,7 +64,7 @@ class RefrensiGuruController extends Controller
         $referensis = Pustaka::where('id', $id)->first();
 
 
-        return Inertia::render('Guru/Pustaka/RefrensiEdit', [
+        return Inertia::render('Guru/Pustaka/ReferensiEdit', [
             'referensis' => $referensis
         ]);
     }
@@ -82,7 +82,7 @@ class RefrensiGuruController extends Controller
 
         $referensis->save();
 
-        return redirect('/guru/pustaka/refrensi');
+        return redirect('/guru/pustaka/referensi');
     }
 
     /**
@@ -94,7 +94,7 @@ class RefrensiGuruController extends Controller
 
         $referensis->delete();
 
-        return redirect('/guru/pustaka/refrensi');
+        return redirect('/guru/pustaka/referensi');
 
     }
 }

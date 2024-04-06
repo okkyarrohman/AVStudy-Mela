@@ -18,7 +18,7 @@ class PustakaGuruController extends Controller
         return Inertia::render('Guru/Pustaka/Index');
     }
 
-    public function refrensi()
+    public function referensi()
     {
 
 

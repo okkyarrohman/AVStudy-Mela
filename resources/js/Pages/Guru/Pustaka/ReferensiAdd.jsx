@@ -6,33 +6,29 @@ import { router } from "@inertiajs/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const EditRefrensi = ({ referensis }) => {
-    console.log(referensis)
-
+const CreateReferensi = () => {
     const formik = useFormik({
         initialValues: {
-            refrensiName: referensis?.judul,
-            refrensiSumber: referensis?.sumber,
-            refrensiLink: referensis?.link,
+            referensiName: "",
+            referensiSumber: "",
+            referensiLink: "",
         },
         validationSchema: Yup.object({
-            refrensiName: Yup.string().required("Nama Refrensi harus diisi"),
-            refrensiSumber: Yup.string().required(
-                "Sumber Refrensi harus diisi"
+            referensiName: Yup.string().required("Nama Referensi harus diisi"),
+            referensiSumber: Yup.string().required(
+                "Sumber Referensi harus diisi"
             ),
-            refrensiLink: Yup.mixed().required(
-                "Refrensi Link Refrensi harus diisi"
+            referensiLink: Yup.mixed().required(
+                "Referensi Link Referensi harus diisi"
             ),
         }),
         onSubmit: (values) => {
-            const data = {
-                judul: values.refrensiName,
-                sumber: values.refrensiSumber,
-                link: values.refrensiLink,
-            };
-
+            const data = new FormData();
+            data.append("judul", values.referensiName);
+            data.append("sumber", values.referensiSumber);
+            data.append("link", values.referensiLink);
             console.log(data);
-            router.put(`/guru/pustaka/refrensi/${referensis.id}`, data);
+            router.post(`/guru/pustaka/referensi`, data);
         },
     });
     return (
@@ -51,80 +47,80 @@ const EditRefrensi = ({ referensis }) => {
                             icon="ep:arrow-right-bold"
                         ></Icon>
                         <a
-                            href="/guru/pustaka/refrensi"
+                            href="/guru/pustaka/referensi"
                             className="text-gray-400"
                         >
-                            Refrensi
+                            Referensi
                         </a>
                         <Icon
                             className="text-xs mx-3 text-gray-400"
                             icon="ep:arrow-right-bold"
                         ></Icon>
                         <span className="font-bold text-black">
-                            Edit Refrensi
+                            Tambah Referensi
                         </span>
                     </div>
                     <div className="my-5">
                         <div className="bg-white w-full shadow-xl border rounded-lg border-gray-300 ">
                             <div className="flex justify-between bg-purple-500 text-white p-4 w-full rounded-t-lg">
-                                <h1 className=" font-bold">Edit Refrensi</h1>
+                                <h1 className=" font-bold">Tambah Referensi</h1>
                             </div>
                             <div className="flex h-4/5 items-center justify-center">
                                 <div className="flex flex-col h-full w-full px-5 py-3 m-3">
                                     <div className="my-2">
                                         <label className="font-bold ">
-                                            Judul Refrensi *
+                                            Judul Referensi *
                                         </label>
                                         <div>
                                             <input
                                                 type="text"
-                                                name="refrensiName"
+                                                name="referensiName"
                                                 className={`w-full rounded border ${
-                                                    formik.errors.refrensiName
+                                                    formik.errors.referensiName
                                                         ? "border-red-500"
                                                         : "border-gray-400"
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
                                                 value={
-                                                    formik.values.refrensiName
+                                                    formik.values.referensiName
                                                 }
-                                                placeholder="Masukkan Judul Refrensi"
+                                                placeholder="Masukkan Judul Referensi"
                                             />
-                                            {formik.touched.refrensiName &&
-                                            formik.errors.refrensiName ? (
+                                            {formik.touched.referensiName &&
+                                            formik.errors.referensiName ? (
                                                 <div className="text-red-500">
-                                                    {formik.errors.refrensiName}
+                                                    {formik.errors.referensiName}
                                                 </div>
                                             ) : null}
                                         </div>
                                     </div>
                                     <div className="my-2">
                                         <label className="font-bold ">
-                                            Sumber Refrensi *
+                                            Sumber Referensi *
                                         </label>
                                         <div>
                                             <input
                                                 type="text"
-                                                name="refrensiSumber"
+                                                name="referensiSumber"
                                                 className={`w-full rounded border ${
-                                                    formik.errors.refrensiSumber
+                                                    formik.errors.referensiSumber
                                                         ? "border-red-500"
                                                         : "border-gray-400"
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
                                                 value={
-                                                    formik.values.refrensiSumber
+                                                    formik.values.referensiSumber
                                                 }
-                                                placeholder="Masukkan Sumber Refrensi"
+                                                placeholder="Masukkan Sumber Referensi"
                                             />
-                                            {formik.touched.refrensiSumber &&
-                                            formik.errors.refrensiSumber ? (
+                                            {formik.touched.referensiSumber &&
+                                            formik.errors.referensiSumber ? (
                                                 <div className="text-red-500">
                                                     {
                                                         formik.errors
-                                                            .refrensiSumber
+                                                            .referensiSumber
                                                     }
                                                 </div>
                                             ) : null}
@@ -132,28 +128,28 @@ const EditRefrensi = ({ referensis }) => {
                                     </div>
                                     <div className="my-2 mb-5">
                                         <label className="font-bold ">
-                                            Link Sumber Refrensi *
+                                            Link Sumber Referensi *
                                         </label>
                                         <div>
                                             <input
                                                 type="text"
-                                                name="refrensiLink"
+                                                name="referensiLink"
                                                 className={`w-full rounded border ${
-                                                    formik.errors.refrensiLink
+                                                    formik.errors.referensiLink
                                                         ? "border-red-500"
                                                         : "border-gray-400"
                                                 } mt-3`}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
                                                 value={
-                                                    formik.values.refrensiLink
+                                                    formik.values.referensiLink
                                                 }
-                                                placeholder="Masukkan Link Sumber Refrensi"
+                                                placeholder="Masukkan Link Sumber Referensi"
                                             />
-                                            {formik.touched.refrensiLink &&
-                                            formik.errors.refrensiLink ? (
+                                            {formik.touched.referensiLink &&
+                                            formik.errors.referensiLink ? (
                                                 <div className="text-red-500">
-                                                    {formik.errors.refrensiLink}
+                                                    {formik.errors.referensiLink}
                                                 </div>
                                             ) : null}
                                         </div>
@@ -163,7 +159,9 @@ const EditRefrensi = ({ referensis }) => {
                                         <div className="flex gap-5">
                                             <BtnSecondary
                                                 onClick={() =>
-                                                    router.visit("/guru/materi")
+                                                    router.visit(
+                                                        "/guru/pustaka/referensi"
+                                                    )
                                                 }
                                                 text="Tutup"
                                             />
@@ -187,4 +185,4 @@ const EditRefrensi = ({ referensis }) => {
     );
 };
 
-export default EditRefrensi;
+export default CreateReferensi;

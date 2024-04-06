@@ -10,8 +10,8 @@ import { Icon } from "@iconify/react";
 import TableMateri from "@/Components/Table/TableMateri";
 import TableProposal from "@/Components/Table/TableProposal";
 
-const ProposalGuru = ({proposals}) => {
-    console.log(proposals)
+const ProposalGuru = ({ proposals }) => {
+    console.log(proposals);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -57,7 +57,7 @@ const ProposalGuru = ({proposals}) => {
                     </div>
                     {proposals.length != 0 ? (
                         <div>
-                            <TableProposal  data={proposals.data}/>
+                            <TableProposal data={proposals.data} />
                         </div>
                     ) : (
                         <div className="w-full h-[50%] flex flex-col justify-center items-center">

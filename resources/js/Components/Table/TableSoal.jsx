@@ -32,7 +32,7 @@ const TableSoal = ({ data }) => {
                             return (
                                 <tr>
                                     <td scope="row" className="p-3 ps-5">
-                                        {idx + 1}
+                                        {item.id}
                                     </td>
                                     <td>{item.kuis}</td>
                                     <td className="py-3">
@@ -43,15 +43,32 @@ const TableSoal = ({ data }) => {
                                     <td className="py-3">
                                         <div className="flex items-center gap-2">
                                             <Icon icon="material-symbols:image-outline"></Icon>
-                                            <p>{item.gambar?item.gambar:'null'}</p>
+                                            <p>
+                                                {item.gambar
+                                                    ? item.gambar
+                                                    : "null"}
+                                            </p>
                                         </div>
                                     </td>
                                     <td className="py-3">
                                         <div className="flex items-center gap-2 text-xl">
-                                        <button onClick={()=>router.get(`soal/${item.id}/edit`)}>
+                                            <button
+                                                onClick={() =>
+                                                    router.get(
+                                                        `soal/${item.id}/edit`
+                                                    )
+                                                }
+                                            >
                                                 <Icon icon="akar-icons:edit"></Icon>
                                             </button>
-                                            <button onClick={()=>router.delete(`soal/${item.id}`)} className="text-red-500">
+                                            <button
+                                                onClick={() =>
+                                                    router.delete(
+                                                        `soal/${item.id}`
+                                                    )
+                                                }
+                                                className="text-red-500"
+                                            >
                                                 <Icon icon="ph:trash-bold"></Icon>
                                             </button>
                                         </div>

@@ -9,7 +9,7 @@ use App\Http\Controllers\Guru\OpsiGuruController;
 use App\Http\Controllers\Guru\ProposalGuruController;
 use App\Http\Controllers\Guru\ProyekGuruController;
 use App\Http\Controllers\Guru\PustakaGuruController;
-use App\Http\Controllers\Guru\RefrensiGuruController;
+use App\Http\Controllers\Guru\ReferensiGuruController;
 use App\Http\Controllers\Guru\SoalGuruController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Siswa\DashboardSiswaController;
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'role:guru'], function () {
             Route::resources([
                 '/' => PustakaGuruController::class,
                 'proposal' => ProposalGuruController::class,
-                'refrensi' => RefrensiGuruController::class,
+                'referensi' => ReferensiGuruController::class,
             ]);
         });
         Route::prefix('kuis')->group(function () {
@@ -100,7 +100,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
             'kuis' => KuisSiswaController::class,
             'proyek' => ProyekSiswaController::class
         ]);
-        Route::get('pustaka/proposal/detail', [PustakaSiswaController::class, 'detail'])->name('siswa.pustaka.detail');
+        Route::get('pustaka/proposal/{id}/detail', [PustakaSiswaController::class, 'detail'])->name('siswa.pustaka.detail');
     });
 });
 

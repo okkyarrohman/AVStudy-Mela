@@ -60,6 +60,7 @@ Route::group(['middleware' => 'role:guru'], function () {
     Route::prefix('guru')->group(function () {
         // Route Guru Start Here
         Route::get('/dashboard', [DashboardGuruController::class, 'index'])->name('guru.dashboard');
+        Route::get('/profile', [ProfileController::class, 'editGuru'])->name('profile-guru.edit');
         Route::resources([
             'materi' => MateriGuruController::class,
             'proyek' => ProyekGuruController::class,
@@ -95,6 +96,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::prefix('siswa')->group(function () {
         // Route Siswa Start Here
         Route::get('/dashboard', [DashboardSiswaController::class, 'index'])->name('siswa.dashboard');
+        Route::get('/profile', [ProfileController::class, 'editSiswa'])->name('profile-siswa.edit');
         Route::resources([
             'materi' => MateriSiswaController::class,
             'pustaka' => PustakaSiswaController::class,
@@ -107,8 +109,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
 
 // Route Murid
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

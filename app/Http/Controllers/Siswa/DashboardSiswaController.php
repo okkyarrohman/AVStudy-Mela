@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\Proyek;
 use App\Models\KategoriKuis as Kategori;
 use App\Models\Hasil;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardSiswaController extends Controller
 {
@@ -20,7 +21,6 @@ class DashboardSiswaController extends Controller
         $absens = Absen::latest()->get();
         $newTugas = Proyek::latest()->take(4)->get();
         $progresTugas = Proyek::latest()->take(1)->get();
-
 
         return Inertia::render('Siswa/Dashboard', [
             'absens' => $absens,

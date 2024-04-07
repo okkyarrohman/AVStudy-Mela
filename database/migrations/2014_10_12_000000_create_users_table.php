@@ -20,6 +20,9 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamp('session_login_at')->nullable();
             $table->integer('total_login_time')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

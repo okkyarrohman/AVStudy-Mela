@@ -3,8 +3,9 @@ import BannerDashboard from "@/Components/Banner/BannerDashboard";
 
 import Sidebar from "@/Components/Sidebar/Sidebar";
 import TableSpentHours from "@/Components/Table/TableSpentHours";
+import { Link } from "@inertiajs/react";
 
-const Dashboard = ({ absens, siswa }) => {
+const Dashboard = ({ absens, siswa, auth }) => {
     console.log("ini siswa : ", siswa);
     return (
         <>
@@ -17,27 +18,34 @@ const Dashboard = ({ absens, siswa }) => {
                         <div className="col-span-4">
                             <div>
                                 <h1 className="font-bold text-xl text-gray-700">
-                                    Halo Mela,
+                                    Halo {auth.user.name},
                                 </h1>
                                 <p className="font-light text-sm text-gray-500">
                                     Mari Belajar Bersama AVStudy, Hari Ini!
                                 </p>
                             </div>
                             <BannerDashboard />
-                            <TableSpentHours data={siswa}/>
+                            <TableSpentHours data={siswa} />
                         </div>
                         <div className="col-span-2">
                             <div className="m-10">
-                                <h1 className="font-bold text-xl"> Profil</h1>
-                                <div className="w-full flex flex-col items-center my-5">
+                                <h1 className="font-bold text-xl">Profil</h1>
+                                <Link
+                                    href={route("profile-guru.edit")}
+                                    className="w-full flex flex-col items-center my-5"
+                                >
                                     <img
-                                        src="/assets/PhotoProfile.svg"
-                                        className="object-contain w-28"
+                                        src={
+                                            auth.user.foto
+                                                ? `/storage/profile/${auth.user.foto}`
+                                                : `/assets/PhotoProfile.svg`
+                                        }
+                                        className="object-cover size-28 rounded-full"
                                     />
                                     <p className="font-bold my-2">
-                                        Mela Imroatus
+                                        {auth.user.name}
                                     </p>
-                                </div>
+                                </Link>
                             </div>
                             <div className="mx-10">
                                 <AbsensInput

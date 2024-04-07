@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -42,11 +42,20 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $user->assignRole('siswa');
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        if (Auth::check()) {
+            // Jika pengguna sudah login, arahkan sesuai peran
+            if (Auth::user()->hasRole('guru')) {
+                return redirect()->route('guru.dashboard');
+            } elseif (Auth::user()->hasRole('siswa')) {
+                return redirect()->route('siswa.dashboard');
+            }
+        }
+        // return redirect(RouteServiceProvider::HOME);
     }
 }

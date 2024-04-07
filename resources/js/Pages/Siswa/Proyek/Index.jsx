@@ -59,18 +59,30 @@ const ProyekSiswa = ({ proyeks, auth }) => {
                                             "answer1",
                                             "answer2",
                                             "answer3",
-                                            "answer_note",
-                                            "answer_link",
+                                            "answer4",
                                         ];
+                                        if (
+                                            result["answer_note"] ||
+                                            result["answer_link"]
+                                        ) {
+                                            totalAnswers.push("answer_note");
+                                            const index =
+                                                totalAnswers.indexOf("answer4");
+                                            if (index !== -1) {
+                                                totalAnswers.splice(index, 1);
+                                            }
+                                        }
                                         const filledAnswers =
                                             totalAnswers.filter(
                                                 (answer) => result[answer]
                                             );
 
-                                        progress =
+                                        progress = Math.min(
                                             (filledAnswers.length /
                                                 totalAnswers.length) *
-                                            100;
+                                                100,
+                                            100
+                                        );
                                     });
                                 }
 

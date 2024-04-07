@@ -41,9 +41,15 @@ const ListProyek = (props) => {
                 const feedbackKey = `konfirmasi${idx + 1}`;
                 const prevFeedbackKey = `konfirmasi${idx}`;
 
-                const isFeedbackReceived = userProyekResults[feedbackKey];
+                const isFeedbackReceived = userProyekResults
+                    ? userProyekResults[feedbackKey]
+                    : false;
+
                 const isPrevFeedbackReceived =
-                    idx === 0 || userProyekResults[prevFeedbackKey];
+                    idx === 0 ||
+                    (userProyekResults && userProyekResults[prevFeedbackKey]);
+                // const isPrevFeedbackReceived =
+                //     idx === 0 || userProyekResults[prevFeedbackKey];
 
                 console.log("feedback", isFeedbackReceived);
 
@@ -88,9 +94,9 @@ const ListProyek = (props) => {
                                                     : "Belum Ada Feedback"
                                             )
                                         }
-                                        disabled={!isPrevFeedbackReceived}
+                                        disabled={!isFeedbackReceived}
                                         className={`w-full bg-purple-500 text-white p-2 rounded-lg ${
-                                            !isPrevFeedbackReceived &&
+                                            !isFeedbackReceived &&
                                             "opacity-50 cursor-not-allowed"
                                         }`}
                                     >

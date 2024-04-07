@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Pustaka;
@@ -42,6 +43,12 @@ class ReferensiGuruController extends Controller
             'sumber' => $request->input('sumber'),
             'link' => $request->input('link'),
             'tipe' => 'Referensi'
+        ]);
+
+        Notifikasi::create([
+            'pesan' => 'Referensi Baru',
+            'deskripsi' => 'Referensi baru ' . $request->judul . 'baru saja ditambahkan ditambahkan',
+            'tipe' => 'referensi'
         ]);
 
         return redirect('/guru/pustaka/referensi');

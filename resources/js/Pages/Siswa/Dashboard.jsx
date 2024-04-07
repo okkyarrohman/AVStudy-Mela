@@ -6,7 +6,8 @@ import Sidebar from "@/Components/Sidebar/Sidebar";
 import TableProgressProyek from "@/Components/Table/TableProgressProyek";
 import { Link } from "@inertiajs/react";
 
-const Dashboard = ({ absens, newTugases, progresTugas, chartKuis, auth }) => {
+const Dashboard = ({ absens, notifikasis, progresTugas, chartKuis, auth }) => {
+    console.log(progresTugas);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -30,7 +31,7 @@ const Dashboard = ({ absens, newTugases, progresTugas, chartKuis, auth }) => {
                                 <CardChart data={chartKuis} />
                             </div>
                             <div className="my-10 mx-2">
-                                <TableProgressProyek />
+                                <TableProgressProyek data={progresTugas} />
                             </div>
                         </div>
                         <div className="col-span-2">
@@ -52,7 +53,7 @@ const Dashboard = ({ absens, newTugases, progresTugas, chartKuis, auth }) => {
                                         {auth.user.name}
                                     </p>
                                 </Link>
-                                <ListNotif data={newTugases} />
+                                <ListNotif data={notifikasis} />
                             </div>
                         </div>
                     </div>

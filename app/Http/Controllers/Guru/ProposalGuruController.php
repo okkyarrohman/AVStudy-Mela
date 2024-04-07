@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Pustaka;
@@ -58,6 +59,12 @@ class ProposalGuruController extends Controller
             'cover' => $coverName,
             'konten' => $kontenName,
             'tipe' => 'Proposal'
+        ]);
+
+        Notifikasi::create([
+            'pesan' => 'Proposal Baru',
+            'deskripsi' => 'Proposal baru ' . $request->judul . 'baru saja ditambahkan ditambahkan',
+            'tipe' => 'proposal'
         ]);
 
         return redirect('/guru/pustaka/proposal');

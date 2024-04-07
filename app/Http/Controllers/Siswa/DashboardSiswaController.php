@@ -9,6 +9,8 @@ use Inertia\Inertia;
 use App\Models\Proyek;
 use App\Models\KategoriKuis as Kategori;
 use App\Models\Hasil;
+use App\Models\Notifikasi;
+use App\Models\ProyekResult;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardSiswaController extends Controller
@@ -19,13 +21,15 @@ class DashboardSiswaController extends Controller
     public function index()
     {
         $absens = Absen::latest()->get();
-        $newTugas = Proyek::latest()->take(4)->get();
-        $progresTugas = Proyek::latest()->take(1)->get();
+        // $newTugas = Proyek::latest()->take(4)->get();
+        $progresTugas = ProyekResult::where('user_id', Auth::user()->id)->with('proyek')->latest()->take(1)->get();
+        $notifikasis = Notifikasi::latest()->take(5)->get();
 
         return Inertia::render('Siswa/Dashboard', [
             'absens' => $absens,
-            'newTugases' => $newTugas,
+            // 'newTugases' => $newTugas,
             'progresTugas' => $progresTugas,
+            'notifikasis' => $notifikasis,
             'chartKuis' => $this->grafikKuis(),
         ]);
     }

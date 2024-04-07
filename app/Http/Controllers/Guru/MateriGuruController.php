@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use App\Models\Materi;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +56,12 @@ class MateriGuruController extends Controller
             'deskripsi' => $request->input('deskripsi'),
             'cover' => $coverName,
             'konten' => $kontenName,
+        ]);
+
+        Notifikasi::create([
+            'pesan' => 'Materi Baru',
+            'deskripsi' => 'Materi baru ' . $request->nama . 'baru saja ditambahkan ditambahkan',
+            'tipe' => 'materi'
         ]);
 
         return redirect('/guru/materi');

@@ -36,15 +36,23 @@ const TableProyekHasil = ({ data }) => {
                                 "answer1",
                                 "answer2",
                                 "answer3",
-                                "answer_note",
-                                "answer_link",
+                                "answer4",
                             ];
+                            if (item["answer_note"] || item["answer_link"]) {
+                                totalAnswers.push("answer_note");
+                                const index = totalAnswers.indexOf("answer4");
+                                if (index !== -1) {
+                                    totalAnswers.splice(index, 1);
+                                }
+                            }
                             const filledAnswers = totalAnswers.filter(
                                 (answer) => item[answer]
                             );
-                            progress =
+                            progress = Math.min(
                                 (filledAnswers.length / totalAnswers.length) *
-                                100;
+                                    100,
+                                100
+                            );
 
                             return (
                                 <tr>

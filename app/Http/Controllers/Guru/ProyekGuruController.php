@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use App\Models\Proyek;
 use Inertia\Inertia;
@@ -46,6 +47,12 @@ class ProyekGuruController extends Controller
             'deskripsi3' => $request->input('deskripsi3'),
             'step4' => $request->input('step4'),
             'deskripsi4' => $request->input('deskripsi4'),
+        ]);
+
+        Notifikasi::create([
+            'pesan' => 'Proyek Baru',
+            'deskripsi' => 'Proyek baru ' . $request->nama . 'baru saja ditambahkan ditambahkan',
+            'tipe' => 'proyek'
         ]);
 
         return redirect('/guru/proyek');

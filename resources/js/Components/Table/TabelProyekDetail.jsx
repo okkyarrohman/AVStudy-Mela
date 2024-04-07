@@ -65,9 +65,13 @@ const TableProyekDetail = ({ data }) => {
                                 <div className="flex items-center gap-2">
                                     <Icon icon="akar-icons:file"></Icon>
                                     {data.answer1 ? (
-                                        <p className="w-36 line-clamp-2">
+                                        <a
+                                            href={`/storage/ProyekResult/answer1/${data.answer1}`}
+                                            target="_blank"
+                                            className="w-36 line-clamp-2"
+                                        >
                                             {data.answer1}
-                                        </p>
+                                        </a>
                                     ) : (
                                         <p className="w-36 line-clamp-2">
                                             Belum Dijawab
@@ -112,9 +116,13 @@ const TableProyekDetail = ({ data }) => {
                                 <div className="flex items-center gap-2">
                                     <Icon icon="akar-icons:file"></Icon>
                                     {data.answer2 ? (
-                                        <p className="w-36 line-clamp-2">
+                                        <a
+                                            href={`/storage/ProyekResult/answer2/${data.answer2}`}
+                                            target="_blank"
+                                            className="w-36 line-clamp-2"
+                                        >
                                             {data.answer2}
-                                        </p>
+                                        </a>
                                     ) : (
                                         <p className="w-36 line-clamp-2">
                                             Belum Dijawab
@@ -159,9 +167,13 @@ const TableProyekDetail = ({ data }) => {
                                 <div className="flex items-center gap-2">
                                     <Icon icon="akar-icons:file"></Icon>
                                     {data.answer3 ? (
-                                        <p className="w-36 line-clamp-2">
+                                        <a
+                                            href={`/storage/ProyekResult/answer3/${data.answer3}`}
+                                            target="_blank"
+                                            className="w-36 line-clamp-2"
+                                        >
                                             {data.answer3}
-                                        </p>
+                                        </a>
                                     ) : (
                                         <p className="w-36 line-clamp-2">
                                             Belum Dijawab
@@ -203,17 +215,24 @@ const TableProyekDetail = ({ data }) => {
                                 </p>
                             </td>
                             <td className="py-3">
-                                <div className="flex items-center gap-2">
-                                    <Icon icon="akar-icons:file"></Icon>
+                                <div>
+                                    {/* <Icon icon="akar-icons:file"></Icon> */}
                                     {data.answer_note || data.answer_link ? (
-                                        <div>
-                                            <p className="w-36 line-clamp-2">
+                                        <>
+                                            <p className="w-36">
                                                 {data.answer_note}
                                             </p>
-                                            <p className="w-36 line-clamp-2">
-                                                {data.answer_link}
-                                            </p>
-                                        </div>
+                                            <a
+                                                href={data.answer_link}
+                                                target="_blank"
+                                                className="flex items-center gap-2"
+                                            >
+                                                <Icon icon="system-uicons:chain"></Icon>
+                                                <p className="w-36 line-clamp-2">
+                                                    {data.answer_link}
+                                                </p>
+                                            </a>
+                                        </>
                                     ) : (
                                         <p className="w-36 line-clamp-2">
                                             Belum Dijawab

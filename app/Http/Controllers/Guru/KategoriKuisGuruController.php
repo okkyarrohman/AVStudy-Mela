@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\KategoriKuis as Kategori;
+use App\Models\Notifikasi;
 use Inertia\Inertia;
 
 class KategoriKuisGuruController extends Controller
@@ -38,6 +39,12 @@ class KategoriKuisGuruController extends Controller
             'kuis' => $request->input('kuis'),
             'tenggat' => $request->input('tenggat'),
             'waktu' => $request->input('waktu'),
+        ]);
+
+        Notifikasi::create([
+            'pesan' => 'Kuis Baru',
+            'deskripsi' => 'Kuis baru ' . $request->kuis . 'baru saja ditambahkan ditambahkan',
+            'tipe' => 'kuis'
         ]);
 
         return redirect('/guru/kuis/kategori');

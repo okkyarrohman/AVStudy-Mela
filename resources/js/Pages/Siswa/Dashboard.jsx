@@ -7,7 +7,7 @@ import TableProgressProyek from "@/Components/Table/TableProgressProyek";
 import { Link } from "@inertiajs/react";
 
 const Dashboard = ({ absens, notifikasis, progresTugas, chartKuis, auth }) => {
-    console.log(progresTugas);
+    // console.log(chartKuis);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">

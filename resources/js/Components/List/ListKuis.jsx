@@ -4,13 +4,13 @@ import { router } from "@inertiajs/react";
 import Swal from "sweetalert2";
 
 const ListKuis = (props) => {
-    const soalKosongHandler = () =>{
+    const soalKosongHandler = () => {
         Swal.fire({
             title: "SOAL KOSONG",
             text: "Gaonok soal e coegg, keplaken ae ndas e gurumu",
-            icon: "error"
-          });
-    }
+            icon: "error",
+        });
+    };
 
     const kerjakanHandler = (title, id) => {
         Swal.fire({
@@ -51,13 +51,18 @@ const ListKuis = (props) => {
                         <p>{props.time} Menit</p>
                     </div>
                     <div className="col-span-2 text-center">
-                        {props.hasil? (
+                        {props.hasil ? (
                             <p>{props.hasil} </p>
                         ) : (
                             <button
-                                onClick={props.qty > 0 ? (() =>
-                                    kerjakanHandler(props.title, props.id)):
-                                    ()=>soalKosongHandler()
+                                onClick={
+                                    props.qty > 0
+                                        ? () =>
+                                              kerjakanHandler(
+                                                  props.title,
+                                                  props.id
+                                              )
+                                        : () => soalKosongHandler()
                                 }
                                 className="w-full bg-purple-500 text-white p-2 rounded-lg"
                             >

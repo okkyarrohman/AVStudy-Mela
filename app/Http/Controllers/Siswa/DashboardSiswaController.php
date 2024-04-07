@@ -38,7 +38,7 @@ class DashboardSiswaController extends Controller
     private function grafikKuis()
     {
         $data = array();
-        $kuis = Kategori::with('soal')->get();
+        $kuis = Kategori::with('soal')->latest()->take(5)->get();
 
         foreach ($kuis as $item) {
             $data[] = [

@@ -6,8 +6,8 @@ import ListMateri from "@/Components/List/ListMateri";
 import ListKuis from "@/Components/List/ListKuis";
 import Countdown from "react-countdown";
 
-const KuisSiswa = ({kuis}) => {
-    console.log(kuis)
+const KuisSiswa = ({ kuis, auth }) => {
+    console.log(kuis);
     return (
         <>
             <div className="min-h-screen grid grid-cols-12">
@@ -19,6 +19,10 @@ const KuisSiswa = ({kuis}) => {
                         <h1 className="font-bold text-2xl">Kuis</h1>
                     </div>
                     {kuis.map((item, idx) => {
+                        const filteredKuis = item.hasil.find(
+                            (hasil) => hasil.user_id == auth.user.id
+                        );
+                        console.log(filteredKuis);
                         return (
                             <ListKuis
                                 key={item.id}
@@ -26,7 +30,11 @@ const KuisSiswa = ({kuis}) => {
                                 qty={item.soal_count}
                                 time={item.waktu}
                                 id={item.id}
-                                hasil={item.hasil[0]?.total_points}
+                                hasil={
+                                    filteredKuis
+                                        ? filteredKuis.total_points
+                                        : null
+                                }
                             />
                         );
                     })}

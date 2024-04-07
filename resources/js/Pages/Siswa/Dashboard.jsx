@@ -27,7 +27,7 @@ const Dashboard = ({ absens, notifikasis, progresTugas, chartKuis, auth }) => {
                             </div>
                             <BannerDashboard />
                             <div className="flex flex-col sm:flex-row w-full gap-5">
-                                <CardBarcode img={absens[0].image} />
+                                <CardBarcode data={absens} />
                                 <CardChart data={chartKuis} />
                             </div>
                             <div className="my-10 mx-2">

@@ -87,7 +87,7 @@ Route::group(['middleware' => 'role:guru'], function () {
             ]);
         });
 
-        Route::post('/dashboard/storeAbsen', [DashboardGuruController::class, 'storeAbsen']);
+        Route::post('/dashboard/storeAbsen', [DashboardGuruController::class, 'storeAbsen'])->name('guru.storeAbsen');
     });
 });
 

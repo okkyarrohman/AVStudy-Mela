@@ -11,5 +11,5 @@ class Absen extends Model
 
     protected $table = 'absens';
 
-    protected $fillable = ['links', 'image'];
+    protected $fillable = ['link'];
 }

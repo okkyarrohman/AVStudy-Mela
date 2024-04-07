@@ -49,8 +49,9 @@ const Dashboard = ({ absens, siswa, auth }) => {
                             </div>
                             <div className="mx-10">
                                 <AbsensInput
-                                    link={absens.link}
-                                    img={absens.image}
+                                    data={absens}
+                                    // link={absens.link}
+                                    // img={absens.image}
                                 />
                             </div>
                         </div>

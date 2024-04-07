@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
             $table->string('link')->nullable();
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

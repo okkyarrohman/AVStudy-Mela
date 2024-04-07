@@ -39,18 +39,8 @@ class DashboardGuruController extends Controller
      */
     public function storeAbsen(Request $request)
     {
-
-        // Request column input type file
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $extension = $image->getClientOriginalName();
-            $imageName = date('Ymd') . "." . $extension;
-            $image->move(storage_path('app/public/absen/image/'), $imageName);
-        }
-
         Absen::create([
             'link' => $request->input('link'),
-            'image' => $imageName,
         ]);
 
         return redirect()->route('guru.dashboard');

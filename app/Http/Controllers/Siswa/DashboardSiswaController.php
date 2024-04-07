@@ -20,7 +20,7 @@ class DashboardSiswaController extends Controller
      */
     public function index()
     {
-        $absens = Absen::latest()->get();
+        $absens = Absen::latest()->first();
         // $newTugas = Proyek::latest()->take(4)->get();
         $progresTugas = ProyekResult::where('user_id', Auth::user()->id)->with('proyek')->latest()->take(1)->get();
         $notifikasis = Notifikasi::latest()->take(5)->get();

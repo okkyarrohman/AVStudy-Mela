@@ -20,6 +20,14 @@ class UserSeeder extends Seeder
         ]);
         $guru1->assignRole('guru');
 
+        $guru2 = User::create([
+            'name' => 'Guru Mela',
+            'email' => 'mela@avstudy.com',
+            'password' => bcrypt('mela123'),
+        ]);
+        $guru2->assignRole('guru');
+
+
         $siswa = User::create([
             'name' => 'siswa',
             'email' => 'siswa@avstudy.com',

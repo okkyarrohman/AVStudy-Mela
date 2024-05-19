@@ -34,6 +34,13 @@ use App\Models\User;
 |
 */
 
+Route::get('/foo', function () {
+    $target = '/home/avstudyb/avstudy/storage/app/public';
+    $shortcut = '/home/avstudyb/public_html/storage';
+    symlink($target, $shortcut);
+});
+
+
 Route::get('/', function () {
     if (Auth::check()) {
         // Jika pengguna sudah login, arahkan sesuai peran

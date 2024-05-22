@@ -63,7 +63,7 @@ class ProyekGuruController extends Controller
      */
     public function show($id)
     {
-        $proyekResults = ProyekResult::where('proyek_id', $id)->with(['proyek', 'user'])->get();
+        $proyekResults = ProyekResult::where('proyek_id', $id)->with(['proyek', 'user'])->paginate(50);
 
         return Inertia::render('Guru/Proyek/Show', [
             'proyekResults' => $proyekResults,

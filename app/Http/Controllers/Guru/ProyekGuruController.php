@@ -56,7 +56,6 @@ class ProyekGuruController extends Controller
         ]);
 
         return redirect('/guru/proyek');
-
     }
 
     /**
@@ -64,7 +63,7 @@ class ProyekGuruController extends Controller
      */
     public function show($id)
     {
-        $proyekResults = ProyekResult::where('proyek_id', $id)->with(['proyek', 'user'])->paginate(10);
+        $proyekResults = ProyekResult::where('proyek_id', $id)->with(['proyek', 'user'])->get();
 
         return Inertia::render('Guru/Proyek/Show', [
             'proyekResults' => $proyekResults,
@@ -116,7 +115,6 @@ class ProyekGuruController extends Controller
         $proyeks->save();
 
         return redirect('/guru/proyek');
-
     }
 
     /**
@@ -129,7 +127,6 @@ class ProyekGuruController extends Controller
         $proyeks->delete();
 
         return redirect('/guru/proyek');
-
     }
 
     public function grade(Request $request, string $id)

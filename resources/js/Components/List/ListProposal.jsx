@@ -18,7 +18,7 @@ const ListProposal = (props) => {
                         <h1 className="font-bold text-md sm:text-xl">
                             {props.title}
                         </h1>
-                        <p className="text-sm hidden lg:block">{props.desc}</p>
+                        {/* <p className="text-sm hidden lg:block">{props.desc}</p> */}
                     </div>
                     <div className="flex justify-center items-center gap-3">
                         <Link

@@ -35,9 +35,6 @@ const ReferensiSiswa = ({ pustakas }) => {
                                 img={item.cover}
                                 title={item.judul}
                                 file={item.konten}
-                                desc="Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Corrupti, repellat
-                                architecto."
                             />
                         );
                     })}

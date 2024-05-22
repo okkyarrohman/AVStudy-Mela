@@ -55,9 +55,9 @@ const TableProyekHasil = ({ data }) => {
                             );
 
                             return (
-                                <tr>
+                                <tr key={idx}>
                                     <td scope="row" className="p-3 ps-5">
-                                        1
+                                        {idx + 1}
                                     </td>
                                     <td className="py-3 ">{item.user.name}</td>
                                     <td>

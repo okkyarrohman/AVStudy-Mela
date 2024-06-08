@@ -217,22 +217,14 @@ const TableProyekDetail = ({ data }) => {
                             <td className="py-3">
                                 <div>
                                     {/* <Icon icon="akar-icons:file"></Icon> */}
-                                    {data.answer_note || data.answer_link ? (
-                                        <>
-                                            <p className="w-36">
-                                                {data.answer_note}
-                                            </p>
-                                            <a
-                                                href={data.answer_link}
-                                                target="_blank"
-                                                className="flex items-center gap-2"
-                                            >
-                                                <Icon icon="system-uicons:chain"></Icon>
-                                                <p className="w-36 line-clamp-2">
-                                                    {data.answer_link}
-                                                </p>
-                                            </a>
-                                        </>
+                                    {data.answer4 ? (
+                                        <a
+                                            href={`/storage/ProyekResult/answer4/${data.answer4}`}
+                                            target="_blank"
+                                            className="w-36 line-clamp-2"
+                                        >
+                                            {data.answer4}
+                                        </a>
                                     ) : (
                                         <p className="w-36 line-clamp-2">
                                             Belum Dijawab

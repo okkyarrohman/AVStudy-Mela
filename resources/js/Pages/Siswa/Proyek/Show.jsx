@@ -23,6 +23,7 @@ const ShowProyek = ({ proyeks, proyekResults }) => {
             answer1: proyekResults?.answer1 || null,
             answer2: proyekResults?.answer2 || null,
             answer3: proyekResults?.answer3 || null,
+            answer4: proyekResults?.answer4 || null,
             answer_note: proyekResults?.answer_note || "",
             answer_link: proyekResults?.answer_link || "",
         },
@@ -33,8 +34,9 @@ const ShowProyek = ({ proyeks, proyekResults }) => {
                 answer1: values.answer1,
                 answer2: values.answer2,
                 answer3: values.answer3,
-                answer_note: values.answer_note,
-                answer_link: values.answer_link,
+                answer4: values.answer4,
+                answer_note: proyekResults?.answer_note,
+                answer_link: proyekResults?.answer_link,
             };
 
             console.log(data);
@@ -180,44 +182,29 @@ const ShowProyek = ({ proyeks, proyekResults }) => {
                                     </label>
                                 )}
                                 {idx == 4 && (
-                                    <div className="w-[50rem]">
-                                        <div className="relative">
-                                            <Icon
-                                                icon="system-uicons:chain"
-                                                className="w-6 h-6 absolute bottom-2.5 left-2.5"
-                                            ></Icon>
-                                            <input
-                                                type="text"
-                                                name="answer_link"
-                                                className={`w-full rounded border border-dashed pl-12 ${
-                                                    formik.errors.answer_link
-                                                        ? "border-red-500"
-                                                        : "border-gray-400"
-                                                } mt-3`}
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                                value={
-                                                    formik.values.answer_link
-                                                }
-                                                placeholder="Masukkan Link (Optional)"
-                                            />
-                                        </div>
-
-                                        <textarea
-                                            type="text"
-                                            name="answer_note"
-                                            className={`w-full rounded border ${
-                                                formik.errors.answer_note
-                                                    ? "border-red-500"
-                                                    : "border-gray-400"
-                                            } mt-8`}
-                                            onChange={formik.handleChange}
+                                    <label className="w-fit flex items-center font-bold py-10 my-1 px-72 text-black border-black border border-dashed rounded-lg">
+                                        <Icon
+                                            icon="tabler:plus"
+                                            className="me-2"
+                                        ></Icon>
+                                        <input
+                                            name="answer4"
+                                            type="file"
+                                            className="hidden"
+                                            onChange={(e) => {
+                                                formik.setFieldValue(
+                                                    "answer4",
+                                                    e.target.files[0]
+                                                );
+                                            }}
                                             onBlur={formik.handleBlur}
-                                            value={formik.values.answer_note}
-                                            placeholder="Masukkan Note"
-                                            rows={5}
                                         />
-                                    </div>
+                                        {formik.values.answer4
+                                            ? formik.values.answer4.name
+                                                ? formik.values.answer4.name
+                                                : formik.values.answer4
+                                            : "Pilih File"}
+                                    </label>
                                 )}
                             </form>
                             <div className="flex justify-between w-[50rem]">

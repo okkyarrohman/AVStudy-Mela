@@ -18,7 +18,7 @@ class ProyekSiswaController extends Controller
     {
         $proyeks = Proyek::with(['proyekResult'])->get();
 
-        return Inertia::render('Siswa/Proyek/Index',[
+        return Inertia::render('Siswa/Proyek/Index', [
             'proyeks' => $proyeks
         ]);
     }
@@ -61,6 +61,15 @@ class ProyekSiswaController extends Controller
             $answer3->move(storage_path('app/public/ProyekResult/answer3/'), $answer3Name);
             $proyekResults->answer3 = $answer3Name;
         }
+
+        if ($request->hasFile('answer4')) {
+            $answer4 = $request->file('answer4');
+            $extension = $answer4->getClientOriginalName();
+            $answer4Name = date('Ymd') . "." . $extension;
+            $answer4->move(storage_path('app/public/ProyekResult/answer4/'), $answer4Name);
+            $proyekResults->answer4 = $answer4Name;
+        }
+
         $proyekResults->answer_note = $request->answer_note;
         $proyekResults->answer_link = $request->answer_link;
         $proyekResults->save();
@@ -117,6 +126,14 @@ class ProyekSiswaController extends Controller
             $answer3Name = date('Ymd') . "." . $extension;
             $answer3->move(storage_path('app/public/ProyekResult/answer3/'), $answer3Name);
             $proyekResults->answer3 = $answer3Name;
+        }
+
+        if ($request->hasFile('answer4')) {
+            $answer4 = $request->file('answer4');
+            $extension = $answer4->getClientOriginalName();
+            $answer4Name = date('Ymd') . "." . $extension;
+            $answer4->move(storage_path('app/public/ProyekResult/answer4/'), $answer4Name);
+            $proyekResults->answer4 = $answer4Name;
         }
         $proyekResults->answer_note = $request->answer_note;
         $proyekResults->answer_link = $request->answer_link;

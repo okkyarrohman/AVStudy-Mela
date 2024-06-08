@@ -70,8 +70,8 @@ class ProyekSiswaController extends Controller
             $proyekResults->answer4 = $answer4Name;
         }
 
-        $proyekResults->answer_note = $request->answer_note;
-        $proyekResults->answer_link = $request->answer_link;
+        $proyekResults->answer_note = "notes";
+        $proyekResults->answer_link = "www.google.com";
         $proyekResults->save();
 
         return redirect('/siswa/proyek');
@@ -135,8 +135,8 @@ class ProyekSiswaController extends Controller
             $answer4->move(storage_path('app/public/ProyekResult/answer4/'), $answer4Name);
             $proyekResults->answer4 = $answer4Name;
         }
-        $proyekResults->answer_note = $request->answer_note;
-        $proyekResults->answer_link = $request->answer_link;
+        $proyekResults->answer_note = "notes";
+        $proyekResults->answer_link = "www.google.com";
         $proyekResults->save();
 
         return redirect('/siswa/proyek');

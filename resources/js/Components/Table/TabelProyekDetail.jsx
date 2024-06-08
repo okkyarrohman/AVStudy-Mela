@@ -29,6 +29,23 @@ const TableProyekDetail = ({ data }) => {
     const date = new Date(data.created_at);
     const formattedDate = format(date, "dd MMMM yyyy");
 
+    const date1 = new Date(data.tanggalSubmit1);
+    const formattedDate1 = format(date1, "dd MMMM yyyy");
+
+
+    const date2 = new Date(data.tanggalSubmit2);
+    const formattedDate2 = format(date2, "dd MMMM yyyy");
+
+
+    const date3 = new Date(data.tanggalSubmit3);
+    const formattedDate3 = format(date3, "dd MMMM yyyy");
+
+
+    const date4 = new Date(data.tanggalSubmit4);
+    const formattedDate4 = format(date4, "dd MMMM yyyy");
+
+
+
     return (
         <>
             <div className=" overflow-auto bg-white shadow-xl rounded-lg">
@@ -58,7 +75,7 @@ const TableProyekDetail = ({ data }) => {
                             </td>
                             <td>
                                 <p className="italic font-bold">
-                                    {formattedDate}
+                                    {formattedDate1}
                                 </p>
                             </td>
                             <td className="py-3">
@@ -109,7 +126,7 @@ const TableProyekDetail = ({ data }) => {
                             </td>
                             <td>
                                 <p className="italic font-bold">
-                                    {formattedDate}
+                                    {formattedDate2}
                                 </p>
                             </td>
                             <td className="py-3">
@@ -160,7 +177,7 @@ const TableProyekDetail = ({ data }) => {
                             </td>
                             <td>
                                 <p className="italic font-bold">
-                                    {formattedDate}
+                                    {formattedDate3}
                                 </p>
                             </td>
                             <td className="py-3">
@@ -211,7 +228,7 @@ const TableProyekDetail = ({ data }) => {
                             </td>
                             <td>
                                 <p className="italic font-bold">
-                                    {formattedDate}
+                                    {formattedDate4}
                                 </p>
                             </td>
                             <td className="py-3">

@@ -208,20 +208,6 @@ const ShowProyek = ({ proyeks, proyekResults }) => {
                                 )}
                             </form>
                             <div className="flex justify-between w-[50rem]">
-                                {/* <div className="flex items-center gap-6">
-                                    {idx != 1 && (
-                                        <BtnSecondary
-                                            onClick={prevHandler}
-                                            text="Prev"
-                                        />
-                                    )}
-                                    {idx != 4 && (
-                                        <BtnPrimary
-                                            onClick={nextHandler}
-                                            text="Next"
-                                        />
-                                    )}
-                                </div> */}
                                 <BtnPrimary
                                     onClick={() => formik.handleSubmit()}
                                     text="Submit"
